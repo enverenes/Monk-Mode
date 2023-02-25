@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		30BA0A4E29A924FA00B0B3AB /* Monk_ModeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */; };
-		30BA0A5029A924FA00B0B3AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A4F29A924FA00B0B3AB /* ContentView.swift */; };
 		30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5129A924FC00B0B3AB /* Assets.xcassets */; };
 		30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5429A924FC00B0B3AB /* Preview Assets.xcassets */; };
 		30BA0A5F29A924FC00B0B3AB /* Monk_ModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A5E29A924FC00B0B3AB /* Monk_ModeTests.swift */; };
 		30BA0A6929A924FC00B0B3AB /* Monk_ModeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A6829A924FC00B0B3AB /* Monk_ModeUITests.swift */; };
 		30BA0A6B29A924FC00B0B3AB /* Monk_ModeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A6A29A924FC00B0B3AB /* Monk_ModeUITestsLaunchTests.swift */; };
+		30BA0A7E29A9259F00B0B3AB /* ChooseHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */; };
+		30BA0A7F29A9259F00B0B3AB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A7A29A9259F00B0B3AB /* OnboardingView.swift */; };
+		30BA0A8029A9259F00B0B3AB /* SpecifyhabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A7B29A9259F00B0B3AB /* SpecifyhabitsView.swift */; };
+		30BA0A8129A9259F00B0B3AB /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A7C29A9259F00B0B3AB /* MainContentView.swift */; };
+		30BA0A8229A9259F00B0B3AB /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A7D29A9259F00B0B3AB /* SplashScreenView.swift */; };
+		30BA0A8429A9272700B0B3AB /* MetalMania-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */; };
+		30BA0A8929A9640600B0B3AB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A8829A9640600B0B3AB /* HistoryView.swift */; };
+		30BA0A8D29A9644400B0B3AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A8C29A9644400B0B3AB /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,6 @@
 /* Begin PBXFileReference section */
 		30BA0A4A29A924FA00B0B3AB /* Monk Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monk Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monk_ModeApp.swift; sourceTree = "<group>"; };
-		30BA0A4F29A924FA00B0B3AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		30BA0A5129A924FC00B0B3AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30BA0A5429A924FC00B0B3AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		30BA0A5A29A924FC00B0B3AB /* Monk ModeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Monk ModeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,15 @@
 		30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Monk ModeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30BA0A6829A924FC00B0B3AB /* Monk_ModeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monk_ModeUITests.swift; sourceTree = "<group>"; };
 		30BA0A6A29A924FC00B0B3AB /* Monk_ModeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monk_ModeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseHabitsView.swift; sourceTree = "<group>"; };
+		30BA0A7A29A9259F00B0B3AB /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		30BA0A7B29A9259F00B0B3AB /* SpecifyhabitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecifyhabitsView.swift; sourceTree = "<group>"; };
+		30BA0A7C29A9259F00B0B3AB /* MainContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		30BA0A7D29A9259F00B0B3AB /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MetalMania-Regular.ttf"; sourceTree = "<group>"; };
+		30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Monk-Mode-Info.plist"; sourceTree = SOURCE_ROOT; };
+		30BA0A8829A9640600B0B3AB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		30BA0A8C29A9644400B0B3AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +109,16 @@
 		30BA0A4C29A924FA00B0B3AB /* Monk Mode */ = {
 			isa = PBXGroup;
 			children = (
+				30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */,
+				30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */,
+				30BA0A7C29A9259F00B0B3AB /* MainContentView.swift */,
+				30BA0A7A29A9259F00B0B3AB /* OnboardingView.swift */,
+				30BA0A7B29A9259F00B0B3AB /* SpecifyhabitsView.swift */,
+				30BA0A7D29A9259F00B0B3AB /* SplashScreenView.swift */,
 				30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */,
-				30BA0A4F29A924FA00B0B3AB /* ContentView.swift */,
+				30BA0A8829A9640600B0B3AB /* HistoryView.swift */,
+				30BA0A8C29A9644400B0B3AB /* SettingsView.swift */,
+				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
 				30BA0A5129A924FC00B0B3AB /* Assets.xcassets */,
 				30BA0A5329A924FC00B0B3AB /* Preview Content */,
 			);
@@ -231,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BA0A8429A9272700B0B3AB /* MetalMania-Regular.ttf in Resources */,
 				30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */,
 				30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */,
 			);
@@ -257,8 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30BA0A5029A924FA00B0B3AB /* ContentView.swift in Sources */,
+				30BA0A8929A9640600B0B3AB /* HistoryView.swift in Sources */,
+				30BA0A8D29A9644400B0B3AB /* SettingsView.swift in Sources */,
+				30BA0A8229A9259F00B0B3AB /* SplashScreenView.swift in Sources */,
+				30BA0A7F29A9259F00B0B3AB /* OnboardingView.swift in Sources */,
 				30BA0A4E29A924FA00B0B3AB /* Monk_ModeApp.swift in Sources */,
+				30BA0A8029A9259F00B0B3AB /* SpecifyhabitsView.swift in Sources */,
+				30BA0A7E29A9259F00B0B3AB /* ChooseHabitsView.swift in Sources */,
+				30BA0A8129A9259F00B0B3AB /* MainContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +450,7 @@
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Monk-Mode-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +480,7 @@
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Monk-Mode-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
