@@ -35,14 +35,16 @@ struct ChooseHabitsView: View {
       
         ZStack{
             
-            LinearGradient(gradient: Gradient(colors: [.black, .black]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+            
+            
             
             VStack{
                 
-                Spacer().frame(height: 50)
+                Spacer().frame(height: 100)
                 
-                Text("Choose at least four habits to become a monk!").padding().font(.custom("Futura", size: 35)).foregroundColor(.white)
-                Spacer()
+                Text("Choose Four Habits To Become A monk!").padding(.horizontal,80).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
+                Spacer().frame(height: 40)
                 
                 VStack{
                     HStack{
@@ -80,7 +82,7 @@ Spacer()
                         }
 
                         Spacer()
-                    }.padding()
+                    }.padding(.horizontal).padding(.vertical,3)
                     
                     HStack{
                         Spacer()
@@ -90,6 +92,7 @@ Spacer()
                         } label: {
                             Text("No Drugs")
                                 .padding()
+                                .frame(width: 110)
                                 .foregroundColor((nodrugs) ? .white : Color(.systemBlue))
                                 .background((nodrugs) ? .blue : .white)
                                 .overlay( /// apply a rounded border
@@ -98,6 +101,7 @@ Spacer()
                                 .cornerRadius(5)
                             
                                 .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                            
                         }
                         Spacer()
                         Button {
@@ -105,6 +109,7 @@ Spacer()
                         } label: {
                             Text("No Fap")
                               .padding()
+                              .frame(width: 100)
                               .foregroundColor((nofap) ? .white : Color(.systemBlue))
                               .background((nofap) ? .blue : .white)
                                 .overlay( /// apply a rounded border
@@ -116,7 +121,7 @@ Spacer()
                         }
 
                        
-                    }.padding()
+                    }.padding(.horizontal).padding(.vertical,3)
                     
                     HStack{
                         Button {
@@ -138,6 +143,7 @@ Spacer()
                             meditation.toggle()
                         } label: {
                             Text("Meditation")
+                                .frame(width: 100)
                              .padding()
                              .foregroundColor((meditation) ? .white : Color(.systemBlue))
                              .background((meditation) ? .blue : .white)
@@ -150,7 +156,7 @@ Spacer()
                         }
 
                         Spacer()
-                    }.padding()
+                    }.padding(.horizontal).padding(.vertical,3)
                     
                     HStack{
                         Spacer()
@@ -159,6 +165,7 @@ Spacer()
                         } label: {
                             Text("Read")
                                 .padding()
+                                .frame(width: 100)
                                 .foregroundColor((read) ? .white : Color(.systemBlue))
                                 .background((read) ? .blue : .white)
                                 .overlay( /// apply a rounded border
@@ -174,6 +181,7 @@ Spacer()
                         } label: {
                             Text("Work")
                             .padding()
+                            .frame(width: 100)
                             .foregroundColor((work) ? .white : Color(.systemBlue))
                             .background((work) ? .blue : .white)
                                 .overlay( /// apply a rounded border
@@ -185,7 +193,7 @@ Spacer()
                         }
 
                        
-                    }.padding()
+                    }.padding(.horizontal).padding(.vertical,3)
                     HStack{
                         Button {
                             diet.toggle()
@@ -218,7 +226,7 @@ Spacer()
                         }
 
                         Spacer()
-                    }.padding()
+                    }.padding(.horizontal).padding(.vertical,3)
                     
                 }
                 
@@ -235,10 +243,10 @@ Spacer()
                         .background(.white)
                         .overlay( /// apply a rounded border
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color(.systemYellow), lineWidth: 5))
+                                .stroke(Color(.systemBlue), lineWidth: 5))
                         .cornerRadius(5)
                     
-                        .shadow(color: Color(.systemYellow), radius: 1, x: -4, y: 4)
+                        .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
                     
                     
                 }
@@ -252,7 +260,8 @@ Spacer()
                 
             }
             
-        }.background().ignoresSafeArea()
+        }.font(.custom("MetalMania-Regular", size: 20))
+        .background().ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
         
         

@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct MainContentView: View {
+    @AppStorage("openedFirstTime") var openedFirstTime : Bool = true
+    
+    @AppStorage("exerciseDetail") var exerciseDetail: String = ""
+    @AppStorage("meditationDetail") var meditationDetail : String = ""
+    @AppStorage("readDetail") var readDetail : String = ""
+    @AppStorage("workDetail") var workDetail : String = ""
+    @AppStorage("dietDetail") var dietDetail : String = ""
     
     @AppStorage("nosocial") var nosocial : Bool = false
     @AppStorage("noalcohol") var noalcohol : Bool = false
@@ -22,7 +31,7 @@ struct MainContentView: View {
     
     @State var selectedTab : Int = 1
     @State var habits : [String] = []
-
+    
     func addToHabitArray(habitArray : [Bool]){
         
         if(exercise){
@@ -60,54 +69,89 @@ struct MainContentView: View {
         
     }
     
+    
+    func saveData(habit: String, habitStatus: Int) {
+            let userId = Auth.auth().currentUser?.uid
+            let date = Date().toString(format: "yyyy-MM-dd") // Use an extension to format the date as a string
+            let db = Firestore.firestore()
+            
+        let documentRef =  db.collection("user_data").document(userId!).collection(date).document("habitProgress")
+        documentRef.setData([habit : habitStatus])
+        { error in
+                if let error = error {
+                    print("Error saving data: \(error.localizedDescription)")
+                } else {
+                    print("Data saved successfully")
+                }
+            }
+        }
+    
     var body: some View {
+       var habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
+
         ZStack{
             
             if selectedTab == 1 {
                 ScrollView{
                     
                         
-                    VStack{
+                    VStack(spacing: 7){
                         HStack{
                             Text("Routine")
                         }.frame(maxWidth: .infinity)
-                            .background(.yellow).padding(.vertical)
+                            .background(Color(hex: 0xd76103)).padding(.vertical)
+                            .foregroundColor(.white)
                             .font(.custom("MetalMania-Regular", size: 40))
                         ForEach(habits, id: \.self) { habit in
 
                         
                         HStack{
-                            VStack{
+                            VStack(spacing: 5){
                                 HStack{
+                                    if habitDetail.keys.contains(habit){
+                                        Text(habitDetail[habit] ?? "")
+                                            .foregroundColor(.white)
+                                            .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                    }else{
+                                        Text(habit)
+                                            .foregroundColor(.white)
+                                            .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                    }
                                     
-                                    Text(habit).padding(.leading,30).font(.custom("MetalMania-Regular", size: 40))
                                     Spacer()
-                                    Image(systemName: "book").padding(.trailing,30).padding(.top,10)
+                                    Image("level1")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 70)
+                                        .padding(5)
+                                        
                                     
                                 }
                                 
                                 HStack{
-                                    Text("Streak").padding(7).background(.blue)
+                                    Text("Streak").padding(.horizontal,7).background(Color(hex: 0x005f95))
                                         .cornerRadius(25)
+                                        .foregroundColor(.white)
                                     Spacer()
-                                    Text("3X Streak").padding(7)
-                                }.background(.white)
+                                    Text("3X Streak").padding(.horizontal,7)
+                                }
+                                 .background(.white)
                                     .cornerRadius(25)
                                 
-                            }.background(.gray)
+                            }.background(Color(hex: 0x231c15))
                                 .cornerRadius(25)
                                 .padding()
                             
                             
                             Button {
-                                
+                                saveData(habit: habit, habitStatus: 0)
                             } label: {
                                 
                             Image(systemName: "circle")
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                     .padding(.trailing,40)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                             }
 
                             
@@ -121,11 +165,19 @@ struct MainContentView: View {
                         
                         
                     }
+                        NavigationLink {
+                            AddHabitView()
+                        } label: {
+                            Image(systemName: "plus.circle").resizable().foregroundColor(.white)
+                                .frame(width: 45, height: 45).padding()
+                        }
+
+                       
                 }
                     Spacer()
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     .font(.custom("MetalMania-Regular", size: 25))
-                    .background(.blue)
+                    .background(Color(hex: 0x131771))
             }
             else if selectedTab == 0
             {
@@ -139,7 +191,12 @@ struct MainContentView: View {
             TabBar(selectedTab:  $selectedTab)
            
         }.onAppear{
-            addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
+            openedFirstTime = true
+            if openedFirstTime{
+                addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
+                openedFirstTime = true
+            }
+           
         }
             .navigationBarBackButtonHidden(true)
     }

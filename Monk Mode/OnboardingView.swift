@@ -5,6 +5,17 @@
 //  Created by Enver Enes Keskin on 19.02.2023.
 //
 
+extension View {
+    public func gradientForeground(colors: [Color]) -> some View {
+        self.overlay(
+            LinearGradient(
+                colors: colors,
+                startPoint: .top,
+                endPoint: .bottom)
+        )
+            .mask(self)
+    }
+}
 
 extension Color {
     init(hex: Int, opacity: Double = 1.0) {
@@ -14,26 +25,41 @@ extension Color {
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 }
+
 import SwiftUI
+import FirebaseAuth
 
 struct OnboardingView: View {
+    
+    func login(){
+        Auth.auth().signInAnonymously() { (authResult, error) in
+         
+            print(authResult?.user.uid ?? "No user")
+        }
+        
+    }
+    
     var body: some View {
         ZStack{
             
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x6743CE), Color(hex: 0x6F1D1D, opacity: 1)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [ Color(hex: 0x000000, opacity: 1.0),Color(hex: 0x220329, opacity: 1.0)]), startPoint: .top, endPoint: .bottom)
             
             VStack{
                 
                 Spacer().frame(height: 120)
                 
-                Text("Do you have the power to start this journey?").padding().font(.custom("Futura", size: 35))
+                Text("Do you have the power to start this journey?")
+                    .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
+                    .padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 45))
+                
+                
                 Spacer()
                 
                 NavigationLink {
                     ChooseHabitsView()
                 } label: {
-                    Text("Go on")
-                    
+                    Text("Proceed")
+                        .font(.custom("MetalMania-Regular", size: 35))
                         .frame(width: 200)
                         .padding()
                         .foregroundColor(Color(.systemBlue))
@@ -49,11 +75,14 @@ struct OnboardingView: View {
                 }
                 Spacer()
                 
-                
+                Image("dede1").resizable().frame(width: 350, height: 350)
                 
             }
             
         }.background().ignoresSafeArea()
+            .onAppear{
+                login()
+            }
         
     }
 }
