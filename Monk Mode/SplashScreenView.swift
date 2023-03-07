@@ -27,7 +27,8 @@ struct SplashScreenView: View {
             else{
                 VStack{
                     VStack{
-                        Image("splashlogo")
+                        Image("logo")
+                        Text("Monk Mode").font(.custom("MetalMania-Regular", size: 40))
                     }.scaleEffect(logoSize)
                     .opacity(logoOp).onAppear(){
                        withAnimation(.easeIn(duration: 1.2)){
@@ -35,10 +36,10 @@ struct SplashScreenView: View {
                             self.logoSize = 1.0
                         }
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black).onAppear(){
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.white).onAppear(){
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.8){
-                        withAnimation{
+                        withAnimation(.easeInOut){
                             isActive = true
                         }
                         

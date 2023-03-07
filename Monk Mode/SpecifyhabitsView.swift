@@ -26,6 +26,8 @@ import SwiftUI
 struct SpecifyhabitsView: View {
     
     
+    @AppStorage("openedFirstTime") var openedFirstTime : Bool = true //TEST
+    
     @State var showPop : Bool = false
     
     @AppStorage("exerciseDetail") var exerciseDetail: String = ""
@@ -175,9 +177,9 @@ struct SpecifyhabitsView: View {
                 
                 
                 
-               // LinearGradient(gradient: Gradient(colors: [Color(hex: 0x6743CE), Color(hex: 0x6F1D1D, opacity: 1)]), startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [.black , Color(.systemTeal)]), startPoint: .top, endPoint: .bottom)
                 
-                Color(hex: 0x000000)
+                
                 
                 ScrollView{
                     
@@ -206,14 +208,14 @@ struct SpecifyhabitsView: View {
                                         .placeholder(when: getHabitDetailPlaceholder(habit: habit).isEmpty) {
                                             Text(getHabitExample(habit: habit)).foregroundColor(.white).padding(8)
                                         }
-                                        .border(.white).cornerRadius(5).foregroundColor(Color(.white)).padding()
+                                        .border(Color(.black).opacity(0.3)).cornerRadius(5).foregroundColor(Color(.white)).padding()
                                 }
                                 
                                 
                             }.frame(width: 300)
                                 .padding()
-                                .foregroundColor(Color(.systemOrange))
-                                .background(.black)
+                                .foregroundColor(.black)
+                                .background(.indigo)
                                 .overlay( /// apply a rounded border
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color(hex: 0xffffff), lineWidth: 5))
@@ -242,20 +244,20 @@ struct SpecifyhabitsView: View {
                     Spacer().frame(height: 70)
                     
                     NavigationLink {
-                       MainContentView()
+                      ChooseTimeView()
                     } label: {
                         Text("Proceed")
                         
                             .frame(width: 200)
                             .padding()
                             .foregroundColor(Color(.systemBackground))
-                            .background(.orange)
+                            .background(Color(.systemIndigo))
                             .overlay( /// apply a rounded border
                                 RoundedRectangle(cornerRadius: 5)
-                                    .stroke(.blue, lineWidth: 5))
+                                    .stroke(.white, lineWidth: 5))
                             .cornerRadius(5)
                         
-                            .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                            .shadow(color: .white, radius: 1, x: -4, y: 4)
                         
                         
                     }
@@ -275,6 +277,7 @@ struct SpecifyhabitsView: View {
                 .onAppear{
                     
                     addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
+                    openedFirstTime = true
                 }
             
         }
