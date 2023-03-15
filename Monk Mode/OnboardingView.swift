@@ -30,6 +30,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct OnboardingView: View {
+    @AppStorage("userLevel") var userLevel = "level1"
     
     func login(){
         Auth.auth().signInAnonymously() { (authResult, error) in
@@ -38,6 +39,8 @@ struct OnboardingView: View {
         }
         
     }
+    
+    
     
     var body: some View {
         ZStack{
@@ -56,7 +59,7 @@ struct OnboardingView: View {
                 Spacer()
                 
                 NavigationLink {
-                    ChooseHabitsView()
+                        StorePage()
                 } label: {
                     Text("Proceed")
                         .font(.custom("MetalMania-Regular", size: 35))
@@ -82,6 +85,7 @@ struct OnboardingView: View {
         }.background().ignoresSafeArea()
             .onAppear{
                 login()
+                userLevel = "level1"
             }
         
     }

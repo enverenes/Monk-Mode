@@ -15,51 +15,170 @@ extension Date {
 
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 
 struct HistoryView: View {
     @AppStorage("userLevel") var userLevel = "level1"
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Guard dog"]
+    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level10" : "God of Thunder"]
     @State var selectedDate: Date = Date()
     @State var daysOfWeek = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
-   
+    
     @State var levelTransitionAnim = false
     @State var showWeek = false
     @State var showWeekOP = false
+    @State var week : Int = 0
+    @State var percentageForTheWeek : [Double] = []
+    @State var daysOfWeekasDate: [Date] = []
+    
+    @State var isPresented :  Bool = false
+    
+    func getProgressfortheWeek(days: [Date], completion: @escaping ([Double]) -> Void) {
+        var percentages = Array(repeating: 0.0, count: days.count)
+        let db = Firestore.firestore()
+        let userId = Auth.auth().currentUser!.uid
+        
+        let dispatchGroup = DispatchGroup()
+        
+        for (index, day) in days.enumerated() {
+            dispatchGroup.enter()
+            let date = day.toString(format: "yyyy-MM-dd")
+            let finalDoc = db.collection("user_data").document(userId).collection(date).document("habitProgress")
+            finalDoc.getDocument {(document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    if let data = data {
+                        var x = 0.0
+                        var y = 0.0
+                        var z = 0.0
+                        for item in data {
+                            switch (item.value as? Int){
+                                case 0:
+                                    z += 1.0
+                                    break
+                                case 1:
+                                    x += 1.0
+                                    break
+                                case 2:
+                                    y += 1.0
+                                    break
+                                case .none:
+                                    break
+                                case .some(_):
+                                    break
+                            }
+                        }
+                        percentages[index] = (x)/(x+y+z)
+                    }
+                } else {
+                    percentages.append(0.0)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(percentages)
+        }
+    }
+    
+    func getDaysforPrg(week :Int) -> [Date]{
+        var daysOfWeekasDate : [Date] = []
+        let calendar = Calendar.current
+       
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "E"
+        let dayOfWeek = dateFormatter.string(from: Date())
+        print(dayOfWeek)
+        let dayIndex = daysOfWeek.firstIndex(of: dayOfWeek) ?? 0
+        var dateComponents = DateComponents()
+        
+        for (i, _) in daysOfWeek.enumerated() {
+            
+                dateComponents.day = (i-dayIndex) - week
+                let otherDay = calendar.date(byAdding: dateComponents, to: Date()) ?? Date()
+                daysOfWeekasDate.append(otherDay)
+        }
+        return daysOfWeekasDate
+    }
+    
+    
+    
     
     var body: some View {
         VStack{
             VStack{
-                HStack{
-                    Text("Progress")
-                }.frame(maxWidth: .infinity)
-                    .background(Color(hex: 0xd76103)).padding(.vertical)
+                ZStack{
+                   
+                    
+                    HStack{
+                       Spacer()
+                        
+                        Text("Progress")
+                        Spacer()
+                        
+
+                    }.frame(maxWidth: .infinity)
+                        .background(AppColors.TopBar.topBarColor).padding(.bottom,5)
+                        .foregroundColor(.white)
+                        .font(.custom("MetalMania-Regular", size: 40))
+                    
+                    HStack{
+                        Button {
+                            withAnimation{
+                                isPresented = true
+                            }
+                        
+                        } label: {
+                         Text("Rules").font(.custom("MetalMania-Regular", size: 20))
+                        }.padding(.horizontal)
+                       
+                        Spacer()
+                        
+
+                    }.frame(maxWidth: .infinity)
+                     .padding(.bottom, 5)
                     .foregroundColor(.white)
                     .font(.custom("MetalMania-Regular", size: 40))
+                }
+               
                     
             }
-            Button {
-                withAnimation{
-                    showWeek.toggle()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                               withAnimation(.easeIn){
-                                   showWeekOP.toggle()
-                               }
-                           })
-                }
-            } label: {
-                Cycle()
-            }
-            Spacer().frame(height: 30)
+            
+            TabView{
+                 Button {
+                        withAnimation{
+                            showWeek.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                                       withAnimation(.easeIn){
+                                           showWeekOP.toggle()
+                                       }
+                                   })
+                        }
+                    } label: {
+                        Cycle()
+                    }
+                
+                PreviousCycles()
+                
+                
+            }.frame(height: 200)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+                
+            
+            Spacer().frame(height: 10)
             
             Divider().background(Color(.systemGray))
             if showWeek{
                 VStack{
-                    CustomCalendar(selectedDate: $selectedDate)
+                    CustomCalendar(week: $week, selectedDate: $selectedDate, percentageForTheWeek: $percentageForTheWeek)
                     
                 }.opacity(showWeekOP ? 1.0 : 0.0)
-                .padding()
+                .padding(5)
                 
             }
            
@@ -77,7 +196,18 @@ struct HistoryView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(hex: 0x131771))
+        .background(AppColors.Back.backgroundColor)
+        .onAppear{
+             
+            getProgressfortheWeek(days: getDaysforPrg(week: week)){ percentages in
+                percentageForTheWeek.removeAll()
+                percentageForTheWeek = percentages
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+                    BottomSheetView(isPresented: $isPresented)
+                       
+                }
        
     }
 }
@@ -119,41 +249,141 @@ struct Cycle: View {
         
         }
         
-
+    @State private var moveRight = false
+    
     var body: some View {
         
-        ZStack() {
-            Circle()
-                .stroke(
-                    Color(.systemRed).opacity(0.5),
-                    lineWidth: 20
-                )
-            Circle()
-                .trim(from: 0, to: progress)
-                .stroke(
-                    Color(.systemRed),
-                    style: StrokeStyle(
-                        lineWidth: 20,
-                        lineCap: .round
-                    )
-                )
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut, value: progress)
-            
-            Text((progress < 1.0) ? "Day \(Int(daysPassed))" : "Cycle Completed")
-                .font(.custom("MetalMania-Regular", size: 25))
-                .foregroundColor(.white)
-        }.frame(width: 150.0, height: 150.0)
-            .onAppear{
-                countDays(dateString: startDateString)
+        ZStack{
+            HStack{
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.white).padding(.trailing,20)
+                    .offset(x: moveRight ? 0 : -10)
+                    .animation(Animation.linear(duration: 0.5).repeatForever(autoreverses: true))
+                                .onAppear {
+                                    self.moveRight.toggle()
+                                }
             }
-    }
+            ZStack{
+                Circle()
+                    .stroke(
+                        Color(.systemRed).opacity(0.5),
+                        lineWidth: 20
+                    )
+                Circle()
+                    .trim(from: 0, to: progress)
+                    .stroke(
+                        Color(.systemRed),
+                        style: StrokeStyle(
+                            lineWidth: 20,
+                            lineCap: .round
+                        )
+                    )
+                    .rotationEffect(.degrees(-90))
+                    .animation(.easeOut, value: progress)
+                
+                Text((progress < 1.0) ? "Day \(Int(daysPassed))" : "Cycle Completed")
+                    .font(.custom("MetalMania-Regular", size: 25))
+                    .foregroundColor(.white)
+            }.frame(width: 150.0, height: 150.0)
+                .onAppear{
+                    countDays(dateString: startDateString)
+                }
+        }
         
     }
+    }
+
+
+struct CycleInfo {
+    //var id: String = UUID().uuidString
+    var completed: Bool
+    var days: Int
+    var progress: Double
+}
+
+struct PreviousCycles: View{
+    let items = ["Item 1", "s"]
+
+        let gridLayout = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            
+        ]
+   
+
+    func fetchDataCycles() ->[CycleInfo] {
+        var cycles : [CycleInfo] = []
+        
+        let db = Firestore.firestore()
+        let userId = Auth.auth().currentUser!.uid 
+       
+        db.collection("users_data").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            
+            cycles = documents.map { (queryDocumentSnapshot) -> CycleInfo in
+                           let data = queryDocumentSnapshot.data()
+                           let completed = data["completed"] as? Bool ?? false
+                           let days = data["days"] as? Int ?? 0
+                           let progress = data["progress"] as? Double ?? 0.0
+                           return CycleInfo(completed: completed, days: days, progress: progress)
+                       }
+        }
+      
+       
+      return cycles
+    }
+    
+    
+    var body: some View{
+        ScrollView {
+            LazyVGrid(columns: gridLayout, spacing: 16) {
+                ForEach(items, id: \.self) { item in
+                    VStack{
+                        ZStack() {
+                            Circle()
+                                .stroke(
+                                    Color(.systemRed).opacity(0.5),
+                                    lineWidth: 10
+                                )
+                            Circle()
+                                .trim(from: 0, to: 1.0)
+                                .stroke(
+                                    Color(.systemRed),
+                                    style: StrokeStyle(
+                                        lineWidth: 10,
+                                        lineCap: .round
+                                    )
+                                )
+                                .rotationEffect(.degrees(-90))
+                                .animation(.easeOut, value: 1.0)
+                            
+                            
+                        }.frame(width: 50.0, height: 50.0)
+                        
+                        Text("Completed")
+                        Text("%98")
+                    }
+                    
+                }
+            }.font(.custom("MetalMania-Regular", size: 15))
+            .foregroundColor(.white)
+            .padding()
+        }
+    }
+}
 
 struct Level: View{
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Guard dog"]
-    
+    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level91" : "God of Thunder"]
+
     @AppStorage("userLevel") var userLevel = "level1"
     @State var levelAnim = false
    
@@ -173,20 +403,22 @@ struct Level: View{
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
+            ScrollViewReader { proxy in
             HStack{
-               
-                    ForEach(levels.keys.sorted(), id: \.self){ level in
-                if userLevel == level {
-                            
-                    CurrentLevel(levelTransitionAnim: $levelTransitionAnim)
-                            
-                        }
-                        else{
-                            GeometryReader{ proxy in
+                
+                ForEach(Array(levels.keys).sorted(by: <), id: \.self){ level in
+                    if userLevel == level {
+                        
+                        CurrentLevel(levelTransitionAnim: $levelTransitionAnim)
+                        
+                    }
+                    else{
+                        GeometryReader{ proxy in
                             VStack{
                                 Text("\(levels[level]!)")
                                     .font(.custom("MetalMania-Regular", size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white).padding(.horizontal)
+                                    .padding(.top)
                                     .multilineTextAlignment(.center)
                                     .fixedSize(horizontal: false, vertical: true)
                                 Spacer()
@@ -194,33 +426,40 @@ struct Level: View{
                                     .frame(width: 80, height: 80)
                                     .padding(.horizontal, 20)
                                     .padding(.bottom)
+                                Spacer()
                             }
-                           
-                                
+                            
+                            
                         }.frame(width: 120, height: 180)
-                                .background(.black)
-                                .cornerRadius(20)
-                                
-                      
-                        }
+                            .background(.black)
+                            .cornerRadius(20)
                         
-                          }
-               
+                        
+                    }
+                    
+                }
+                
             }.padding(.horizontal)
-            
-        } .onAppear{
-            constantColorCh()
-       }
+            .onAppear {
+                                    constantColorCh()
+                                    // Scroll to the current level on appear
+                                    withAnimation {
+                                        proxy.scrollTo(userLevel, anchor: .center)
+                                    }
+                                }
+        }
+        }
+    
         
     }
 }
 
-
-
 struct CurrentLevel: View{
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Guard dog"]
+    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level10" : "God of Thunder"]
     
     @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userPoints") var userPoints : Int = 0
+    @AppStorage("userLevelProgress") var userLevelProgress : Double = 0.0
     @State var levelAnim = false
     @Binding var levelTransitionAnim : Bool
         
@@ -244,10 +483,22 @@ struct CurrentLevel: View{
         }
     }
     
+    func getLevel(points: Int) -> Int {
+        let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
+        for i in 0..<levels.count {
+            if points < levels[i] {
+                userLevelProgress = Double(points) / Double(levels[i])
+                return i + 1
+            }
+        }
+        return levels.count  // If the number is greater than the maximum in the array, return the last index + 2 (which represents a hypothetical level 11)
+    }
+
+    
     var body: some View {
         HStack{
             
-            ForEach(levels.keys.sorted(), id: \.self){ level in
+            ForEach(Array(levels.keys), id: \.self){ level in
                 if userLevel == level {
                     
                     GeometryReader{ proxy in
@@ -257,15 +508,22 @@ struct CurrentLevel: View{
                             VStack{
                                 Text("\(levels[level]!)")
                                     .font(.custom("MetalMania-Regular", size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white).padding(.horizontal)
+                                    .padding(.top)
                                     .multilineTextAlignment(.center)
                                     .fixedSize(horizontal: false, vertical: true)
                                 Spacer()
                                 Image("\(level)").resizable().scaledToFit()
                                     .frame(width: 80, height: 80)
                                     .padding(.horizontal, 20)
-                                    .padding(.bottom)
+                                   
+                                Spacer()
+                                ProgressBar(progressValue: $userLevelProgress).frame(width: 100, height: 10)
+                                Spacer()
+                                // error
+                                
                             }
+                            
                         }
                         
                     }
@@ -283,6 +541,7 @@ struct CurrentLevel: View{
         }
         .onAppear{
                     constantColorCh()
+                   userLevel = "level" + String(getLevel(points: userPoints))
                 }
     }
 }

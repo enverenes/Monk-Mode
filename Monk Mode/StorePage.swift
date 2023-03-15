@@ -10,53 +10,115 @@ import StoreKit
 
 struct StorePage: View {
     @StateObject var storeKit = StoreKitManager()
+    @State var isPurchased: Bool = false
+
     var body: some View {
-        VStack(alignment: .leading) {
-                    Text("In-App Purchase Demo")
-                        .bold()
-                    Divider()
-                    ForEach(storeKit.storeProducts) {product in
-                        HStack {
-                            Text(product.displayName)
-                            Spacer()
-                            Button(action: {
-                                // purchase this product
-                                Task { try await storeKit.purchase(product)
-                                }
-                            }) {
-                                CourseItem(storeKit: storeKit, product: product)
-                                  
-                            }
-                        }
-                        
+        
+        ZStack{
+            LinearGradient(gradient: Gradient(colors: [AppColors.BarInside.barInsideColor, AppColors.Back.backgroundColor]), startPoint: .top, endPoint: .bottom)
+                        .edgesIgnoringSafeArea(.vertical)
+            VStack(alignment: .center) {
+                Spacer()
+                
+                        Text("We Make You a Monk in 6 Months")
+                    .foregroundColor(.white)
+                    .font(.custom("MetalMania-Regular", size: 25))
+                            .bold()
+                Spacer().frame(height: 40)
+                
+                VStack(spacing:10){
+                    HStack{
+                        Image(systemName: "checkmark.circle.fill")
+                        Text("Choose your habits")
+                        Spacer()
+                    }.foregroundColor(.white)
+                    HStack{
+                        Image(systemName: "checkmark.circle.fill")
+                        Text("Track your progress")
+                        Spacer()
+                    }.foregroundColor(.white)
+                    HStack{
+                        Image(systemName: "checkmark.circle.fill")
+                        Text("Level Up and Share your Progress")
+                        Spacer()
                     }
-                    Divider()
-                    Button("Restore Purchases", action: {
-                        Task {
-                            //This call displays a system prompt that asks users to authenticate with their App Store credentials.
-                            //Call this function only in response to an explicit user action, such as tapping a button.
-                            try? await AppStore.sync()
+                    .foregroundColor(.white)
+                    
+                    
+                }.padding(.leading, 20)
+                Spacer().frame(height: 40)
+                    
+                        Divider()
+                        ForEach(storeKit.storeProducts) {product in
+                            if isPurchased {
+                                NavigationLink {
+                                    ChooseHabitsView()
+                                } label: {
+                                    Text("You are all set - Proceed").font(.custom("MetalMania-Regular", size: 25))
+                                        .padding()
+                                    
+                                }.background(.white)
+                                    .cornerRadius(25)
+                                
+                            }else{
+                                VStack {
+                                    Button(action: {
+                                        // purchase this product
+                                        Task { try await storeKit.purchase(product)
+                                        }
+                                    }) {
+                                        Text("Start - 3 days free trial")
+                                            .font(.custom("MetalMania-Regular", size: 25))
+                                            .padding()
+                                        
+                                          
+                                    }.background(.white)
+                                        .cornerRadius(25)
+                                    //Text("then").foregroundColor(.white)
+                                    HStack(alignment: .center){
+                                        
+                                        CourseItem(storeKit: storeKit, isPurchased: $isPurchased, product: product)
+                                        
+
+                                    }.foregroundColor(.white)
+                                }
+                            }
+                            
+                           
+                            
                         }
-                    })
-                }
-                .padding()
+                        Divider()
+                        
+                Spacer()
+                Image("monkart1")
+                    .resizable().scaledToFit()
+                    .frame(width: 300, height: 300)
+                
+                    }.font(.custom("MetalMania-Regular", size: 20))
+                    .padding()
+        }.ignoresSafeArea()
+        .navigationBarBackButtonHidden(true)
+        
     }
 }
 
 struct CourseItem: View {
     @ObservedObject var storeKit : StoreKitManager
-    @State var isPurchased: Bool = false
+    @Binding var isPurchased: Bool
     var product: Product
     
     var body: some View {
         VStack {
             if isPurchased {
-                Text(Image(systemName: "checkmark"))
-                    .bold()
-                    .padding(10)
-            } else {
-                Text(product.displayPrice)
-                    .padding(10)
+                VStack{
+                    
+                    
+
+                }
+               
+            }else{
+                Text("then  \(product.displayPrice) /month")
+                    .padding(5)
             }
         }
         .onChange(of: storeKit.purchasedCourses) { course in

@@ -30,8 +30,17 @@ struct ChooseTimeView: View {
             
             VStack{
                 
-                Spacer().frame(height: 120)
                 
+                HStack{
+                    NavigationLink {
+                        SpecifyhabitsView()
+                    } label: {
+                        Image("backbutton").resizable().scaledToFit().frame(width: 90, height: 90)
+                    }.padding(20)
+                    Spacer()
+                }
+               
+               
                 Text("Choose your cycle duration")
                     .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
                     .padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 45))
@@ -42,7 +51,9 @@ struct ChooseTimeView: View {
                 Spacer()
                 
                 NavigationLink {
-                    MainContentView()
+                    MainContentView().onAppear{
+                        UserDefaults.standard.welcomescreenShown = true
+                    }
                 } label: {
                     Text("Proceed")
                         .font(.custom("MetalMania-Regular", size: 35))
@@ -80,7 +91,7 @@ struct ChooseTimeView_Previews: PreviewProvider {
 
 struct CircularSlider: View {
     @AppStorage("totalDays") var totalDays: Double = 3.0
-
+    
     @Binding var value: Double
     var minimumValue: Double
     var maximumValue: Double
@@ -97,22 +108,30 @@ struct CircularSlider: View {
                 .frame(width: 300, height: 300)
             
             Circle()
+                .foregroundColor(fillColor)
+                .frame(width: 30, height: 30)
+                .offset(x: 150, y: 0)
+                .rotationEffect(.degrees(valueToProgress(value: value) * 360 - 90))
+            
+            Circle()
                 .trim(from: 0, to: CGFloat(valueToProgress(value: value)))
-                .stroke(fillColor, lineWidth: 20)
+                .stroke(fillColor
+                        ,
+                        style: StrokeStyle(
+                            lineWidth: 20,
+                            lineCap: .round
+                        ))
                 .rotationEffect(.degrees(-90))
                 .frame(width: 300, height: 300)
                 .gesture(DragGesture()
-                            .onChanged({ value in
-                                self.value = progressToValue(progress: progressForGesture(value: value.location))
-                                totalDays = (self.value)
-                            })
+                    .onChanged({ value in
+                        self.value = progressToValue(progress: progressForGesture(value: value.location))
+                        totalDays = (self.value)
+                    })
                 )
             
-            Circle()
-                            .foregroundColor(thumbColor)
-                            .frame(width: 30, height: 30)
-                            .offset(x: 150, y: 0)
-                            .rotationEffect(.degrees(valueToProgress(value: value) * 360 - 90))
+           
+            
             
             
             Text("\(Int(value)) days")
@@ -136,12 +155,13 @@ struct CircularSlider: View {
         let centerX = UIScreen.main.bounds.width / 2
         let centerY = 200 / 2
         let dx = Double(value.x - centerX)
-        let dy = Double(value.y - CGFloat(centerY))
-        let angle = atan2(dy, dx)
+        let dy = Double(value.y -  CGFloat(centerY))
+        let angle = atan2(dy, dx) + .pi/2 // add a 90-degree offset to account for the starting position of the slider
         var progress = angle / (2 * .pi)
         if progress < 0 {
             progress += 1
         }
         return progress
     }
+
 }

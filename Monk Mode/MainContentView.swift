@@ -12,7 +12,8 @@ import FirebaseFirestore
 struct MainContentView: View {
     @State var showTabBar : Bool = false
    
-    
+    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userPoints") var userPoints : Int = 0
     @AppStorage("openedFirstTime") var openedFirstTime : Bool = true
     
     @AppStorage("exerciseDetail") var exerciseDetail: String = ""
@@ -36,7 +37,7 @@ struct MainContentView: View {
     @State var habits : [String] = []
     @State var selectedHabit : Int = 0
    
-    
+    @AppStorage("userLevelProgress") var userLevelProgress : Double = 0.0
     @State var progressData = 0
     @State var progressDataDict : [String: Int] = ["Exercise" : 0 ,"Meditation" : 0,"Reading" : 0,"Healthy Diet" : 0,"Work" : 0, "No Social Media" : 0, "No Smoking" : 0, "No Drugs" : 0 , "No Alcohol" : 0, "No Fap" : 0 ]
     
@@ -155,142 +156,174 @@ struct MainContentView: View {
         
     }
     
+    
+    func getLevel(points: Int) -> Int {
+        let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
+        for i in 0..<levels.count {
+            if points < levels[i] {
+                userLevelProgress = Double(points) / Double(levels[i])
+                return i + 1
+            }
+        }
+        return levels.count  
+    }
+    
     var body: some View {
        var habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
 
         ZStack{
             
             if selectedTab == 1 {
+                VStack{
+                    
+                    HStack{
+                        Text("Routine")
+                    }.frame(maxWidth: .infinity)
+                        .background(AppColors.TopBar.topBarColor).padding(.bottom,5)
+                        .foregroundColor(.white)
+                        .font(.custom("MetalMania-Regular", size: 40))
+                    
                 ScrollView{
                     
-                        
+                    
                     VStack(spacing: 7){
-                        HStack{
-                            Text("Routine")
-                        }.frame(maxWidth: .infinity)
-                            .background(Color(hex: 0xd76103)).padding(.vertical)
-                            .foregroundColor(.white)
-                            .font(.custom("MetalMania-Regular", size: 40))
+                        
+                        
                         ForEach(habits, id: \.self) { habit in
                             let index = habits.firstIndex(of: habit) ?? 0
-                           
-                        
-                        HStack{
                             
-                            Button {
-                                withAnimation{
-                                    selectedHabit = index
-                                }
-                            } label: {
-                                if (selectedHabit == index){
-                                    VStack(spacing: 5){
-                                        HStack{
-                                            if habitDetail.keys.contains(habit){
-                                                Text((habitDetail[habit] ?? "" == "") ? habit : habitDetail[habit] ?? "")
-                                                    .foregroundColor(.white)
-                                                    .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
-                                            }else{
-                                                Text(habit)
-                                                    .foregroundColor(.white)
-                                                    .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                            
+                            HStack{
+                                
+                                Button {
+                                    withAnimation{
+                                        selectedHabit = index
+                                    }
+                                } label: {
+                                    if (selectedHabit == index){
+                                        VStack(spacing: 5){
+                                            HStack{
+                                                if habitDetail.keys.contains(habit){
+                                                    Text((habitDetail[habit] ?? "" == "") ? habit : habitDetail[habit] ?? "")
+                                                        .foregroundColor(.white)
+                                                        .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                                }else{
+                                                    Text(habit)
+                                                        .foregroundColor(.white)
+                                                        .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                                }
+                                                
+                                                Spacer()
+                                                Image(userLevel)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 70)
+                                                    .padding(5)
+                                                
+                                                
                                             }
                                             
-                                            Spacer()
-                                            Image("level1")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 70)
-                                                .padding(5)
-                                                
-                                            
-                                        }
-                                        
-                                        HStack{
-                                            Text("Streak").padding(.horizontal,7).background(Color(hex: 0x005f95))
-                                                .cornerRadius(25)
-                                                .foregroundColor(.white)
-                                            Spacer()
-                                            Text("3X Streak").padding(.horizontal,7)
-                                        }
-                                         .background(.white)
+                                            HStack{
+                                                Text("Streak").padding(.horizontal,7).background(AppColors.BarInside.barInsideColor)
+                                                    .cornerRadius(25)
+                                                    .foregroundColor(.white)
+                                                Spacer()
+                                                Text("3X Streak").padding(.horizontal,7)
+                                            }
+                                            .background(.white)
                                             .cornerRadius(25)
+                                            
+                                        }.background(AppColors.Inside.insideColor)
+                                            .cornerRadius(25)
+                                            .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
+                                    }
+                                    else{
                                         
-                                    }.background(Color(hex: 0x231c15))
-                                        .cornerRadius(25)
-                                        .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
-                                }
-                                else{
-                                   
-                                    
-                                    ClosedHabit(habit: habit)
-                                    
+                                        
+                                        ClosedHabit(habit: habit)
+                                        
+                                        
+                                    }
                                     
                                 }
-                              
-                            }
+                                
+                                
+                                
+                                
+                                Button {
+                                    
+                                    if progressDataDict[habit] == 2{
+                                        progressDataDict[habit] = 1
+                                        userPoints += 1
+                                        print(userPoints)
+                                        userLevel = "level" + String(getLevel(points: userPoints))
 
-                            
-                            
-                            
-                            Button {
-                                
-                                if progressDataDict[habit] == 2{
-                                    progressDataDict[habit] = 1
-                                }else{
-                                    progressDataDict[habit]! += 1
-                                }
-                                
-                                saveData(habit: habit, habitStatus: progressDataDict[habit] ?? 0)
-                            } label: {
-                                if progressDataDict[habit] == 0 {
-                                    Image("circle")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
-                                            .foregroundColor(.white)
-                                }else if progressDataDict[habit] == 1 {
-                                    Image("checkmark")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
-                                            .foregroundColor(.white)
-                                    
-                                }else if progressDataDict[habit] == 2 {
-                                    Image("xmark")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
-                                            .foregroundColor(.white)
-                                    
-                                }
-                                
-                            
-                            }
+                                    }else if progressDataDict[habit] == 1{
+                                        progressDataDict[habit]  = 2
+                                       
+                                        if (userPoints - 1) < 0 {
+                                            userPoints = 0
+                                        }else{
+                                            userPoints -= 1
+                                        }
+                                        userLevel = "level" + String(getLevel(points: userPoints))
 
+                                    }else{
+                                        progressDataDict[habit] = 1
+                                        userPoints += 1
+                                        print(userPoints)
+                                        userLevel = "level" + String(getLevel(points: userPoints))
+                                    }
+                                    
+                                    saveData(habit: habit, habitStatus: progressDataDict[habit] ?? 0)
+                                    
+                                } label: {
+                                    if progressDataDict[habit] == 0 {
+                                        Image("circle")
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .padding(.horizontal,10)
+                                            .foregroundColor(.white)
+                                    }else if progressDataDict[habit] == 1 {
+                                        Image("checkmark")
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .padding(.horizontal,10)
+                                            .foregroundColor(.white)
+                                        
+                                    }else if progressDataDict[habit] == 2 {
+                                        Image("xmark")
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .padding(.horizontal,10)
+                                            .foregroundColor(.white)
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                
+                            }
                             
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        }
+                         }
                         NavigationLink {
-                            AddHabitView()
+                            ChooseHabitsView()
                         } label: {
                             Image(systemName: "plus.circle").resizable().foregroundColor(.white)
                                 .frame(width: 45, height: 45).padding()
                         }
-
-                       
-                }
-                    Spacer()
+                        
+                        
+                    }
+                    Spacer().frame(height: 150)
+                    
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     .font(.custom("MetalMania-Regular", size: 25))
-                    .background(Color(hex: 0x131771))
+                    
+                    Spacer().frame(height: 120)
+
+            }.background(AppColors.Back.backgroundColor)
             }
             else if selectedTab == 0
             {
@@ -307,18 +340,22 @@ struct MainContentView: View {
             
            
         }.onAppear{
+           
             
+            
+            openedFirstTime = true
             if openedFirstTime{
                 addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
                 openedFirstTime = false
             }
             
-            
-                fetchData()
+              fetchData()
                 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                 withAnimation{
-                  showTabBar = true
+                showTabBar = true
+                    
+                   
                 }
                 
             }
@@ -329,25 +366,27 @@ struct MainContentView: View {
     }
 }
 
+struct MainContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainContentView()
+    }
+}
+
 struct TabBar: View{
     @Binding var selectedTab : Int
     @State var tabAnim = false
     var body: some View{
         ZStack{
-            
             VStack{
-                
-    
-                
                 Spacer()
-                HStack(spacing: 20){
-                    Image("s").resizable().frame(width: 60,height: 60)
-                    Image("s").resizable().frame(width: 60,height: 60)
-                    Image("s").resizable().frame(width: 60,height: 60)
+                HStack(spacing: 30){
+                    Image("s").resizable().frame(width: 70,height: 70)
+                    Image("s").resizable().frame(width: 70,height: 70)
+                    Image("s").resizable().frame(width: 70,height: 70)
                 }
                 .padding(0)
-                .background(Color(.systemGray6))
-                .cornerRadius(20)
+                .background(Color(.systemGray))
+                .cornerRadius(30)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
@@ -358,16 +397,19 @@ struct TabBar: View{
                 
             
                 Spacer()
-                HStack(spacing: 20){
+                HStack(spacing: 30){
                     ZStack{
+                        
                         Circle()
                             .foregroundColor((selectedTab == 0) ? Color(hex: 0xd76103) :Color(.systemGray6))
-                           .frame(width: 60, height: 60)
+                           .frame(width: 70, height: 70)
                         
                         Button {
                             withAnimation{
                                 selectedTab = 0
                             }
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
                         } label: {
                             Image("gong").resizable().frame(width: 60,height: 60)
                         }
@@ -379,27 +421,31 @@ struct TabBar: View{
                         
                         Circle()
                             .foregroundColor((selectedTab == 1) ? Color(hex: 0xd76103) :Color(.systemGray6))
-                           .frame(width: 60, height: 60)
+                           .frame(width: 70, height: 70)
                     
                         Button {
                             withAnimation{
                                 selectedTab = 1
                             }
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
                         } label: {
                             
                             Image("map").resizable().frame(width: 60,height: 60)
                         }
-                        }.padding(.bottom,15)
+                        }
                     .offset(y: (selectedTab == 1) ? -20 : 0)
 
                     ZStack{
                         Circle()
                             .foregroundColor((selectedTab == 2) ? Color(hex: 0xd76103) :Color(.systemGray6))
-                           .frame(width: 60, height: 60)
+                           .frame(width: 70, height: 70)
                     Button {
                         withAnimation{
                             selectedTab = 2
                         }
+                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
                     } label: {
                         Image("settings").resizable().frame(width: 60,height: 60)
                     }
@@ -409,7 +455,7 @@ struct TabBar: View{
                     
                 }
                 .padding(0)
-                .background(Color(white: 1.0, opacity: 0.0))
+                
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -450,11 +496,7 @@ struct ClosedHabit: View{
         
     }}
 
-struct MainContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainContentView()
-    }
-}
+
 
 struct CornerRadiusShape: Shape {
     var radius = CGFloat.infinity

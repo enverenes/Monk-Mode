@@ -173,103 +173,122 @@ struct SpecifyhabitsView: View {
         }
         
         var body: some View {
-            ZStack{
+           
                 
-                
-                
-                LinearGradient(gradient: Gradient(colors: [.black , Color(.systemTeal)]), startPoint: .top, endPoint: .bottom)
-                
-                
-                
-                ScrollView{
+                ZStack{
                     
                     
-                    Spacer().frame(height: 50)
                     
-                    Text("CUSTOMIZE YOUR HABITS").foregroundColor(.white)
-                    
-    
-                        .padding()
-                    Spacer()
-                    
+                    LinearGradient(gradient: Gradient(colors: [.black , Color(.systemTeal)]), startPoint: .top, endPoint: .bottom)
                     
                     VStack{
                         
-                        ForEach(habits, id: \.self) { habit in
-                            VStack{
+                        HStack{
+                            NavigationLink {
+                                ChooseHabitsView()
                                 
-                                HStack{
-                                    Text(habit) .font(.custom("MetalMania-Regular", size: 25))
+                                
+                            } label: {
+                                Image("backbutton").resizable().scaledToFit().frame(width: 90, height: 90)
+                            }.padding(20)
+                            Spacer()
+                        }
+                    
+                    ScrollView{
+                        
+                        
+                        Spacer().frame(height: 50)
+                        
+                        Text("CUSTOMIZE YOUR HABITS").foregroundColor(.white)
+                        
+        
+                            .padding()
+                        Spacer()
+                        
+                        
+                        VStack{
+                            
+                            ForEach(habits, id: \.self) { habit in
+                                VStack{
                                     
-                                }
-                                if(customizableHabits.contains(habit)){
-                                    TextField("", text: getHabitDetail(habit: habit))
-                                        .autocapitalization(.sentences)
-                                        .placeholder(when: getHabitDetailPlaceholder(habit: habit).isEmpty) {
-                                            Text(getHabitExample(habit: habit)).foregroundColor(.white).padding(8)
-                                        }
-                                        .border(Color(.black).opacity(0.3)).cornerRadius(5).foregroundColor(Color(.white)).padding()
-                                }
-                                
-                                
-                            }.frame(width: 300)
+                                    HStack{
+                                        Text(habit) .font(.custom("MetalMania-Regular", size: 25))
+                                        
+                                    }
+                                    if(customizableHabits.contains(habit)){
+                                        TextField("", text: getHabitDetail(habit: habit))
+                                            .autocapitalization(.sentences)
+                                            .placeholder(when: getHabitDetailPlaceholder(habit: habit).isEmpty) {
+                                                Text(getHabitExample(habit: habit)).foregroundColor(.white).padding(8)
+                                            }
+                                            .border(Color(.black).opacity(0.3)).cornerRadius(5).foregroundColor(Color(.white)).padding()
+                                    }
+                                    
+                                    
+                                }.frame(width: 300)
+                                    .padding()
+                                    .foregroundColor(.black)
+                                    .background(.indigo)
+                                    .overlay( /// apply a rounded border
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color(hex: 0xffffff), lineWidth: 5))
+                                    .cornerRadius(5)
+                                    .shadow(color: Color(hex: 0xffffff), radius: 1, x: -4, y: 4)
+                                    .padding(4)
+                                    .onAppear{
+                                        getHabitDetail(habit: habit)
+                                    }
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
+                        
+                        Spacer().frame(height: 70)
+                        
+                        NavigationLink {
+                            if UserDefaults.standard.welcomescreenShown {
+                                MainContentView()
+                            }else{
+                                ChooseTimeView()                            }
+                          
+                        } label: {
+                            Text("Proceed")
+                            
+                                .frame(width: 200)
                                 .padding()
-                                .foregroundColor(.black)
-                                .background(.indigo)
+                                .foregroundColor(Color(.systemBackground))
+                                .background(Color(.systemIndigo))
                                 .overlay( /// apply a rounded border
                                     RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color(hex: 0xffffff), lineWidth: 5))
+                                        .stroke(.white, lineWidth: 5))
                                 .cornerRadius(5)
-                                .shadow(color: Color(hex: 0xffffff), radius: 1, x: -4, y: 4)
-                                .padding(4)
-                                .onAppear{
-                                    getHabitDetail(habit: habit)
-                                }
+                            
+                                .shadow(color: .white, radius: 1, x: -4, y: 4)
+                            
+                            
                         }
                         
                         
                         
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    }
-                    
-                    Spacer().frame(height: 70)
-                    
-                    NavigationLink {
-                      ChooseTimeView()
-                    } label: {
-                        Text("Proceed")
-                        
-                            .frame(width: 200)
-                            .padding()
-                            .foregroundColor(Color(.systemBackground))
-                            .background(Color(.systemIndigo))
-                            .overlay( /// apply a rounded border
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(.white, lineWidth: 5))
-                            .cornerRadius(5)
-                        
-                            .shadow(color: .white, radius: 1, x: -4, y: 4)
-                        
-                        
-                    }
-                    Spacer()
+                    }.blur(radius: (showPop) ? 15:0 )
+                        .font(.custom("MetalMania-Regular", size: 25))
                     
                     
-                    
-                }.blur(radius: (showPop) ? 15:0 )
-                    .font(.custom("MetalMania-Regular", size: 25))
-                
-                
-                
+                        Spacer()
+                }
+                   
             }.font(.system(size: 20))
             
                 .background().ignoresSafeArea()
@@ -279,6 +298,7 @@ struct SpecifyhabitsView: View {
                     addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
                     openedFirstTime = true
                 }
+         
             
         }
     
