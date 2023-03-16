@@ -1,0 +1,6 @@
+framework module Pods_Monk_Mode_Monk_ModeUITests {
+  umbrella header "Pods-Monk Mode-Monk ModeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

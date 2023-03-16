@@ -228,6 +228,13 @@ struct Cycle: View {
     @AppStorage("startDateString") var startDateString: String = "01-01-2023"
     
     
+    func saveDataCycles(day : Int, progress: Double){
+        let db = Firestore.firestore()
+        let userId = Auth.auth().currentUser!.uid
+        let docRef = db.collection("user_data").document(userId).collection("cycle").document("cycleinfo").setData([ "completed": true, "day": day , "progress" : progress], merge: false)
+        
+    }
+    
     func countDays(dateString : String) {
         var startDate: Date = Date()
         let currentDate = Date()
@@ -241,6 +248,8 @@ struct Cycle: View {
             
         if (Double(daysPassed / totalDays) >= 1){
             progress = 1.0
+            saveDataCycles(day: Int(totalDays), progress: progress)
+            
         }else{
             progress = Double(daysPassed / totalDays)
         }
@@ -298,55 +307,70 @@ struct Cycle: View {
     }
 
 
-struct CycleInfo {
-    //var id: String = UUID().uuidString
+struct CycleInfo: Hashable {
     var completed: Bool
     var days: Int
     var progress: Double
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(completed)
+        hasher.combine(days)
+        hasher.combine(progress)
+    }
+    
+    static func == (lhs: CycleInfo, rhs: CycleInfo) -> Bool {
+        return lhs.completed == rhs.completed && lhs.days == rhs.days && lhs.progress == rhs.progress
+    }
 }
 
+
 struct PreviousCycles: View{
-    let items = ["Item 1", "s"]
+    
+    
+    @State var cycleInfos = [CycleInfo]()
+    
+    let gridLayout = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        
+    ]
+    
+    
 
-        let gridLayout = [
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            
-        ]
-   
-
-    func fetchDataCycles() ->[CycleInfo] {
-        var cycles : [CycleInfo] = []
+    func fetchDataCycles(completion: @escaping ([CycleInfo]) -> Void) {
+        var cycles: [CycleInfo] = []
         
         let db = Firestore.firestore()
-        let userId = Auth.auth().currentUser!.uid 
-       
-        db.collection("users_data").addSnapshotListener { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
+        let userId = Auth.auth().currentUser!.uid
+        let docRef = db.collection("user_data").document(userId).collection("cycle").whereField("completed", isEqualTo: true)
+        
+        docRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion([])
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let cycle = CycleInfo(completed: (data["completed"] != nil), days: data["days"] as? Int ?? 3, progress: data["progress"] as? Double ?? 1.0 )
+                    cycles.append(cycle)
+                }
+                completion(cycles)
             }
-            
-            cycles = documents.map { (queryDocumentSnapshot) -> CycleInfo in
-                           let data = queryDocumentSnapshot.data()
-                           let completed = data["completed"] as? Bool ?? false
-                           let days = data["days"] as? Int ?? 0
-                           let progress = data["progress"] as? Double ?? 0.0
-                           return CycleInfo(completed: completed, days: days, progress: progress)
-                       }
         }
-      
-       
-      return cycles
     }
+
+    
+    
+    
+    
     
     
     var body: some View{
         ScrollView {
             LazyVGrid(columns: gridLayout, spacing: 16) {
-                ForEach(items, id: \.self) { item in
+                ForEach(cycleInfos, id: \.self) { item in
                     VStack{
                         ZStack() {
                             Circle()
@@ -369,14 +393,19 @@ struct PreviousCycles: View{
                             
                         }.frame(width: 50.0, height: 50.0)
                         
-                        Text("Completed")
-                        Text("%98")
+                        Text("Completed %100")
+                        Text("\(cycleInfos[0].days) days")
                     }
                     
                 }
             }.font(.custom("MetalMania-Regular", size: 15))
             .foregroundColor(.white)
             .padding()
+        }.onAppear{
+            fetchDataCycles { fetchedCycles in
+                    cycleInfos = fetchedCycles
+                    print(cycleInfos)
+                }
         }
     }
 }

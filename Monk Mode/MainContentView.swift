@@ -472,6 +472,7 @@ struct TabBar: View{
 }
 
 struct ClosedHabit: View{
+    @AppStorage("userLevel") var userLevel = "level1"
     @State var habit : String
     var body: some View{
         VStack{
@@ -481,7 +482,7 @@ struct ClosedHabit: View{
                     .foregroundColor(.white)
                     .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
                 Spacer()
-                Image("level1")
+                Image(userLevel)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 50)

@@ -87,9 +87,20 @@ struct StorePage: View {
                            
                             
                         }
-                        Divider()
+                        
+                
+                   
                         
                 Spacer()
+                NavigationLink {
+                    ChooseHabitsView()
+                } label: {
+                    Text("Admin bypass").font(.custom("MetalMania-Regular", size: 15))
+                        .padding(5)
+                    
+                }.background(.white)
+                    .cornerRadius(25)
+                
                 Image("monkart1")
                     .resizable().scaledToFit()
                     .frame(width: 300, height: 300)

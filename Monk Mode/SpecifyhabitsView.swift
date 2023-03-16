@@ -190,19 +190,17 @@ struct SpecifyhabitsView: View {
                                 
                             } label: {
                                 Image("backbutton").resizable().scaledToFit().frame(width: 90, height: 90)
-                            }.padding(20)
+                            }.padding(10)
                             Spacer()
                         }
                     
                     ScrollView{
                         
                         
-                        Spacer().frame(height: 50)
+                
                         
                         Text("CUSTOMIZE YOUR HABITS").foregroundColor(.white)
-                        
-        
-                            .padding()
+                            .padding(.horizontal)
                         Spacer()
                         
                         
@@ -284,9 +282,7 @@ struct SpecifyhabitsView: View {
                         
                     }.blur(radius: (showPop) ? 15:0 )
                         .font(.custom("MetalMania-Regular", size: 25))
-                    
-                    
-                        Spacer()
+                     Spacer()
                 }
                    
             }.font(.system(size: 20))
