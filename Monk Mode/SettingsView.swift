@@ -8,16 +8,25 @@
 import SwiftUI
 import StoreKit
 
+
 struct SettingsView: View {
+    
+    @State private var showAlert = false
+    @State private var navigateToPage = false
+    
     var body: some View {
         VStack{
             
             HStack{
-                Text("")
+                Text("Settings")
             }.frame(maxWidth: .infinity)
                 .background(AppColors.TopBar.topBarColor).padding(.bottom,5)
                 .foregroundColor(.white)
                 .font(.custom("MetalMania-Regular", size: 40))
+            
+           
+                        
+            
             Form{
                 Section("") {
                     HStack{
@@ -38,14 +47,34 @@ struct SettingsView: View {
                         })
                     }
                 }
+                Section("") {
+            
+                    HStack{
+                        Spacer()
+                        Button("Restart the Cycle", action: {
+                          showAlert = true
+                        }).foregroundColor(.red)
+                        Spacer()
+                    }
+                    
+                }
             }
             .scrollContentBackground(.hidden)
             .foregroundColor(AppColors.TopBar.topBarColor)
             
-            Spacer().frame(height: 400)
+            Spacer().frame(height: 100)
             
+            
+            NavigationLink(destination: ChooseHabitsView(), isActive: $navigateToPage) {
+                                EmptyView()
+                            }
         }.background(AppColors.Back.backgroundColor)
         .font(.custom("MetalMania-Regular", size: 20))
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Restart"), message: Text("Are you sure you want to restart?"), primaryButton: .default(Text("OK"), action: {
+                navigateToPage = true
+            }), secondaryButton: .cancel(Text("Cancel")))
+                }
     }
 }
 

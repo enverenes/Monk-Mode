@@ -10,6 +10,7 @@ target 'Monk Mode' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
+  pod 'SSSwiftUIGIFView'
   
   target 'Monk ModeTests' do
     inherit! :search_paths

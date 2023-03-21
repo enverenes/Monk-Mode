@@ -43,7 +43,7 @@ struct ChooseHabitsView: View {
                 
                 Spacer().frame(height: 100)
                 
-                Text("Choose Four Habits To Become A monk!").padding(.horizontal,80).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
+                Text("Choose Four Habits To Become A monk!").padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
                 Spacer().frame(height: 40)
                 
                 VStack{

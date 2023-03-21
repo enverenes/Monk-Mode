@@ -21,7 +21,7 @@ import FirebaseFirestore
 
 struct HistoryView: View {
     @AppStorage("userLevel") var userLevel = "level1"
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level10" : "God of Thunder"]
+    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
     @State var selectedDate: Date = Date()
     @State var daysOfWeek = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
@@ -149,18 +149,8 @@ struct HistoryView: View {
             }
             
             TabView{
-                 Button {
-                        withAnimation{
-                            showWeek.toggle()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                                       withAnimation(.easeIn){
-                                           showWeekOP.toggle()
-                                       }
-                                   })
-                        }
-                    } label: {
-                        Cycle()
-                    }
+                Cycle()
+                 
                 
                 PreviousCycles()
                 
@@ -170,9 +160,26 @@ struct HistoryView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
                 
             
+           
+                Button {
+                       withAnimation{
+                           showWeek.toggle()
+                           DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                                      withAnimation(.easeIn){
+                                          showWeekOP.toggle()
+                                      }
+                                  })
+                       }
+                   } label: {
+                       Text(showWeek ? "Tap to close" :"Tap to see more").foregroundColor(.white)
+                           .font(.custom("MetalMania-Regular", size: 15))
+                   }
+            
+          
+           
             Spacer().frame(height: 10)
             
-            Divider().background(Color(.systemGray))
+           
             if showWeek{
                 VStack{
                     CustomCalendar(week: $week, selectedDate: $selectedDate, percentageForTheWeek: $percentageForTheWeek)
@@ -186,7 +193,7 @@ struct HistoryView: View {
             Spacer().frame(height: 30)
             Text("Levels")
                 .foregroundColor(.white)
-                .font(.custom("MetalMania-Regular", size: 30))
+                .font(.custom("MetalMania-Regular", size: 35))
                 .padding()
            
                 Level(levelTransitionAnim: $levelTransitionAnim)
@@ -390,11 +397,11 @@ struct PreviousCycles: View{
                                 .rotationEffect(.degrees(-90))
                                 .animation(.easeOut, value: 1.0)
                             
-                            
+                            Text("%100")
                         }.frame(width: 50.0, height: 50.0)
                         
-                        Text("Completed %100")
-                        Text("\(cycleInfos[0].days) days")
+                        Text("Completed")
+                        Text("\(cycleInfos[0].days) days").multilineTextAlignment(.center)
                     }
                     
                 }
@@ -411,13 +418,18 @@ struct PreviousCycles: View{
 }
 
 struct Level: View{
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level91" : "God of Thunder"]
+  @State var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
 
     @AppStorage("userLevel") var userLevel = "level1"
     @State var levelAnim = false
    
     @Binding var levelTransitionAnim : Bool
     
+    func compareLevel(onLevel : String , userLevel : String) -> Bool{
+        let bigger = Int(onLevel.suffix(1))! > Int(userLevel.suffix(1))!
+        return bigger
+    }
+     
     func constantColorCh(){
       
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -460,7 +472,7 @@ struct Level: View{
                             
                             
                         }.frame(width: 120, height: 180)
-                            .background(.black)
+                            .background( compareLevel(onLevel: level, userLevel: userLevel) ? .black : Color(hex: 0x20911f, opacity: 0.6) )
                             .cornerRadius(20)
                         
                         
@@ -484,7 +496,7 @@ struct Level: View{
 }
 
 struct CurrentLevel: View{
-    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level10" : "God of Thunder"]
+    var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
     
     @AppStorage("userLevel") var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
@@ -516,11 +528,14 @@ struct CurrentLevel: View{
         let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
         for i in 0..<levels.count {
             if points < levels[i] {
-                userLevelProgress = Double(points) / Double(levels[i])
+                if i > 0 {
+                    userLevelProgress = (Double(points) - Double(levels[i - 1])) / (Double(levels[i]) - Double(levels[i - 1]))
+                }
+                
                 return i + 1
             }
         }
-        return levels.count  // If the number is greater than the maximum in the array, return the last index + 2 (which represents a hypothetical level 11)
+        return levels.count
     }
 
     
@@ -557,9 +572,9 @@ struct CurrentLevel: View{
                         
                     }
                     .frame(width: 120, height: 180)
-                    .background(self.levelAnim ? .green :.black)
+                    .background(self.levelAnim ? Color(hex: 0x20911f) :.black)
                     .cornerRadius(20)
-                    .animation(Animation.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: levelAnim)
+                    .animation(Animation.easeInOut(duration: 0.5), value: levelAnim)
                    
                    
                     

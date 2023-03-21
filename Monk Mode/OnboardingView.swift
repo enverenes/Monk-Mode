@@ -49,22 +49,28 @@ struct OnboardingView: View {
             
             VStack{
                 
-                Spacer().frame(height: 120)
+                Spacer().frame(height: 150)
                 
-                Text("Do you have the power to start this journey?")
-                    .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
-                    .padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 45))
+                HStack{
+                    Spacer()
+                    Text("Do you have the power to start this journey?")
+                        .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
+                        .padding().font(.custom("MetalMania-Regular", size: 45))
+                        .frame(width: 250)
+                    Spacer()
+                }
+               
                 
                 
                 Spacer()
                 
                 NavigationLink {
-                        StorePage()
+                        ChooseHabitsView()
                 } label: {
                     Text("Proceed")
-                        .font(.custom("MetalMania-Regular", size: 35))
+                        .font(.custom("MetalMania-Regular", size: 27))
                         .frame(width: 200)
-                        .padding()
+                        .padding(10)
                         .foregroundColor(Color(.systemBlue))
                         .background(.black)
                         .overlay( /// apply a rounded border

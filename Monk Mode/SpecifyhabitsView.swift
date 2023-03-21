@@ -179,7 +179,9 @@ struct SpecifyhabitsView: View {
                     
                     
                     
-                    LinearGradient(gradient: Gradient(colors: [.black , Color(.systemTeal)]), startPoint: .top, endPoint: .bottom)
+                    
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+                    
                     
                     VStack{
                         
@@ -189,8 +191,8 @@ struct SpecifyhabitsView: View {
                                 
                                 
                             } label: {
-                                Image("backbutton").resizable().scaledToFit().frame(width: 90, height: 90)
-                            }.padding(10)
+                                Image("backbutton").resizable().scaledToFit().frame(width: 40, height: 40)
+                            }.padding(.top, 50) .padding(.leading, 20)
                             Spacer()
                         }
                     
@@ -210,23 +212,25 @@ struct SpecifyhabitsView: View {
                                 VStack{
                                     
                                     HStack{
-                                        Text(habit) .font(.custom("MetalMania-Regular", size: 25))
+                                        Text(habit) .font(.custom("MetalMania-Regular", size: 25)).foregroundColor(.white)
                                         
                                     }
                                     if(customizableHabits.contains(habit)){
                                         TextField("", text: getHabitDetail(habit: habit))
                                             .autocapitalization(.sentences)
+                                            .multilineTextAlignment(.center)
                                             .placeholder(when: getHabitDetailPlaceholder(habit: habit).isEmpty) {
                                                 Text(getHabitExample(habit: habit)).foregroundColor(.white).padding(8)
+                                                    .multilineTextAlignment(.center)
                                             }
-                                            .border(Color(.black).opacity(0.3)).cornerRadius(5).foregroundColor(Color(.white)).padding()
+                                            .border(.white).cornerRadius(5).foregroundColor(Color(.white))
                                     }
                                     
                                     
                                 }.frame(width: 300)
                                     .padding()
                                     .foregroundColor(.black)
-                                    .background(.indigo)
+                                    .background(Color(hex: 0x131771))
                                     .overlay( /// apply a rounded border
                                         RoundedRectangle(cornerRadius: 5)
                                             .stroke(Color(hex: 0xffffff), lineWidth: 5))
@@ -266,7 +270,7 @@ struct SpecifyhabitsView: View {
                                 .frame(width: 200)
                                 .padding()
                                 .foregroundColor(Color(.systemBackground))
-                                .background(Color(.systemIndigo))
+                                .background(Color(hex: 0x131771))
                                 .overlay( /// apply a rounded border
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(.white, lineWidth: 5))

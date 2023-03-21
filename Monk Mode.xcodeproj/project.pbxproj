@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		300F2E6A29C1AA5100F3E5B3 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F2E6929C1AA5100F3E5B3 /* RulesView.swift */; };
+		3031D15629C88A5A0097A437 /* levelup.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3031D15529C88A5A0097A437 /* levelup.gif */; };
 		30360A0829AA8E63002594FD /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30360A0729AA8E63002594FD /* AddHabitView.swift */; };
 		30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
 		3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C529B947D100603EDC /* ColorsByLevel.swift */; };
@@ -32,6 +33,8 @@
 		30BA0A8429A9272700B0B3AB /* MetalMania-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */; };
 		30BA0A8929A9640600B0B3AB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A8829A9640600B0B3AB /* HistoryView.swift */; };
 		30BA0A8D29A9644400B0B3AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A8C29A9644400B0B3AB /* SettingsView.swift */; };
+		30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30C0C1EA29C625F60014C46D /* mouseclick.wav */; };
+		30C0C1ED29C62ADE0014C46D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0C1EC29C62ADE0014C46D /* LoadingView.swift */; };
 		3436E7E3CF030769C1E079DE /* Pods_Monk_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */; };
 		5A3219B522F8D2D6F642F85D /* Pods_Monk_Mode_Monk_ModeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C366AB1D06DDC058A2601673 /* Pods_Monk_Mode_Monk_ModeUITests.framework */; };
 		6B36BF60A0DF3F3B085432E3 /* Pods_Monk_ModeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E11A543F59C5D159D6187F6 /* Pods_Monk_ModeTests.framework */; };
@@ -57,6 +60,7 @@
 /* Begin PBXFileReference section */
 		1EB10962026CD8D6DCA9DBE8 /* Pods-Monk Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.debug.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.debug.xcconfig"; sourceTree = "<group>"; };
 		300F2E6929C1AA5100F3E5B3 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
+		3031D15529C88A5A0097A437 /* levelup.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = levelup.gif; sourceTree = "<group>"; };
 		30360A0729AA8E63002594FD /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		30360A0929AC0A58002594FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3054F9C529B947D100603EDC /* ColorsByLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsByLevel.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Monk-Mode-Info.plist"; sourceTree = SOURCE_ROOT; };
 		30BA0A8829A9640600B0B3AB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		30BA0A8C29A9644400B0B3AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		30C0C1EA29C625F60014C46D /* mouseclick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mouseclick.wav; sourceTree = "<group>"; };
+		30C0C1EC29C62ADE0014C46D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		340428C4E9927FA0BFF07417 /* Pods-Monk ModeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk ModeTests.release.xcconfig"; path = "Target Support Files/Pods-Monk ModeTests/Pods-Monk ModeTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D8CDAC183A9EC77082766D7 /* Pods-Monk Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.release.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.release.xcconfig"; sourceTree = "<group>"; };
 		8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monk_Mode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +167,7 @@
 		30BA0A4C29A924FA00B0B3AB /* Monk Mode */ = {
 			isa = PBXGroup;
 			children = (
+				3031D15529C88A5A0097A437 /* levelup.gif */,
 				30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */,
 				3054F9C729B99BA200603EDC /* ProgressBar.swift */,
 				30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */,
@@ -178,11 +185,13 @@
 				30A53AD529B6C4A7008EE90D /* StorePage.swift */,
 				3054F9C529B947D100603EDC /* ColorsByLevel.swift */,
 				300F2E6929C1AA5100F3E5B3 /* RulesView.swift */,
+				30C0C1EC29C62ADE0014C46D /* LoadingView.swift */,
 				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
 				30360A0929AC0A58002594FD /* GoogleService-Info.plist */,
 				30BA0A5129A924FC00B0B3AB /* Assets.xcassets */,
 				30A53ACF29B6C375008EE90D /* Property List.plist */,
 				30A53ACE29B6C2F0008EE90D /* Premium.storekit */,
+				30C0C1EA29C625F60014C46D /* mouseclick.wav */,
 				30BA0A5329A924FC00B0B3AB /* Preview Content */,
 			);
 			path = "Monk Mode";
@@ -336,10 +345,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				30BA0A8429A9272700B0B3AB /* MetalMania-Regular.ttf in Resources */,
+				30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */,
 				30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */,
 				30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */,
 				30A53AD029B6C375008EE90D /* Property List.plist in Resources */,
 				30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */,
+				3031D15629C88A5A0097A437 /* levelup.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +482,7 @@
 				30BA0A8929A9640600B0B3AB /* HistoryView.swift in Sources */,
 				30A53AD629B6C4A7008EE90D /* StorePage.swift in Sources */,
 				30A53ACB29B6937D008EE90D /* ChooseTimeView.swift in Sources */,
+				30C0C1ED29C62ADE0014C46D /* LoadingView.swift in Sources */,
 				3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */,
 				308F175629B00316008DB163 /* CustomCalendar.swift in Sources */,
 				30BA0A8D29A9644400B0B3AB /* SettingsView.swift in Sources */,
@@ -642,7 +654,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GRRYM4KT64;
@@ -660,7 +672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -680,7 +692,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GRRYM4KT64;
@@ -698,7 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

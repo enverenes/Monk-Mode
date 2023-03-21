@@ -34,7 +34,11 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "B30EF9EE",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "69E1668E",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
           "localizations" : [
             {
               "description" : "Full Access To All Features",

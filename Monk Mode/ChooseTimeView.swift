@@ -26,7 +26,8 @@ struct ChooseTimeView: View {
     var body: some View {
           ZStack{
             
-            LinearGradient(gradient: Gradient(colors: [ Color(hex: 0x000000, opacity: 1.0),Color(hex: 0x740329, opacity: 1.0)]), startPoint: .top, endPoint: .bottom)
+              
+              LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
             
             VStack{
                 
@@ -35,8 +36,8 @@ struct ChooseTimeView: View {
                     NavigationLink {
                         SpecifyhabitsView()
                     } label: {
-                        Image("backbutton").resizable().scaledToFit().frame(width: 90, height: 90)
-                    }.padding(20)
+                        Image("backbutton").resizable().scaledToFit().frame(width: 40, height: 40)
+                    }.padding(.top, 50) .padding(.leading, 20)
                     Spacer()
                 }
                
@@ -51,16 +52,14 @@ struct ChooseTimeView: View {
                 Spacer()
                 
                 NavigationLink {
-                    MainContentView().onAppear{
-                        UserDefaults.standard.welcomescreenShown = true
-                    }
+                    StorePage()
                 } label: {
                     Text("Proceed")
-                        .font(.custom("MetalMania-Regular", size: 35))
+                        .font(.custom("MetalMania-Regular", size: 20))
                         .frame(width: 200)
                         .padding()
                         .foregroundColor(Color(.systemBlue))
-                        .background(.black)
+                        .background(.primary)
                         .overlay( /// apply a rounded border
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(.blue, lineWidth: 5))

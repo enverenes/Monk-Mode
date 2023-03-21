@@ -16,29 +16,29 @@ struct AppColors {
         static var topBarColor: Color {
             @AppStorage("userLevel") var userLevel = "level1"
             switch userLevel {
-                case "level1":
-                    return Color(hex: 0xD76A03)
-                case "level2":
-                    return Color(hex: 0x0F0E0E)
-                case "level3":
-                    return Color(hex: 0x005F95)
-                case "level4":
-                    return Color(hex: 0x050504)
-                case "level5":
-                    return Color(hex: 0x7A0209)
-                case "level6":
-                    return Color(hex: 0x152299)
-                case "level7":
-                    return Color(hex: 0x0C0808)
-                case "level8":
-                    return Color(hex: 0x1740AA)
-                case "level9":
-                    return Color(hex: 0x800A11)
-                case "level10":
-                    return Color(hex: 0xD76A03)
-                default:
-                    return Color.black // default color
-            }
+                            case "level1":
+                                return Color(hex: 0x1363DF)
+                            case "level2":
+                                return Color(hex: 0x01005E)
+                            case "level3":
+                                return Color(hex: 0x51557E)
+                            case "level4":
+                                return Color(hex: 0x413543)
+                            case "level5":
+                                return Color(hex: 0x3D314A)
+                            case "level6":
+                                return Color(hex: 0x1E5128)
+                            case "level7":
+                                return Color(hex: 0x382933)
+                            case "level8":
+                                return Color(hex: 0x4D4847)
+                            case "level9":
+                                return Color(hex: 0xA27B5C)
+                            case "level10":
+                                return Color(hex: 0xA47E3B)
+                            default:
+                                return Color.black // default color
+                        }
         }
     }
     
@@ -46,29 +46,29 @@ struct AppColors {
         static var insideColor: Color {
             @AppStorage("userLevel") var userLevel = "level1"
             switch userLevel {
-            case "level1":
-                return Color(hex: 0x231C15)
-            case "level2":
-                return Color(hex: 0x000C0C)
-            case "level3":
-                return Color(hex: 0x0F5D6F)
-            case "level4":
-                return Color(hex: 0x0A080C)
-            case "level5":
-                return Color(hex: 0x021736)
-            case "level6":
-                return Color(hex: 0x6C3806)
-            case "level7":
-                return Color(hex: 0x0F0B06)
-            case "level8":
-                return Color(hex: 0x252322)
-            case "level9":
-                return Color(hex: 0x834308)
-            case "level10":
-                return Color(hex: 0x231C15)
-            default:
-                return Color.black // default color
-            }
+                            case "level1":
+                                return Color(hex: 0x1363DF)
+                            case "level2":
+                                return Color(hex: 0x01005E)
+                            case "level3":
+                                return Color(hex: 0x51557E)
+                            case "level4":
+                                return Color(hex: 0x413543)
+                            case "level5":
+                                return Color(hex: 0x3D314A)
+                            case "level6":
+                                return Color(hex: 0x1E5128)
+                            case "level7":
+                                return Color(hex: 0x382933)
+                            case "level8":
+                                return Color(hex: 0x4D4847)
+                            case "level9":
+                                return Color(hex: 0xA27B5C)
+                            case "level10":
+                                return Color(hex: 0xA47E3B)
+                            default:
+                                return Color.black // default color
+                        }
         }
     }
     
@@ -76,29 +76,29 @@ struct AppColors {
         static var barInsideColor: Color {
             @AppStorage("userLevel") var userLevel = "level1"
             switch userLevel {
-            case "level1":
-                return Color(hex: 0x005F95)
-            case "level2":
-                return Color(hex: 0x417A08)
-            case "level3":
-                return Color(hex: 0x970B0B)
-            case "level4":
-                return Color(hex: 0x0A0171)
-            case "level5":
-                return Color(hex: 0x70790D)
-            case "level6":
-                return Color(hex: 0x020601)
-            case "level7":
-                return Color(hex: 0x8E0101)
-            case "level8":
-                return Color(hex: 0xB10707)
-            case "level9":
-                return Color(hex: 0x0F0C0D)
-            case "level10":
-                return Color(hex: 0x005F95)
-            default:
-                return Color.black // default color
-            }
+                           case "level1":
+                               return Color(hex: 0x47B5FF)
+                           case "level2":
+                               return Color(hex: 0x28518A)
+                           case "level3":
+                               return Color(hex: 0x816797)
+                           case "level4":
+                               return Color(hex: 0x8F43EE)
+                           case "level5":
+                               return Color(hex: 0x684756)
+                           case "level6":
+                               return Color(hex: 0x4E9F3D)
+                           case "level7":
+                               return Color(hex: 0x519872)
+                           case "level8":
+                               return Color(hex: 0x000F08)
+                           case "level9":
+                               return Color(hex: 0x3F4E4F)
+                           case "level10":
+                               return Color(hex: 0xE6B325)
+                           default:
+                               return Color.black // default color
+                       }
         }
     }
     
@@ -107,25 +107,25 @@ struct AppColors {
             @AppStorage("userLevel") var userLevel = "level1"
             switch userLevel {
                 case "level1":
-                    return Color(hex: 0x131771)
+                    return Color(hex: 0x06283D)
                 case "level2":
-                    return Color(hex: 0x0D1E58)
+                    return Color(hex: 0x22267B)
                 case "level3":
-                    return Color(hex: 0x1C3019)
+                    return Color(hex: 0x1B2430)
                 case "level4":
                     return Color(hex: 0x3C210E)
                 case "level5":
-                    return Color(hex: 0x031E0E)
+                    return Color(hex: 0x1A1423)
                 case "level6":
-                    return Color(hex: 0x120202)
+                    return Color(hex: 0x191A19)
                 case "level7":
-                    return Color(hex: 0x00223A)
+                    return Color(hex: 0x3B5249)
                 case "level8":
-                    return Color(hex: 0x0D0B08)
+                    return Color(hex: 0x1C3738)
                 case "level9":
-                    return Color(hex: 0x0F1257)
+                    return Color(hex: 0x2C3639)
                 case "level10":
-                    return Color(hex: 0x131771)
+                    return Color(hex: 0x61481C)
                 default:
                     return Color.black // default color
             }

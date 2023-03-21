@@ -8,6 +8,9 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
+import AVFoundation
+import SSSwiftUIGIFView
+
 
 struct MainContentView: View {
     @State var showTabBar : Bool = false
@@ -33,14 +36,70 @@ struct MainContentView: View {
     @AppStorage("work") var work : Bool = false
     @AppStorage("diet") var diet : Bool = false
     
+    @AppStorage("nosocialStreak") var nosocialStreak : Int = 0
+    @AppStorage("noalcoholStreak") var noalcoholStreak: Int = 0
+    @AppStorage("nosmokeStreak") var nosmokeStreak: Int = 0
+    @AppStorage("nodrugsStreak") var nodrugsStreak: Int = 0
+    @AppStorage("nofapStreak") var nofapStreak: Int = 0
+    @AppStorage("exerciseStreak") var exerciseStreak: Int = 0
+    @AppStorage("meditationStreak") var meditationStreak: Int = 0
+    @AppStorage("readStreak") var readStreak: Int = 0
+    @AppStorage("workStreak") var workStreak: Int = 0
+    @AppStorage("dietStreak") var dietStreak: Int = 0
+    
     @State var selectedTab : Int = 1
     @State var habits : [String] = []
     @State var selectedHabit : Int = 0
+    
+    
+    @State var selectedHabitforalert : String = ""
    
     @AppStorage("userLevelProgress") var userLevelProgress : Double = 0.0
     @State var progressData = 0
     @State var progressDataDict : [String: Int] = ["Exercise" : 0 ,"Meditation" : 0,"Reading" : 0,"Healthy Diet" : 0,"Work" : 0, "No Social Media" : 0, "No Smoking" : 0, "No Drugs" : 0 , "No Alcohol" : 0, "No Fap" : 0 ]
     
+    @State var animDict : [String: Bool] = ["Exercise" : false ,"Meditation" : false,"Reading" : false,"Healthy Diet" : false,"Work" : false, "No Social Media" : false, "No Smoking" : false, "No Drugs" : false , "No Alcohol" : false ,"No Fap" : false ]
+    
+    @State var streakDict : [String: Int] = ["Exercise" : 0 ,"Meditation" : 0,"Reading" : 0,"Healthy Diet" : 0,"Work" : 0, "No Social Media" : 0, "No Smoking" : 0, "No Drugs" : 0 , "No Alcohol" : 0 ,"No Fap" : 0 ]
+    
+    @State var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
+    
+    @State var levelUp : Bool = false
+    @State private var scale = 0.1
+    @State private var showAlert = false
+    @State private var levelUpLightningAnim : Bool = true
+    
+    
+   @State var player: AVAudioPlayer?
+    
+    
+    func setStreak() {
+        streakDict["Exercise"] = exerciseStreak
+        streakDict["Meditation"] = meditationStreak
+        streakDict["Reading"] = readStreak
+        streakDict["Healthy Diet"] = dietStreak
+        streakDict["Work"] = workStreak
+        streakDict["No Social Media"] = nosocialStreak
+        streakDict["No Smoking"] = nosmokeStreak
+        streakDict["No Drugs"] = nodrugsStreak
+        streakDict["No Alcohol"] = noalcoholStreak
+        streakDict["No Fap"] = nofapStreak
+    }
+    
+
+    func loadSound() {
+        if let soundURL = Bundle.main.url(forResource: "mouseclick", withExtension: ".wav") {
+            do {
+                player = try AVAudioPlayer(contentsOf: soundURL)
+            } catch {
+                print("Error loading sound file: \(error.localizedDescription)")
+            }
+        }
+    }
+    func playSound() {
+           player?.play()
+       }
+
     
     func addToHabitArray(habitArray : [Bool]){
         
@@ -130,6 +189,8 @@ struct MainContentView: View {
         }
     }
     
+   @State var isDataFetchingCompleted = false
+    
     func fetchData(){
         let db = Firestore.firestore()
         let userId = Auth.auth().currentUser!.uid // Assumes user is signed in
@@ -150,29 +211,49 @@ struct MainContentView: View {
                 print("Document doesn't exists")
                 
             }
-          
+                withAnimation{
+                    isDataFetchingCompleted = true
+                }
+               
         }
        
         
     }
     
-    
     func getLevel(points: Int) -> Int {
         let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
         for i in 0..<levels.count {
             if points < levels[i] {
-                userLevelProgress = Double(points) / Double(levels[i])
+                if i == 0{
+                    userLevelProgress = Double(points) / (Double(levels[i]))
+                }else{
+                    userLevelProgress = Double(points) / (Double(levels[i]) - Double(levels[i-1]))
+                }
+                
+               
                 return i + 1
             }
         }
         return levels.count  
     }
     
+    func compareLevel(firstLevel : Int, secondLevel : Int) -> Bool {
+        var levelUp = false
+        
+        if secondLevel > firstLevel {
+            levelUp = true
+            return levelUp
+            
+        }else{
+            levelUp = false
+            return levelUp
+        }
+    }
+    
     var body: some View {
        var habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
 
         ZStack{
-            
             if selectedTab == 1 {
                 VStack{
                     
@@ -222,57 +303,77 @@ struct MainContentView: View {
                                                 
                                                 
                                             }
+                                            Streak(habit: habit, streakDict: $streakDict)
+                                           
                                             
-                                            HStack{
-                                                Text("Streak").padding(.horizontal,7).background(AppColors.BarInside.barInsideColor)
-                                                    .cornerRadius(25)
-                                                    .foregroundColor(.white)
-                                                Spacer()
-                                                Text("3X Streak").padding(.horizontal,7)
-                                            }
-                                            .background(.white)
+                                        }.background(animDict[habit]! ? .white : AppColors.Inside.insideColor)
                                             .cornerRadius(25)
-                                            
-                                        }.background(AppColors.Inside.insideColor)
-                                            .cornerRadius(25)
-                                            .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
+                                            .animation(.easeInOut(duration: 0.5))
+                                                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
+                                                .scaleEffect(animDict[habit]! ? 1.2 : 1.0)
                                     }
                                     else{
-                                        
-                                        
-                                        ClosedHabit(habit: habit)
-                                        
-                                        
-                                    }
+                                        ClosedHabit(habit: habit, animDict: $animDict)
+                                   }
                                     
                                 }
                                 
-                                
-                                
-                                
                                 Button {
                                     
+                                    playSound()
+                                    
+                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                        impactMed.impactOccurred()
+                                    
                                     if progressDataDict[habit] == 2{
+                                       
+                                        streakDict[habit]! += 1
                                         progressDataDict[habit] = 1
+                                        
                                         userPoints += 1
-                                        print(userPoints)
-                                        userLevel = "level" + String(getLevel(points: userPoints))
+                                        let firstLevel = getLevel(points: userPoints - 1)
+                                        let secondLevel = getLevel(points: userPoints)
+                                      
+                                        userLevel = "level" + String(secondLevel)
+                                        
+                                        withAnimation {
+                                            levelUp = compareLevel(firstLevel: firstLevel, secondLevel: secondLevel)
+                                            animDict[habit]!.toggle()
+                                            
+                                            let deadline = DispatchTime.now() + .milliseconds(100)
+                                            DispatchQueue.main.asyncAfter( deadline: deadline) {
+                                                withAnimation{
+                                                    animDict[habit]!.toggle()
+                                                }
+                                               
+                                                   }
+                                        }
 
                                     }else if progressDataDict[habit] == 1{
-                                        progressDataDict[habit]  = 2
-                                       
-                                        if (userPoints - 1) < 0 {
-                                            userPoints = 0
-                                        }else{
-                                            userPoints -= 1
-                                        }
-                                        userLevel = "level" + String(getLevel(points: userPoints))
+                                        showAlert = true
+                                        selectedHabitforalert = habit
 
                                     }else{
+                                        streakDict[habit]! += 1
                                         progressDataDict[habit] = 1
+                                        let firstLevel = getLevel(points: userPoints)
                                         userPoints += 1
-                                        print(userPoints)
-                                        userLevel = "level" + String(getLevel(points: userPoints))
+                                        let secondLevel = getLevel(points: userPoints)
+                                       
+                                        userLevel = "level" + String(secondLevel)
+                                        
+                                        withAnimation {
+                                            levelUp = compareLevel(firstLevel: firstLevel, secondLevel: secondLevel)
+                                            animDict[habit]!.toggle()
+                                            let deadline = DispatchTime.now() + .milliseconds(100)
+                                            DispatchQueue.main.asyncAfter( deadline: deadline) {
+                                                withAnimation{
+                                                    animDict[habit]!.toggle()
+                                                }
+                                               
+                                                   }
+                                            
+                                        }
                                     }
                                     
                                     saveData(habit: habit, habitStatus: progressDataDict[habit] ?? 0)
@@ -298,11 +399,32 @@ struct MainContentView: View {
                                             .padding(.horizontal,10)
                                             .foregroundColor(.white)
                                         
+                                    }else{
+                                        Image("circle")
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .padding(.horizontal,10)
+                                            .foregroundColor(.white)
                                     }
                                     
                                     
-                                }
-                                
+                                }.alert(isPresented: $showAlert) {
+                                    Alert(title: Text("Uncheck Alert"), message: Text("Are you sure you want to uncheck?"), primaryButton: .default(Text("Yes"), action: {
+                                    
+                                        progressDataDict[selectedHabitforalert]  = 2
+                                       
+                                        if (userPoints - 1) < 0 {
+                                            userPoints = 0
+                                        }else{
+                                            userPoints -= 1
+                                        }
+                                        userLevel = "level" + String(getLevel(points: userPoints))
+                                        
+                                        saveData(habit: selectedHabitforalert, habitStatus: progressDataDict[selectedHabitforalert] ?? 0)
+                                       
+                                        streakDict[selectedHabitforalert] = 0
+                                    }), secondaryButton: .cancel(Text("Cancel")))
+                                        }
                                 
                             }
                             
@@ -322,8 +444,10 @@ struct MainContentView: View {
                     .font(.custom("MetalMania-Regular", size: 25))
                     
                     Spacer().frame(height: 120)
-
-            }.background(AppColors.Back.backgroundColor)
+                        
+                }
+                .background(AppColors.Back.backgroundColor)
+                    .blur(radius: levelUp ? 40 : 0)
             }
             else if selectedTab == 0
             {
@@ -335,13 +459,106 @@ struct MainContentView: View {
             }
            
             TabBar(selectedTab:  $selectedTab).opacity(showTabBar ? 1.0 : 0.0)
+                .blur(radius: levelUp ? 15 : 0)
+            
                
           
+            if levelUp {
+                ZStack{
+                    
+                    if levelUpLightningAnim{
+                        VStack{
+                            SwiftUIGIFPlayerView(gifName: "levelup")
+                            Spacer().frame(height: 300)
+                        }.onAppear{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                                levelUpLightningAnim = false
+                                
+                            }
+                        }
+                    }
+                   
+                    
+                    
+                    VStack{
+                        Spacer()
+                       
+                        
+                        Text("Level Up!").foregroundColor(.white)
+                            .font(.custom("MetalMania-Regular", size: 40))
+                        
+                        VStack{
+                            Text("\(levels[userLevel]!)")
+                                .font(.custom("MetalMania-Regular", size: 20))
+                                .foregroundColor(.white).padding(.horizontal)
+                                .padding(.top)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Spacer()
+                            Image("\(userLevel)").resizable().scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .padding(.horizontal, 20)
+                               
+                            Spacer()
+                            
+                            
+                        }.frame(width: 120, height: 180)
+                            .background(Color(hex: 0x32a852))
+                            .cornerRadius(20)
+                            .scaleEffect(scale)
+                            .animation(.linear(duration: 0.7), value: scale)
+                                    .onAppear{
+                                        withAnimation{
+                                            scale = 1.0
+                                        }
+                                    }
+                        
+                        Spacer()
+                        HStack{
+                            Button {
+                                withAnimation{
+                                    levelUp = false
+                                    levelUpLightningAnim = true
+                                }
+                                scale = 0.1
+                            } label: {
+                                Text("Proceed")
+                                    .font(.custom("MetalMania-Regular", size: 27))
+                                    .frame(width: 200)
+                                    .padding(10)
+                                    .foregroundColor(Color(.systemBlue))
+                                    .background(.black)
+                                    .overlay( /// apply a rounded border
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(.blue, lineWidth: 5))
+                                    .cornerRadius(5)
+                                
+                                    .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                       
+
+                            }
+
+                           
+                        }.frame(width: 300).padding()
+                        
+                        
+                        Image("monkart1").resizable().scaledToFit().frame(width: 300, height: 300)
+                    }
+                }
+               
+            }
             
            
+            if !isDataFetchingCompleted{
+                LoadingView()
+            }
+            
         }.onAppear{
-           
             
+           
+                       
+            setStreak()
+            loadSound()
             
             openedFirstTime = true
             if openedFirstTime{
@@ -362,6 +579,7 @@ struct MainContentView: View {
                    
                 
         }
+       
             .navigationBarBackButtonHidden(true)
     }
 }
@@ -386,7 +604,7 @@ struct TabBar: View{
                 }
                 .padding(0)
                 .background(Color(.systemGray))
-                .cornerRadius(30)
+                .cornerRadius(35)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
@@ -474,6 +692,7 @@ struct TabBar: View{
 struct ClosedHabit: View{
     @AppStorage("userLevel") var userLevel = "level1"
     @State var habit : String
+    @Binding var animDict : [String : Bool]
     var body: some View{
         VStack{
             
@@ -488,16 +707,17 @@ struct ClosedHabit: View{
                     .frame(height: 50)
                     .padding(5)
                 
-            }.background(Color(hex: 0x231c15))
-                .cornerRadius(25)
-                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
+            }.background(animDict[habit]! ? .white : Color(hex: 0x231c15))
+                    .cornerRadius(25)
+                    .animation(.easeInOut(duration: 0.5))
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
+                    .scaleEffect(animDict[habit]! ? 1.2 : 1.0)
+                   
             
             
         }
         
     }}
-
-
 
 struct CornerRadiusShape: Shape {
     var radius = CGFloat.infinity
@@ -522,5 +742,23 @@ struct CornerRadiusStyle: ViewModifier {
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
+    }
+}
+
+struct Streak : View{
+    @State var habit : String
+    @Binding var streakDict : [String : Int]
+    
+    var body: some View{
+        HStack{
+            Text("Streak").padding(.horizontal,7).background(AppColors.BarInside.barInsideColor)
+                .cornerRadius(25)
+                .foregroundColor(.white)
+            Spacer()
+            Text((streakDict[habit] == 0) ? "No Streak" : "\(streakDict[habit] ?? 1)X Streak").padding(.horizontal,7)
+        }
+        .background(.white)
+        .cornerRadius(25)
+        
     }
 }

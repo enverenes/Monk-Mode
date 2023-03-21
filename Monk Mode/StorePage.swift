@@ -93,7 +93,9 @@ struct StorePage: View {
                         
                 Spacer()
                 NavigationLink {
-                    ChooseHabitsView()
+                    MainContentView().onAppear{
+                        UserDefaults.standard.welcomescreenShown = true
+                    }
                 } label: {
                     Text("Admin bypass").font(.custom("MetalMania-Regular", size: 15))
                         .padding(5)
