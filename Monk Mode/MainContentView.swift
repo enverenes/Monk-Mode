@@ -459,6 +459,7 @@ struct MainContentView: View {
             }
            
             TabBar(selectedTab:  $selectedTab).opacity(showTabBar ? 1.0 : 0.0)
+                .disabled(levelUp)
                 .blur(radius: levelUp ? 15 : 0)
             
                
@@ -514,6 +515,8 @@ struct MainContentView: View {
                                     }
                         
                         Spacer()
+                        Text("").font(.custom("MetalMania-Regular", size: 25))
+                        Spacer()
                         HStack{
                             Button {
                                 withAnimation{
@@ -542,7 +545,6 @@ struct MainContentView: View {
                         }.frame(width: 300).padding()
                         
                         
-                        Image("monkart1").resizable().scaledToFit().frame(width: 300, height: 300)
                     }
                 }
                

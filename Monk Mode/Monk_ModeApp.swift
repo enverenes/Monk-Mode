@@ -33,7 +33,7 @@ struct Monk_ModeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            SplashScreenView().defaultAppStorage(UserDefaults(suiteName: "group.monkmode")!)
         }
     }
 }

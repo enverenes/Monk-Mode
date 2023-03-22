@@ -35,6 +35,13 @@
 		30BA0A8D29A9644400B0B3AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A8C29A9644400B0B3AB /* SettingsView.swift */; };
 		30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30C0C1EA29C625F60014C46D /* mouseclick.wav */; };
 		30C0C1ED29C62ADE0014C46D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0C1EC29C62ADE0014C46D /* LoadingView.swift */; };
+		30C5D9AD29CA44AF00133663 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AC29CA44AF00133663 /* WidgetKit.framework */; };
+		30C5D9AF29CA44AF00133663 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AE29CA44AF00133663 /* SwiftUI.framework */; };
+		30C5D9B229CA44AF00133663 /* LevelWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5D9B129CA44AF00133663 /* LevelWidgetBundle.swift */; };
+		30C5D9B429CA44AF00133663 /* LevelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5D9B329CA44AF00133663 /* LevelWidget.swift */; };
+		30C5D9B629CA44B000133663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C5D9B529CA44B000133663 /* Assets.xcassets */; };
+		30C5D9BA29CA44B000133663 /* LevelWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30C5D9C029CA729600133663 /* Colors_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5D9BF29CA729600133663 /* Colors_Widget.swift */; };
 		3436E7E3CF030769C1E079DE /* Pods_Monk_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */; };
 		5A3219B522F8D2D6F642F85D /* Pods_Monk_Mode_Monk_ModeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C366AB1D06DDC058A2601673 /* Pods_Monk_Mode_Monk_ModeUITests.framework */; };
 		6B36BF60A0DF3F3B085432E3 /* Pods_Monk_ModeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E11A543F59C5D159D6187F6 /* Pods_Monk_ModeTests.framework */; };
@@ -55,7 +62,28 @@
 			remoteGlobalIDString = 30BA0A4929A924FA00B0B3AB;
 			remoteInfo = "Monk Mode";
 		};
+		30C5D9B829CA44B000133663 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30BA0A4229A924FA00B0B3AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30C5D9AA29CA44AF00133663;
+			remoteInfo = LevelWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		30C5D9BB29CA44B000133663 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				30C5D9BA29CA44B000133663 /* LevelWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EB10962026CD8D6DCA9DBE8 /* Pods-Monk Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.debug.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +93,7 @@
 		30360A0929AC0A58002594FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3054F9C529B947D100603EDC /* ColorsByLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsByLevel.swift; sourceTree = "<group>"; };
 		3054F9C729B99BA200603EDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LevelWidgetExtension.entitlements; sourceTree = "<group>"; };
 		308F175529B00316008DB163 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
 		30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeView.swift; sourceTree = "<group>"; };
 		30A53ACC29B6C012008EE90D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -92,6 +121,15 @@
 		30BA0A8C29A9644400B0B3AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		30C0C1EA29C625F60014C46D /* mouseclick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mouseclick.wav; sourceTree = "<group>"; };
 		30C0C1EC29C62ADE0014C46D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LevelWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C5D9AC29CA44AF00133663 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		30C5D9AE29CA44AF00133663 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		30C5D9B129CA44AF00133663 /* LevelWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelWidgetBundle.swift; sourceTree = "<group>"; };
+		30C5D9B329CA44AF00133663 /* LevelWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelWidget.swift; sourceTree = "<group>"; };
+		30C5D9B529CA44B000133663 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30C5D9B729CA44B000133663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30C5D9BF29CA729600133663 /* Colors_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors_Widget.swift; sourceTree = "<group>"; };
+		30C5D9C129CA739A00133663 /* Monk Mode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Monk Mode.entitlements"; sourceTree = "<group>"; };
 		340428C4E9927FA0BFF07417 /* Pods-Monk ModeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk ModeTests.release.xcconfig"; path = "Target Support Files/Pods-Monk ModeTests/Pods-Monk ModeTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D8CDAC183A9EC77082766D7 /* Pods-Monk Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.release.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.release.xcconfig"; sourceTree = "<group>"; };
 		8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monk_Mode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +166,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30C5D9A829CA44AF00133663 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C5D9AF29CA44AF00133663 /* SwiftUI.framework in Frameworks */,
+				30C5D9AD29CA44AF00133663 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -138,6 +185,8 @@
 				8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */,
 				C366AB1D06DDC058A2601673 /* Pods_Monk_Mode_Monk_ModeUITests.framework */,
 				9E11A543F59C5D159D6187F6 /* Pods_Monk_ModeTests.framework */,
+				30C5D9AC29CA44AF00133663 /* WidgetKit.framework */,
+				30C5D9AE29CA44AF00133663 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,9 +194,11 @@
 		30BA0A4129A924FA00B0B3AB = {
 			isa = PBXGroup;
 			children = (
+				307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */,
 				30BA0A4C29A924FA00B0B3AB /* Monk Mode */,
 				30BA0A5D29A924FC00B0B3AB /* Monk ModeTests */,
 				30BA0A6729A924FC00B0B3AB /* Monk ModeUITests */,
+				30C5D9B029CA44AF00133663 /* LevelWidget */,
 				30BA0A4B29A924FA00B0B3AB /* Products */,
 				D0AF55D78FC6C6C971873C0C /* Pods */,
 				1C92583831AC4CA87C81C25E /* Frameworks */,
@@ -160,6 +211,7 @@
 				30BA0A4A29A924FA00B0B3AB /* Monk Mode.app */,
 				30BA0A5A29A924FC00B0B3AB /* Monk ModeTests.xctest */,
 				30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */,
+				30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +219,7 @@
 		30BA0A4C29A924FA00B0B3AB /* Monk Mode */ = {
 			isa = PBXGroup;
 			children = (
+				30C5D9C129CA739A00133663 /* Monk Mode.entitlements */,
 				3031D15529C88A5A0097A437 /* levelup.gif */,
 				30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */,
 				3054F9C729B99BA200603EDC /* ProgressBar.swift */,
@@ -222,6 +275,18 @@
 			path = "Monk ModeUITests";
 			sourceTree = "<group>";
 		};
+		30C5D9B029CA44AF00133663 /* LevelWidget */ = {
+			isa = PBXGroup;
+			children = (
+				30C5D9B129CA44AF00133663 /* LevelWidgetBundle.swift */,
+				30C5D9B329CA44AF00133663 /* LevelWidget.swift */,
+				30C5D9BF29CA729600133663 /* Colors_Widget.swift */,
+				30C5D9B529CA44B000133663 /* Assets.xcassets */,
+				30C5D9B729CA44B000133663 /* Info.plist */,
+			);
+			path = LevelWidget;
+			sourceTree = "<group>";
+		};
 		D0AF55D78FC6C6C971873C0C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,10 +312,12 @@
 				30BA0A4729A924FA00B0B3AB /* Frameworks */,
 				30BA0A4829A924FA00B0B3AB /* Resources */,
 				761240433C6CA0A42335C2A6 /* [CP] Embed Pods Frameworks */,
+				30C5D9BB29CA44B000133663 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				30C5D9B929CA44B000133663 /* PBXTargetDependency */,
 			);
 			name = "Monk Mode";
 			productName = "Monk Mode";
@@ -296,6 +363,23 @@
 			productReference = 30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C5D9BE29CA44B000133663 /* Build configuration list for PBXNativeTarget "LevelWidgetExtension" */;
+			buildPhases = (
+				30C5D9A729CA44AF00133663 /* Sources */,
+				30C5D9A829CA44AF00133663 /* Frameworks */,
+				30C5D9A929CA44AF00133663 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LevelWidgetExtension;
+			productName = LevelWidgetExtension;
+			productReference = 30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -317,6 +401,9 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 30BA0A4929A924FA00B0B3AB;
 					};
+					30C5D9AA29CA44AF00133663 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 				};
 			};
 			buildConfigurationList = 30BA0A4529A924FA00B0B3AB /* Build configuration list for PBXProject "Monk Mode" */;
@@ -335,6 +422,7 @@
 				30BA0A4929A924FA00B0B3AB /* Monk Mode */,
 				30BA0A5929A924FC00B0B3AB /* Monk ModeTests */,
 				30BA0A6329A924FC00B0B3AB /* Monk ModeUITests */,
+				30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -365,6 +453,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C5D9A929CA44AF00133663 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C5D9B629CA44B000133663 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +611,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30C5D9A729CA44AF00133663 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C5D9B429CA44AF00133663 /* LevelWidget.swift in Sources */,
+				30C5D9C029CA729600133663 /* Colors_Widget.swift in Sources */,
+				30C5D9B229CA44AF00133663 /* LevelWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -527,6 +633,11 @@
 			isa = PBXTargetDependency;
 			target = 30BA0A4929A924FA00B0B3AB /* Monk Mode */;
 			targetProxy = 30BA0A6529A924FC00B0B3AB /* PBXContainerItemProxy */;
+		};
+		30C5D9B929CA44B000133663 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */;
+			targetProxy = 30C5D9B829CA44B000133663 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -649,15 +760,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EB10962026CD8D6DCA9DBE8 /* Pods-Monk Mode.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GRRYM4KT64;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Monk-Mode-Info.plist";
@@ -676,7 +787,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monk Mode";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -687,15 +797,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D8CDAC183A9EC77082766D7 /* Pods-Monk Mode.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GRRYM4KT64;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Monk-Mode-Info.plist";
@@ -714,7 +824,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monk Mode";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -801,6 +910,66 @@
 			};
 			name = Release;
 		};
+		30C5D9BC29CA44B000133663 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LevelWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LevelWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LevelWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.LevelWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30C5D9BD29CA44B000133663 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LevelWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LevelWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LevelWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.LevelWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,6 +1005,15 @@
 			buildConfigurations = (
 				30BA0A7529A924FC00B0B3AB /* Debug */,
 				30BA0A7629A924FC00B0B3AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C5D9BE29CA44B000133663 /* Build configuration list for PBXNativeTarget "LevelWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C5D9BC29CA44B000133663 /* Debug */,
+				30C5D9BD29CA44B000133663 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
