@@ -13,6 +13,20 @@
 		30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
 		3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C529B947D100603EDC /* ColorsByLevel.swift */; };
 		3054F9C829B99BA200603EDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C729B99BA200603EDC /* ProgressBar.swift */; };
+		307682F729CB2F7400DF3B94 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AC29CA44AF00133663 /* WidgetKit.framework */; };
+		307682F829CB2F7400DF3B94 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AE29CA44AF00133663 /* SwiftUI.framework */; };
+		307682FB29CB2F7500DF3B94 /* HabitsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307682FA29CB2F7500DF3B94 /* HabitsWidgetBundle.swift */; };
+		307682FD29CB2F7500DF3B94 /* HabitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307682FC29CB2F7500DF3B94 /* HabitsWidget.swift */; };
+		307682FF29CB2F7600DF3B94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 307682FE29CB2F7600DF3B94 /* Assets.xcassets */; };
+		3076830329CB2F7600DF3B94 /* HabitsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3076830929CB4B8600DF3B94 /* ActiveHabits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076830829CB4B8600DF3B94 /* ActiveHabits.swift */; };
+		3076830F29CC235300DF3B94 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076830E29CC235300DF3B94 /* FirebaseFirestore.framework */; };
+		3076831729CC3D3200DF3B94 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076830A29CC234E00DF3B94 /* FirebaseAuth.framework */; };
+		3076831829CC3D3200DF3B94 /* FirebaseAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3076830A29CC234E00DF3B94 /* FirebaseAuth.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3076831A29CC3D3400DF3B94 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076831429CC23C200DF3B94 /* FirebaseCore.framework */; };
+		3076831B29CC3D3400DF3B94 /* FirebaseCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3076831429CC23C200DF3B94 /* FirebaseCore.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3076831C29CC3D3A00DF3B94 /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076831129CC23BA00DF3B94 /* FirebaseFirestore.framework */; };
+		3076831D29CC3D3A00DF3B94 /* FirebaseFirestore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3076831129CC23BA00DF3B94 /* FirebaseFirestore.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		308F175629B00316008DB163 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F175529B00316008DB163 /* CustomCalendar.swift */; };
 		30A53ACB29B6937D008EE90D /* ChooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */; };
 		30A53ACD29B6C012008EE90D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A53ACC29B6C012008EE90D /* StoreKit.framework */; };
@@ -48,6 +62,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3076830129CB2F7600DF3B94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30BA0A4229A924FA00B0B3AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 307682F529CB2F7400DF3B94;
+			remoteInfo = HabitsWidgetExtension;
+		};
 		30BA0A5B29A924FC00B0B3AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30BA0A4229A924FA00B0B3AB /* Project object */;
@@ -72,6 +93,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3076831929CC3D3200DF3B94 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3076831B29CC3D3400DF3B94 /* FirebaseCore.framework in Embed Frameworks */,
+				3076831829CC3D3200DF3B94 /* FirebaseAuth.framework in Embed Frameworks */,
+				3076831D29CC3D3A00DF3B94 /* FirebaseFirestore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30C5D9BB29CA44B000133663 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,6 +113,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				30C5D9BA29CA44B000133663 /* LevelWidgetExtension.appex in Embed Foundation Extensions */,
+				3076830329CB2F7600DF3B94 /* HabitsWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +129,17 @@
 		3054F9C529B947D100603EDC /* ColorsByLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsByLevel.swift; sourceTree = "<group>"; };
 		3054F9C729B99BA200603EDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LevelWidgetExtension.entitlements; sourceTree = "<group>"; };
+		307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HabitsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		307682FA29CB2F7500DF3B94 /* HabitsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsWidgetBundle.swift; sourceTree = "<group>"; };
+		307682FC29CB2F7500DF3B94 /* HabitsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsWidget.swift; sourceTree = "<group>"; };
+		307682FE29CB2F7600DF3B94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3076830029CB2F7600DF3B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3076830729CB4A0000DF3B94 /* HabitsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitsWidgetExtension.entitlements; sourceTree = "<group>"; };
+		3076830829CB4B8600DF3B94 /* ActiveHabits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveHabits.swift; sourceTree = "<group>"; };
+		3076830A29CC234E00DF3B94 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3076830E29CC235300DF3B94 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3076831129CC23BA00DF3B94 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3076831429CC23C200DF3B94 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F175529B00316008DB163 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
 		30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeView.swift; sourceTree = "<group>"; };
 		30A53ACC29B6C012008EE90D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -141,6 +187,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		307682F329CB2F7400DF3B94 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307682F829CB2F7400DF3B94 /* SwiftUI.framework in Frameworks */,
+				3076831A29CC3D3400DF3B94 /* FirebaseCore.framework in Frameworks */,
+				3076831729CC3D3200DF3B94 /* FirebaseAuth.framework in Frameworks */,
+				307682F729CB2F7400DF3B94 /* WidgetKit.framework in Frameworks */,
+				3076830F29CC235300DF3B94 /* FirebaseFirestore.framework in Frameworks */,
+				3076831C29CC3D3A00DF3B94 /* FirebaseFirestore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30BA0A4729A924FA00B0B3AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +240,10 @@
 		1C92583831AC4CA87C81C25E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3076831429CC23C200DF3B94 /* FirebaseCore.framework */,
+				3076831129CC23BA00DF3B94 /* FirebaseFirestore.framework */,
+				3076830E29CC235300DF3B94 /* FirebaseFirestore.framework */,
+				3076830A29CC234E00DF3B94 /* FirebaseAuth.framework */,
 				30A53ACC29B6C012008EE90D /* StoreKit.framework */,
 				8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */,
 				C366AB1D06DDC058A2601673 /* Pods_Monk_Mode_Monk_ModeUITests.framework */,
@@ -191,14 +254,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		307682F929CB2F7500DF3B94 /* HabitsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				307682FA29CB2F7500DF3B94 /* HabitsWidgetBundle.swift */,
+				307682FC29CB2F7500DF3B94 /* HabitsWidget.swift */,
+				3076830829CB4B8600DF3B94 /* ActiveHabits.swift */,
+				307682FE29CB2F7600DF3B94 /* Assets.xcassets */,
+				3076830029CB2F7600DF3B94 /* Info.plist */,
+			);
+			path = HabitsWidget;
+			sourceTree = "<group>";
+		};
 		30BA0A4129A924FA00B0B3AB = {
 			isa = PBXGroup;
 			children = (
+				3076830729CB4A0000DF3B94 /* HabitsWidgetExtension.entitlements */,
 				307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */,
 				30BA0A4C29A924FA00B0B3AB /* Monk Mode */,
 				30BA0A5D29A924FC00B0B3AB /* Monk ModeTests */,
 				30BA0A6729A924FC00B0B3AB /* Monk ModeUITests */,
 				30C5D9B029CA44AF00133663 /* LevelWidget */,
+				307682F929CB2F7500DF3B94 /* HabitsWidget */,
 				30BA0A4B29A924FA00B0B3AB /* Products */,
 				D0AF55D78FC6C6C971873C0C /* Pods */,
 				1C92583831AC4CA87C81C25E /* Frameworks */,
@@ -212,6 +289,7 @@
 				30BA0A5A29A924FC00B0B3AB /* Monk ModeTests.xctest */,
 				30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */,
 				30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */,
+				307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +381,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		307682F529CB2F7400DF3B94 /* HabitsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3076830429CB2F7600DF3B94 /* Build configuration list for PBXNativeTarget "HabitsWidgetExtension" */;
+			buildPhases = (
+				307682F229CB2F7400DF3B94 /* Sources */,
+				307682F329CB2F7400DF3B94 /* Frameworks */,
+				307682F429CB2F7400DF3B94 /* Resources */,
+				3076831929CC3D3200DF3B94 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HabitsWidgetExtension;
+			productName = HabitsWidgetExtension;
+			productReference = 307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		30BA0A4929A924FA00B0B3AB /* Monk Mode */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30BA0A6E29A924FC00B0B3AB /* Build configuration list for PBXNativeTarget "Monk Mode" */;
@@ -318,6 +414,7 @@
 			);
 			dependencies = (
 				30C5D9B929CA44B000133663 /* PBXTargetDependency */,
+				3076830229CB2F7600DF3B94 /* PBXTargetDependency */,
 			);
 			name = "Monk Mode";
 			productName = "Monk Mode";
@@ -390,6 +487,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					307682F529CB2F7400DF3B94 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					30BA0A4929A924FA00B0B3AB = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -423,11 +523,20 @@
 				30BA0A5929A924FC00B0B3AB /* Monk ModeTests */,
 				30BA0A6329A924FC00B0B3AB /* Monk ModeUITests */,
 				30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */,
+				307682F529CB2F7400DF3B94 /* HabitsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		307682F429CB2F7400DF3B94 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307682FF29CB2F7600DF3B94 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30BA0A4829A924FA00B0B3AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,6 +679,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		307682F229CB2F7400DF3B94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3076830929CB4B8600DF3B94 /* ActiveHabits.swift in Sources */,
+				307682FD29CB2F7500DF3B94 /* HabitsWidget.swift in Sources */,
+				307682FB29CB2F7500DF3B94 /* HabitsWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30BA0A4629A924FA00B0B3AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -624,6 +743,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3076830229CB2F7600DF3B94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 307682F529CB2F7400DF3B94 /* HabitsWidgetExtension */;
+			targetProxy = 3076830129CB2F7600DF3B94 /* PBXContainerItemProxy */;
+		};
 		30BA0A5C29A924FC00B0B3AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 30BA0A4929A924FA00B0B3AB /* Monk Mode */;
@@ -642,6 +766,66 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3076830529CB2F7600DF3B94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HabitsWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HabitsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HabitsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.HabitsWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3076830629CB2F7600DF3B94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HabitsWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HabitsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HabitsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.HabitsWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		30BA0A6C29A924FC00B0B3AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -973,6 +1157,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3076830429CB2F7600DF3B94 /* Build configuration list for PBXNativeTarget "HabitsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3076830529CB2F7600DF3B94 /* Debug */,
+				3076830629CB2F7600DF3B94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30BA0A4529A924FA00B0B3AB /* Build configuration list for PBXProject "Monk Mode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

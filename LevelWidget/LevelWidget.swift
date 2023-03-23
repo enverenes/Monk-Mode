@@ -40,6 +40,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct LevelWidgetEntryView : View {
     var entry: Provider.Entry
+    @State var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
 
     var body: some View {
         
@@ -47,13 +48,19 @@ struct LevelWidgetEntryView : View {
         ZStack{
             ContainerRelativeShape().fill(AppColors.TopBar.topBarColor)
             
-            VStack{
-                Text(defaultData?.string(forKey: "userLevel") ?? "")
+            VStack(spacing: 2){
+                Text(levels[defaultData?.string(forKey: "userLevel") ?? ""] ?? "").font(.custom(
+                    "Futura",
+                    fixedSize: 20))
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+                
+                
                 Image("level1")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
-            }
+                    .frame(width: 90, height: 90)
+            }.padding(5)
             
         }
         
@@ -67,8 +74,9 @@ struct LevelWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LevelWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Level Widget")
+        .description("Simple widget to track your level.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
