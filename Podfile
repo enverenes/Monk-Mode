@@ -20,5 +20,16 @@ target 'Monk Mode' do
   target 'Monk ModeUITests' do
     # Pods for testing
   end
+  
+  target 'HabitsWidgetExtension' do
+    
+    pod 'FirebaseCore'
+    pod 'FirebaseAnalytics'
+    pod 'FirebaseAuth'
+    pod 'FirebaseFirestore'
+    pod 'SSSwiftUIGIFView'
+    
+    end
+    
 
 end

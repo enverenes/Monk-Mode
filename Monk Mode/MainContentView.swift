@@ -136,6 +136,11 @@ struct MainContentView: View {
             habits.append("No Fap")
         }
         
+    
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(habits) {
+            UserDefaults(suiteName: "group.monkmode")!.set(encoded, forKey: "habitsActive")
+                        }
     }
     
     
@@ -211,6 +216,10 @@ struct MainContentView: View {
                 print("Document doesn't exists")
                 
             }
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(progressDataDict) {
+                    UserDefaults(suiteName: "group.monkmode")!.set(encoded, forKey: "progressData")
+                                }
                 withAnimation{
                     isDataFetchingCompleted = true
                 }

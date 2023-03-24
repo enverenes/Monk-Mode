@@ -43,35 +43,54 @@ struct SimpleEntry: TimelineEntry {
 struct HabitsWidgetEntryView : View {
     var entry: Provider.Entry
     
-    @AppStorage("nosocial") var nosocial : Bool = false
-    @AppStorage("noalcohol") var noalcohol : Bool = false
-    @AppStorage("nosmoke") var nosmoke : Bool = false
-    @AppStorage("nodrugs") var nodrugs : Bool = false
-    @AppStorage("nofap") var nofap : Bool = false
-    @AppStorage("exercise") var exercise : Bool = false
-    @AppStorage("meditation") var meditation : Bool = false
-    @AppStorage("read") var read : Bool = false
-    @AppStorage("work") var work : Bool = false
-    @AppStorage("diet") var diet : Bool = false
+    var active = ActiveHabits()
+    
+    
 
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
         
-        ZStack{
-            ContainerRelativeShape().fill()
-            
-            LazyVGrid(columns: columns,spacing: 5){
-                ForEach(ActiveHabits.habits, id: \.self) { habit in
-                    HStack{
-                        Text(habit)
-                        Spacer()
-                        Image(systemName: "circle")
-                    }.padding(.horizontal)
-                }
-            }.foregroundColor(.white)
+        ZStack {
+            ContainerRelativeShape().fill(.indigo.gradient)
+            VStack{
+                Text("Active Habits")
+                    .font(.custom("Futura", size: 20))
+                    .foregroundColor(.white)
+                LazyVGrid(columns: columns, spacing: 5) {
+                    ForEach(active.getActiveHabits(), id: \.self) { habit in
+                        HStack {
+                            Text(habit)
+                            Spacer()
+                            
+                            VStack{
+                                if active.getProgress()[habit]  == 0 {
+                                    Image(systemName: "circle")
+                                        
+                                        .foregroundColor(.white)
+                                }else if active.getProgress()[habit]  == 1 {
+                                    Image(systemName: "checkmark")
+                                       
+                                        .foregroundColor(.green)
+                                    
+                                }else if active.getProgress()[habit]  == 2 {
+                                    Image(systemName:"xmark")
+                                       
+                                        .foregroundColor(.red)
+                                    
+                                }else{
+                                    Image(systemName: "circle")
+                                        
+                                        .foregroundColor(.white)
+                                }
+                            }
+                          
+                        }.padding(.horizontal)
+                    }
+                }.foregroundColor(.white)
+            }
+           
         }
-        .background(.indigo).grayscale(0.5)
-        .background(.thickMaterial)
+        .font(.custom("Futura", size: 15))
         
         
        
