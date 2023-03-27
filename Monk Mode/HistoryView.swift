@@ -20,7 +20,7 @@ import FirebaseFirestore
 
 
 struct HistoryView: View {
-    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
     @State var selectedDate: Date = Date()
     @State var daysOfWeek = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -260,10 +260,7 @@ struct Cycle: View {
         }else{
             progress = Double(daysPassed / totalDays)
         }
-      
-        
-        
-        }
+       }
         
     @State private var moveRight = false
     
@@ -420,7 +417,7 @@ struct PreviousCycles: View{
 struct Level: View{
   @State var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
 
-    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @State var levelAnim = false
    
     @Binding var levelTransitionAnim : Bool
@@ -498,9 +495,9 @@ struct Level: View{
 struct CurrentLevel: View{
     var levels = ["level1" : "Young Blood", "level2" : "Seasoned Warrior", "level3" : "Elite Guardian", "level4": "Master Slayer", "level5" : "Legendary Hero", "level6" : "Demigod of War", "level7" : "Immortal Champion", "level8" : "Divine Avatar", "level9" : "Titan of Power", "level99" : "God of Thunder"]
     
-    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
-    @AppStorage("userLevelProgress") var userLevelProgress : Double = 0.0
+    @AppStorage("userLevelProgress", store: UserDefaults(suiteName: "group.monkmode")) var userLevelProgress : Double = 0.0
     @State var levelAnim = false
     @Binding var levelTransitionAnim : Bool
         

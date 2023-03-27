@@ -15,7 +15,7 @@ import SSSwiftUIGIFView
 struct MainContentView: View {
     @State var showTabBar : Bool = false
    
-    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
     @AppStorage("openedFirstTime") var openedFirstTime : Bool = true
     
@@ -259,6 +259,9 @@ struct MainContentView: View {
         }
     }
     
+    
+   
+    
     var body: some View {
        var habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
 
@@ -389,11 +392,14 @@ struct MainContentView: View {
                                     
                                 } label: {
                                     if progressDataDict[habit] == 0 {
-                                        Image("circle")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
-                                            .foregroundColor(.white)
+                                        VStack{
+                                            Image("circle")
+                                                .resizable()
+                                                .frame(width: 40, height: 40)
+                                                .padding(.horizontal,10)
+                                                .foregroundColor(.white)
+                                        }.frame(width: 60, height: 60)
+                                       
                                     }else if progressDataDict[habit] == 1 {
                                         Image("checkmark")
                                             .resizable()
@@ -524,7 +530,15 @@ struct MainContentView: View {
                                     }
                         
                         Spacer()
-                        Text("").font(.custom("MetalMania-Regular", size: 25))
+                        VStack{
+                            Text(DisciplineLevels(level: userLevel).getParagraph()[0]).font(.custom("MetalMania-Regular", size: 25))
+                                .padding(20)
+                                .foregroundColor(.white)
+                        }.background(.black)
+                            .cornerRadius(25)
+                            .padding()
+                            
+                       
                         Spacer()
                         HStack{
                             Button {
@@ -538,14 +552,11 @@ struct MainContentView: View {
                                     .font(.custom("MetalMania-Regular", size: 27))
                                     .frame(width: 200)
                                     .padding(10)
-                                    .foregroundColor(Color(.systemBlue))
+                                    .foregroundColor(Color(.systemGreen))
                                     .background(.black)
-                                    .overlay( /// apply a rounded border
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke(.blue, lineWidth: 5))
-                                    .cornerRadius(5)
+                                     .cornerRadius(5)
                                 
-                                    .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                    
                                        
 
                             }
@@ -565,9 +576,7 @@ struct MainContentView: View {
             }
             
         }.onAppear{
-            
            
-                       
             setStreak()
             loadSound()
             
@@ -701,7 +710,7 @@ struct TabBar: View{
 }
 
 struct ClosedHabit: View{
-    @AppStorage("userLevel") var userLevel = "level1"
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @State var habit : String
     @Binding var animDict : [String : Bool]
     var body: some View{

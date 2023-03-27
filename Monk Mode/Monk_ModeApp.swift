@@ -26,6 +26,15 @@ extension UserDefaults {
             return (UserDefaults.standard.set(newValue,forKey: "welcomeScreenShown") )
         }
     }
+    
+    var isRestarting: Bool {
+        get{
+            return (UserDefaults.standard.bool(forKey: "isRestarting") as Bool?) ?? false
+        }
+        set{
+            return (UserDefaults.standard.set(newValue,forKey: "isRestarting"))
+        }
+    }
 }
 
 @main

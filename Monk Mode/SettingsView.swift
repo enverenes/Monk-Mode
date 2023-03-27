@@ -53,6 +53,8 @@ struct SettingsView: View {
                         Spacer()
                         Button("Restart the Cycle", action: {
                           showAlert = true
+                            UserDefaults.standard.isRestarting = true
+                            UserDefaults.standard.welcomescreenShown = false
                         }).foregroundColor(.red)
                         Spacer()
                     }

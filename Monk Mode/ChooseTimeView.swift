@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ChooseTimeView: View {
     @State var sliderValue = 30.0
+    @AppStorage("daysPassed") var daysPassed: Double = 0.0
+
+   
     
     let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
@@ -52,14 +55,23 @@ struct ChooseTimeView: View {
                 Spacer()
                 
                 NavigationLink {
-                    StorePage()
+                    if UserDefaults.standard.isRestarting{
+                        MainContentView().onAppear{
+                            daysPassed = 0.0
+                            UserDefaults.standard.welcomescreenShown = true
+                        }
+                    }else{
+                        StorePage()
+                    }
+                    
+                    
                 } label: {
                     Text("Proceed")
                         .font(.custom("MetalMania-Regular", size: 20))
                         .frame(width: 200)
                         .padding()
                         .foregroundColor(Color(.systemBlue))
-                        .background(.primary)
+                        .background(.black)
                         .overlay( /// apply a rounded border
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(.blue, lineWidth: 5))
@@ -137,6 +149,8 @@ struct CircularSlider: View {
                 .font(.custom("MetalMania-Regular", size: 45))
                 .foregroundColor(.white)
                 .font(.headline)
+        }.onAppear{
+            totalDays = 30
         }
     }
     

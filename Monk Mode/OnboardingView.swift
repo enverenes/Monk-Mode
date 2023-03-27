@@ -30,8 +30,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct OnboardingView: View {
-    @AppStorage("userLevel") var userLevel = "level1"
-    
+    @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     func login(){
         Auth.auth().signInAnonymously() { (authResult, error) in
          

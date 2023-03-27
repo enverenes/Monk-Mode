@@ -51,15 +51,18 @@ struct HabitsWidgetEntryView : View {
     var body: some View {
         
         ZStack {
-            ContainerRelativeShape().fill(.indigo.gradient)
+            ContainerRelativeShape().fill(Color(hex: 0x000000))
             VStack{
                 Text("Active Habits")
+                    .scaledToFill()
                     .font(.custom("Futura", size: 20))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: 0xF6F1F1))
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(active.getActiveHabits(), id: \.self) { habit in
                         HStack {
                             Text(habit)
+                                .scaledToFit()
+                                .padding(.leading).padding(.vertical, 2)
                             Spacer()
                             
                             VStack{
@@ -82,15 +85,20 @@ struct HabitsWidgetEntryView : View {
                                         
                                         .foregroundColor(.white)
                                 }
-                            }
+                            }.padding(.trailing,5)
                           
-                        }.padding(.horizontal)
+                        }
+                            
+                        
                     }
-                }.foregroundColor(.white)
+                    
+                }.background(Color(hex: 0x000000))
+                    .cornerRadius(7)
+                .foregroundColor(Color(hex: 0xF6F1F1))
             }
            
         }
-        .font(.custom("Futura", size: 15))
+        .font(.custom("Futura", size: active.getActiveHabits().count > 8 ? 10 : 15))
         
         
        
@@ -115,5 +123,15 @@ struct HabitsWidget_Previews: PreviewProvider {
     static var previews: some View {
         HabitsWidgetEntryView(entry: SimpleEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
+    }
+}
+
+
+extension Color {
+    init(hex: Int, opacity: Double = 1.0) {
+        let red = Double((hex & 0xff0000) >> 16) / 255.0
+        let green = Double((hex & 0xff00) >> 8) / 255.0
+        let blue = Double((hex & 0xff) >> 0) / 255.0
+        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 }

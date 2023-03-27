@@ -1,20 +1,16 @@
-//
-//  ColorsByLevel.swift
-//  Monk Mode
-//
-//  Created by Enver Enes Keskin on 9.03.2023.
-//
 
 import Foundation
 import SwiftUI
 
 
 struct AppColors {
+    static var defaultData = UserDefaults(suiteName: "group.monkmode")
     struct TopBar {
-       
+      
+
         
         static var topBarColor: Color {
-            @AppStorage("userLevel") var userLevel = "level1"
+          var userLevel = defaultData?.string(forKey: "userLevel") ?? ""
             switch userLevel {
                             case "level1":
                                 return Color(hex: 0x1363DF)
@@ -44,7 +40,7 @@ struct AppColors {
     
     struct Inside {
         static var insideColor: Color {
-            @AppStorage("userLevel") var userLevel = "level1"
+            var userLevel = defaultData?.string(forKey: "userLevel") ?? ""
             switch userLevel {
                             case "level1":
                                 return Color(hex: 0x1363DF)
@@ -74,7 +70,7 @@ struct AppColors {
     
     struct BarInside {
         static var barInsideColor: Color {
-            @AppStorage("userLevel") var userLevel = "level1"
+            var userLevel = defaultData?.string(forKey: "userLevel") ?? ""
             switch userLevel {
                            case "level1":
                                return Color(hex: 0x47B5FF)
@@ -104,7 +100,7 @@ struct AppColors {
     
     struct Back {
         static var backgroundColor: Color {
-            @AppStorage("userLevel") var userLevel = "level1"
+            var userLevel = defaultData?.string(forKey: "userLevel") ?? ""
             switch userLevel {
                 case "level1":
                     return Color(hex: 0x06283D)
@@ -132,7 +128,3 @@ struct AppColors {
         }
     }
 }
-
-
-
-

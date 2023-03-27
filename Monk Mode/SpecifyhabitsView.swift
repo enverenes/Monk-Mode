@@ -28,6 +28,7 @@ struct SpecifyhabitsView: View {
     
     @AppStorage("openedFirstTime") var openedFirstTime : Bool = true //TEST
     
+    
     @State var showPop : Bool = false
     
     @AppStorage("exerciseDetail") var exerciseDetail: String = ""
@@ -66,7 +67,7 @@ struct SpecifyhabitsView: View {
             case "Healthy Diet":
                 return "ex. Stick to Keto Diet"
             case "Work":
-                return "ex. Learn Programming for 1 Hour"
+                return "ex. Learn Programming"
             default:
                 return  ""
         }
@@ -196,7 +197,7 @@ struct SpecifyhabitsView: View {
                             Spacer()
                         }
                     
-                    ScrollView{
+                    ScrollView(showsIndicators: false){
                         
                         
                 
@@ -231,11 +232,8 @@ struct SpecifyhabitsView: View {
                                     .padding()
                                     .foregroundColor(.black)
                                     .background(Color(hex: 0x131771))
-                                    .overlay( /// apply a rounded border
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color(hex: 0xffffff), lineWidth: 5))
+                                    
                                     .cornerRadius(5)
-                                    .shadow(color: Color(hex: 0xffffff), radius: 1, x: -4, y: 4)
                                     .padding(4)
                                     .onAppear{
                                         getHabitDetail(habit: habit)
@@ -290,7 +288,7 @@ struct SpecifyhabitsView: View {
                 }
                    
             }.font(.system(size: 20))
-            
+                .flipsForRightToLeftLayoutDirection(true)
                 .background().ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
                 .onAppear{
