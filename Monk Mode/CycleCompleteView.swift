@@ -58,7 +58,6 @@ struct CycleCompleteView: View {
                 
                 NavigationLink {
                     ChooseHabitsView().onAppear{
-                        UserDefaults.standard.welcomescreenShown = false
                         UserDefaults.standard.isRestarting = true
                     }
                   

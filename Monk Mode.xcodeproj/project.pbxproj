@@ -48,6 +48,12 @@
 		30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30C0C1EA29C625F60014C46D /* mouseclick.wav */; };
 		30C0C1ED29C62ADE0014C46D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0C1EC29C62ADE0014C46D /* LoadingView.swift */; };
 		30C59FD029D2194600C9DE3C /* CycleCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C59FCF29D2194600C9DE3C /* CycleCompleteView.swift */; };
+		30C59FD629D30E1000C9DE3C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AC29CA44AF00133663 /* WidgetKit.framework */; };
+		30C59FD729D30E1000C9DE3C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AE29CA44AF00133663 /* SwiftUI.framework */; };
+		30C59FDA29D30E1000C9DE3C /* LockScreenWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C59FD929D30E1000C9DE3C /* LockScreenWidgetBundle.swift */; };
+		30C59FDC29D30E1000C9DE3C /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C59FDB29D30E1000C9DE3C /* LockScreenWidget.swift */; };
+		30C59FDE29D30E1200C9DE3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C59FDD29D30E1200C9DE3C /* Assets.xcassets */; };
+		30C59FE229D30E1200C9DE3C /* LockScreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 30C59FD529D30E1000C9DE3C /* LockScreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30C5D9AD29CA44AF00133663 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AC29CA44AF00133663 /* WidgetKit.framework */; };
 		30C5D9AF29CA44AF00133663 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AE29CA44AF00133663 /* SwiftUI.framework */; };
 		30C5D9B229CA44AF00133663 /* LevelWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5D9B129CA44AF00133663 /* LevelWidgetBundle.swift */; };
@@ -82,6 +88,13 @@
 			remoteGlobalIDString = 30BA0A4929A924FA00B0B3AB;
 			remoteInfo = "Monk Mode";
 		};
+		30C59FE029D30E1200C9DE3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30BA0A4229A924FA00B0B3AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30C59FD429D30E1000C9DE3C;
+			remoteInfo = LockScreenWidgetExtension;
+		};
 		30C5D9B829CA44B000133663 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30BA0A4229A924FA00B0B3AB /* Project object */;
@@ -98,6 +111,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				30C59FE229D30E1200C9DE3C /* LockScreenWidgetExtension.appex in Embed Foundation Extensions */,
 				30C5D9BA29CA44B000133663 /* LevelWidgetExtension.appex in Embed Foundation Extensions */,
 				3076830329CB2F7600DF3B94 /* HabitsWidgetExtension.appex in Embed Foundation Extensions */,
 			);
@@ -158,6 +172,11 @@
 		30C0C1EA29C625F60014C46D /* mouseclick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mouseclick.wav; sourceTree = "<group>"; };
 		30C0C1EC29C62ADE0014C46D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		30C59FCF29D2194600C9DE3C /* CycleCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleCompleteView.swift; sourceTree = "<group>"; };
+		30C59FD529D30E1000C9DE3C /* LockScreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockScreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C59FD929D30E1000C9DE3C /* LockScreenWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgetBundle.swift; sourceTree = "<group>"; };
+		30C59FDB29D30E1000C9DE3C /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		30C59FDD29D30E1200C9DE3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30C59FDF29D30E1200C9DE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LevelWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C5D9AC29CA44AF00133663 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		30C5D9AE29CA44AF00133663 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -210,6 +229,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A3219B522F8D2D6F642F85D /* Pods_Monk_Mode_Monk_ModeUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C59FD229D30E1000C9DE3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C59FD729D30E1000C9DE3C /* SwiftUI.framework in Frameworks */,
+				30C59FD629D30E1000C9DE3C /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +294,7 @@
 				30BA0A6729A924FC00B0B3AB /* Monk ModeUITests */,
 				30C5D9B029CA44AF00133663 /* LevelWidget */,
 				307682F929CB2F7500DF3B94 /* HabitsWidget */,
+				30C59FD829D30E1000C9DE3C /* LockScreenWidget */,
 				30BA0A4B29A924FA00B0B3AB /* Products */,
 				D0AF55D78FC6C6C971873C0C /* Pods */,
 				1C92583831AC4CA87C81C25E /* Frameworks */,
@@ -280,6 +309,7 @@
 				30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */,
 				30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */,
 				307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */,
+				30C59FD529D30E1000C9DE3C /* LockScreenWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,6 +373,17 @@
 				30BA0A6A29A924FC00B0B3AB /* Monk_ModeUITestsLaunchTests.swift */,
 			);
 			path = "Monk ModeUITests";
+			sourceTree = "<group>";
+		};
+		30C59FD829D30E1000C9DE3C /* LockScreenWidget */ = {
+			isa = PBXGroup;
+			children = (
+				30C59FD929D30E1000C9DE3C /* LockScreenWidgetBundle.swift */,
+				30C59FDB29D30E1000C9DE3C /* LockScreenWidget.swift */,
+				30C59FDD29D30E1200C9DE3C /* Assets.xcassets */,
+				30C59FDF29D30E1200C9DE3C /* Info.plist */,
+			);
+			path = LockScreenWidget;
 			sourceTree = "<group>";
 		};
 		30C5D9B029CA44AF00133663 /* LevelWidget */ = {
@@ -411,6 +452,7 @@
 			dependencies = (
 				30C5D9B929CA44B000133663 /* PBXTargetDependency */,
 				3076830229CB2F7600DF3B94 /* PBXTargetDependency */,
+				30C59FE129D30E1200C9DE3C /* PBXTargetDependency */,
 			);
 			name = "Monk Mode";
 			productName = "Monk Mode";
@@ -456,6 +498,23 @@
 			productReference = 30BA0A6429A924FC00B0B3AB /* Monk ModeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		30C59FD429D30E1000C9DE3C /* LockScreenWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C59FE529D30E1200C9DE3C /* Build configuration list for PBXNativeTarget "LockScreenWidgetExtension" */;
+			buildPhases = (
+				30C59FD129D30E1000C9DE3C /* Sources */,
+				30C59FD229D30E1000C9DE3C /* Frameworks */,
+				30C59FD329D30E1000C9DE3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockScreenWidgetExtension;
+			productName = LockScreenWidgetExtension;
+			productReference = 30C59FD529D30E1000C9DE3C /* LockScreenWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30C5D9BE29CA44B000133663 /* Build configuration list for PBXNativeTarget "LevelWidgetExtension" */;
@@ -497,6 +556,9 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 30BA0A4929A924FA00B0B3AB;
 					};
+					30C59FD429D30E1000C9DE3C = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					30C5D9AA29CA44AF00133663 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -523,6 +585,7 @@
 				30BA0A6329A924FC00B0B3AB /* Monk ModeUITests */,
 				30C5D9AA29CA44AF00133663 /* LevelWidgetExtension */,
 				307682F529CB2F7400DF3B94 /* HabitsWidgetExtension */,
+				30C59FD429D30E1000C9DE3C /* LockScreenWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -563,6 +626,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C59FD329D30E1000C9DE3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C59FDE29D30E1200C9DE3C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +828,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30C59FD129D30E1000C9DE3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C59FDC29D30E1000C9DE3C /* LockScreenWidget.swift in Sources */,
+				30C59FDA29D30E1000C9DE3C /* LockScreenWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30C5D9A729CA44AF00133663 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -784,6 +864,11 @@
 			isa = PBXTargetDependency;
 			target = 30BA0A4929A924FA00B0B3AB /* Monk Mode */;
 			targetProxy = 30BA0A6529A924FC00B0B3AB /* PBXContainerItemProxy */;
+		};
+		30C59FE129D30E1200C9DE3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30C59FD429D30E1000C9DE3C /* LockScreenWidgetExtension */;
+			targetProxy = 30C59FE029D30E1200C9DE3C /* PBXContainerItemProxy */;
 		};
 		30C5D9B929CA44B000133663 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -981,7 +1066,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -999,7 +1084,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1019,7 +1104,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1037,7 +1122,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1124,6 +1209,62 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Monk Mode";
+			};
+			name = Release;
+		};
+		30C59FE329D30E1200C9DE3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LockScreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LockScreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.LockScreenWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30C59FE429D30E1200C9DE3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRRYM4KT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LockScreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LockScreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode.LockScreenWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1231,6 +1372,15 @@
 			buildConfigurations = (
 				30BA0A7529A924FC00B0B3AB /* Debug */,
 				30BA0A7629A924FC00B0B3AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C59FE529D30E1200C9DE3C /* Build configuration list for PBXNativeTarget "LockScreenWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C59FE329D30E1200C9DE3C /* Debug */,
+				30C59FE429D30E1200C9DE3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

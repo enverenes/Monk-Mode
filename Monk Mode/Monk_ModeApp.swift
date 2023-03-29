@@ -35,6 +35,14 @@ extension UserDefaults {
             return (UserDefaults.standard.set(newValue,forKey: "isRestarting"))
         }
     }
+    var addingHabit: Bool {
+        get{
+            return (UserDefaults.standard.bool(forKey: "addingHabit") as Bool?) ?? false
+        }
+        set{
+            return (UserDefaults.standard.set(newValue,forKey: "addingHabit"))
+        }
+    }
 }
 
 @main

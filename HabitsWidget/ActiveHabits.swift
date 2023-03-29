@@ -25,9 +25,6 @@ func getActiveHabits() -> [String]{
     }else {
         return [""]
     }
-
-        
-      
     }
     
     

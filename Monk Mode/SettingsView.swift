@@ -53,8 +53,7 @@ struct SettingsView: View {
                         Spacer()
                         Button("Restart the Cycle", action: {
                           showAlert = true
-                            UserDefaults.standard.isRestarting = true
-                            UserDefaults.standard.welcomescreenShown = false
+                            
                         }).foregroundColor(.red)
                         Spacer()
                     }
@@ -65,16 +64,16 @@ struct SettingsView: View {
             .foregroundColor(AppColors.TopBar.topBarColor)
             
             Spacer().frame(height: 100)
-            
-            
-            NavigationLink(destination: ChooseHabitsView(), isActive: $navigateToPage) {
+             NavigationLink(destination: ChooseHabitsView(), isActive: $navigateToPage) {
                                 EmptyView()
                             }
         }.background(AppColors.Back.backgroundColor)
         .font(.custom("MetalMania-Regular", size: 20))
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Restart"), message: Text("Are you sure you want to restart?"), primaryButton: .default(Text("OK"), action: {
-                navigateToPage = true
+                UserDefaults.standard.isRestarting = true
+                
+                self.navigateToPage = true
             }), secondaryButton: .cancel(Text("Cancel")))
                 }
     }

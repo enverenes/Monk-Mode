@@ -36,17 +36,7 @@ struct MainContentView: View {
     @AppStorage("work") var work : Bool = false
     @AppStorage("diet") var diet : Bool = false
     
-    @AppStorage("nosocialStreak") var nosocialStreak : Int = 0
-    @AppStorage("noalcoholStreak") var noalcoholStreak: Int = 0
-    @AppStorage("nosmokeStreak") var nosmokeStreak: Int = 0
-    @AppStorage("nodrugsStreak") var nodrugsStreak: Int = 0
-    @AppStorage("nofapStreak") var nofapStreak: Int = 0
-    @AppStorage("exerciseStreak") var exerciseStreak: Int = 0
-    @AppStorage("meditationStreak") var meditationStreak: Int = 0
-    @AppStorage("readStreak") var readStreak: Int = 0
-    @AppStorage("workStreak") var workStreak: Int = 0
-    @AppStorage("dietStreak") var dietStreak: Int = 0
-    
+   
     @State var selectedTab : Int = 1
     @State var habits : [String] = []
     @State var selectedHabit : Int = 0
@@ -73,19 +63,29 @@ struct MainContentView: View {
    @State var player: AVAudioPlayer?
     
     
-    func setStreak() {
-        streakDict["Exercise"] = exerciseStreak
-        streakDict["Meditation"] = meditationStreak
-        streakDict["Reading"] = readStreak
-        streakDict["Healthy Diet"] = dietStreak
-        streakDict["Work"] = workStreak
-        streakDict["No Social Media"] = nosocialStreak
-        streakDict["No Smoking"] = nosmokeStreak
-        streakDict["No Drugs"] = nodrugsStreak
-        streakDict["No Alcohol"] = noalcoholStreak
-        streakDict["No Fap"] = nofapStreak
-    }
+    func getStreak() -> [String : Int]{
+                var defaults = UserDefaults(suiteName: "group.monkmode")
+            if let data = defaults!.data(forKey: "streakDict") {
+                let decoder = JSONDecoder()
+                if let decoded = try? decoder.decode([String: Int].self, from: data) {
+                   return decoded
+                }else{
+                    return ["": 0]
+                }
+            }else {
+                return ["": 0]
+            }
+            }
     
+    
+    func setStreak(streakDict : [String:Int]){
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(streakDict) {
+            UserDefaults(suiteName: "group.monkmode")!.set(encoded, forKey: "streakDict")
+                        }
+        
+    }
 
     func loadSound() {
         if let soundURL = Bundle.main.url(forResource: "mouseclick", withExtension: ".wav") {
@@ -340,6 +340,7 @@ struct MainContentView: View {
                                     if progressDataDict[habit] == 2{
                                        
                                         streakDict[habit]! += 1
+                                        setStreak(streakDict: streakDict)
                                         progressDataDict[habit] = 1
                                         
                                         userPoints += 1
@@ -366,7 +367,12 @@ struct MainContentView: View {
                                         selectedHabitforalert = habit
 
                                     }else{
-                                        streakDict[habit]! += 1
+                                        if streakDict[habit] != nil {
+                                            streakDict[habit]! += 1
+                                            setStreak(streakDict: streakDict)
+                                        }
+                                         
+                                        
                                         progressDataDict[habit] = 1
                                         let firstLevel = getLevel(points: userPoints)
                                         userPoints += 1
@@ -438,6 +444,7 @@ struct MainContentView: View {
                                         saveData(habit: selectedHabitforalert, habitStatus: progressDataDict[selectedHabitforalert] ?? 0)
                                        
                                         streakDict[selectedHabitforalert] = 0
+                                        setStreak(streakDict: streakDict)
                                     }), secondaryButton: .cancel(Text("Cancel")))
                                         }
                                 
@@ -445,7 +452,9 @@ struct MainContentView: View {
                             
                          }
                         NavigationLink {
-                            ChooseHabitsView()
+                            ChooseHabitsView().onAppear{
+                                UserDefaults.standard.addingHabit = true
+                            }
                         } label: {
                             Image(systemName: "plus.circle").resizable().foregroundColor(.white)
                                 .frame(width: 45, height: 45).padding()
@@ -577,7 +586,7 @@ struct MainContentView: View {
             
         }.onAppear{
            
-            setStreak()
+            streakDict = getStreak()
             loadSound()
             
             openedFirstTime = true

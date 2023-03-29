@@ -181,7 +181,7 @@ struct SpecifyhabitsView: View {
                     
                     
                     
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1363DF, opacity: 1), Color(hex: 0xffffff, opacity: 0.1)]), startPoint: .top, endPoint: .bottom)
                     
                     
                     VStack{
@@ -225,13 +225,14 @@ struct SpecifyhabitsView: View {
                                                     .multilineTextAlignment(.center)
                                             }
                                             .border(.white).cornerRadius(5).foregroundColor(Color(.white))
+                                            .font(.custom("MetalMania-Regular", size: 15)).foregroundColor(.white)
                                     }
                                     
                                     
                                 }.frame(width: 300)
                                     .padding()
                                     .foregroundColor(.black)
-                                    .background(Color(hex: 0x131771))
+                                    .background(Color(hex: 0x1363DF))
                                     
                                     .cornerRadius(5)
                                     .padding(4)
@@ -239,26 +240,15 @@ struct SpecifyhabitsView: View {
                                         getHabitDetail(habit: habit)
                                     }
                             }
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
                         }
                         
                         Spacer().frame(height: 70)
                         
                         NavigationLink {
-                            if UserDefaults.standard.welcomescreenShown {
-                                MainContentView()
+                            if UserDefaults.standard.addingHabit {
+                                MainContentView().onAppear{
+                                    UserDefaults.standard.addingHabit = false
+                                }
                             }else{
                                 ChooseTimeView()                            }
                           
@@ -268,7 +258,7 @@ struct SpecifyhabitsView: View {
                                 .frame(width: 200)
                                 .padding()
                                 .foregroundColor(Color(.systemBackground))
-                                .background(Color(hex: 0x131771))
+                                .background(Color(hex: 0x1363DF))
                                 .overlay( /// apply a rounded border
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(.white, lineWidth: 5))

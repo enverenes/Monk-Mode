@@ -35,7 +35,7 @@ struct ChooseHabitsView: View {
       
         ZStack{
             
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1363DF, opacity: 1), Color(hex: 0xffffff, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
             
             
             
@@ -43,7 +43,7 @@ struct ChooseHabitsView: View {
                 
                 Spacer().frame(height: 100)
                 
-                Text("Choose Four Habits To Become A monk!").padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
+                Text("Choose Four Habits To Become A monk!").padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 1.0), Color(white: 1.0, opacity: 1)])
                 Spacer().frame(height: 40)
                 
                 VStack{
@@ -239,7 +239,7 @@ Spacer()
                     
                         .frame(width: 200)
                         .padding()
-                        .foregroundColor(Color(.systemGray))
+                        .foregroundColor(Color(.systemBlue))
                         .background(.white)
                         .overlay( /// apply a rounded border
                             RoundedRectangle(cornerRadius: 5)

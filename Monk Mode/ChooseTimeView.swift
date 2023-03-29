@@ -58,7 +58,7 @@ struct ChooseTimeView: View {
                     if UserDefaults.standard.isRestarting{
                         MainContentView().onAppear{
                             daysPassed = 0.0
-                            UserDefaults.standard.welcomescreenShown = true
+                            UserDefaults.standard.isRestarting = false
                         }
                     }else{
                         StorePage()
