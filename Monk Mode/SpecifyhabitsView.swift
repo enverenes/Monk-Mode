@@ -179,10 +179,7 @@ struct SpecifyhabitsView: View {
                 ZStack{
                     
                     
-                    
-                    
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1363DF, opacity: 1), Color(hex: 0xffffff, opacity: 0.1)]), startPoint: .top, endPoint: .bottom)
-                    
+                    Color(hex: 0x2e55dd, opacity: 1)
                     
                     VStack{
                         
@@ -192,7 +189,7 @@ struct SpecifyhabitsView: View {
                                 
                                 
                             } label: {
-                                Image("backbutton").resizable().scaledToFit().frame(width: 40, height: 40)
+                                Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
                             }.padding(.top, 50) .padding(.leading, 20)
                             Spacer()
                         }
@@ -202,8 +199,11 @@ struct SpecifyhabitsView: View {
                         
                 
                         
-                        Text("CUSTOMIZE YOUR HABITS").foregroundColor(.white)
+                        Text("CUSTOMIZE YOUR HABITS")
+                            .foregroundColor(.white)
                             .padding(.horizontal)
+                            .font(.custom("Staatliches-Regular", size: 30))
+                        
                         Spacer()
                         
                         
@@ -213,27 +213,35 @@ struct SpecifyhabitsView: View {
                                 VStack{
                                     
                                     HStack{
-                                        Text(habit) .font(.custom("MetalMania-Regular", size: 25)).foregroundColor(.white)
+                                        Text(habit) .font(.custom("Staatliches-Regular", size: 25)).foregroundColor(.black)
                                         
                                     }
+                                    Divider()
+                                        .foregroundColor(.black)
+                                        .frame(width: 50)
                                     if(customizableHabits.contains(habit)){
-                                        TextField("", text: getHabitDetail(habit: habit))
-                                            .autocapitalization(.sentences)
-                                            .multilineTextAlignment(.center)
-                                            .placeholder(when: getHabitDetailPlaceholder(habit: habit).isEmpty) {
-                                                Text(getHabitExample(habit: habit)).foregroundColor(.white).padding(8)
-                                                    .multilineTextAlignment(.center)
-                                            }
-                                            .border(.white).cornerRadius(5).foregroundColor(Color(.white))
-                                            .font(.custom("MetalMania-Regular", size: 15)).foregroundColor(.white)
+                                        HStack{
+                                            
+                                            TextField(getHabitExample(habit: habit), text: getHabitDetail(habit: habit))
+                                                .autocapitalization(.sentences)
+                                                .multilineTextAlignment(.center)
+                                               
+                                                        
+                                                
+                                                
+                                                .font(
+.custom("Staatliches-Regular", size: 15))
+                                                .foregroundColor(.black)
+                                            
+                                           
+                                        }
+                                     
                                     }
                                     
                                     
                                 }.frame(width: 300)
                                     .padding()
-                                    .foregroundColor(.black)
-                                    .background(Color(hex: 0x1363DF))
-                                    
+                                    .background(Color(.systemYellow))
                                     .cornerRadius(5)
                                     .padding(4)
                                     .onAppear{
@@ -254,17 +262,12 @@ struct SpecifyhabitsView: View {
                           
                         } label: {
                             Text("Proceed")
-                            
                                 .frame(width: 200)
                                 .padding()
-                                .foregroundColor(Color(.systemBackground))
-                                .background(Color(hex: 0x1363DF))
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.white, lineWidth: 5))
+                                .foregroundColor(.white)
+                                .background(Color(.systemRed).opacity(0.9))
                                 .cornerRadius(5)
-                            
-                                .shadow(color: .white, radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                             
                             
                         }
@@ -273,7 +276,7 @@ struct SpecifyhabitsView: View {
                         
                         
                     }.blur(radius: (showPop) ? 15:0 )
-                        .font(.custom("MetalMania-Regular", size: 25))
+                        .font(.custom("Staatliches-Regular", size: 25))
                      Spacer()
                 }
                    

@@ -124,7 +124,7 @@ struct HistoryView: View {
                     }.frame(maxWidth: .infinity)
                         .background(AppColors.TopBar.topBarColor).padding(.bottom,5)
                         .foregroundColor(.white)
-                        .font(.custom("MetalMania-Regular", size: 40))
+                        .font(.custom("Staatliches-Regular", size: 40))
                     
                     HStack{
                         Button {
@@ -133,7 +133,7 @@ struct HistoryView: View {
                             }
                         
                         } label: {
-                         Text("Rules").font(.custom("MetalMania-Regular", size: 20))
+                         Text("Rules").font(.custom("Staatliches-Regular", size: 20))
                         }.padding(.horizontal)
                        
                         Spacer()
@@ -142,7 +142,7 @@ struct HistoryView: View {
                     }.frame(maxWidth: .infinity)
                      .padding(.bottom, 5)
                     .foregroundColor(.white)
-                    .font(.custom("MetalMania-Regular", size: 40))
+                    .font(.custom("Staatliches-Regular", size: 40))
                 }
                
                     
@@ -172,7 +172,7 @@ struct HistoryView: View {
                        }
                    } label: {
                        Text(showWeek ? "Tap to close" :"Tap to see more").foregroundColor(.white)
-                           .font(.custom("MetalMania-Regular", size: 15))
+                           .font(.custom("Staatliches-Regular", size: 15))
                    }
             
           
@@ -193,7 +193,7 @@ struct HistoryView: View {
             Spacer().frame(height: 30)
             Text("Levels")
                 .foregroundColor(.white)
-                .font(.custom("MetalMania-Regular", size: 35))
+                .font(.custom("Staatliches-Regular", size: 35))
                 .padding()
            
                 Level(levelTransitionAnim: $levelTransitionAnim)
@@ -299,7 +299,7 @@ struct Cycle: View {
                     .animation(.easeOut, value: progress)
                 
                 Text((progress < 1.0) ? "Day \(Int(daysPassed))" : "Cycle Completed")
-                    .font(.custom("MetalMania-Regular", size: 25))
+                    .font(.custom("Staatliches-Regular", size: 25))
                     .foregroundColor(.white)
             }.frame(width: 150.0, height: 150.0)
                 .onAppear{
@@ -402,7 +402,7 @@ struct PreviousCycles: View{
                     }
                     
                 }
-            }.font(.custom("MetalMania-Regular", size: 15))
+            }.font(.custom("Staatliches-Regular", size: 15))
             .foregroundColor(.white)
             .padding()
         }.onAppear{
@@ -454,7 +454,7 @@ struct Level: View{
                         GeometryReader{ proxy in
                             VStack{
                                 Text("\(levels[level]!)")
-                                    .font(.custom("MetalMania-Regular", size: 20))
+                                    .font(.custom("Staatliches-Regular", size: 20))
                                     .foregroundColor(.white).padding(.horizontal)
                                     .padding(.top)
                                     .multilineTextAlignment(.center)
@@ -548,7 +548,7 @@ struct CurrentLevel: View{
                         } label: {
                             VStack{
                                 Text("\(levels[level]!)")
-                                    .font(.custom("MetalMania-Regular", size: 20))
+                                    .font(.custom("Staatliches-Regular", size: 20))
                                     .foregroundColor(.white).padding(.horizontal)
                                     .padding(.top)
                                     .multilineTextAlignment(.center)

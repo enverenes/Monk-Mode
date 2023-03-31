@@ -18,8 +18,8 @@ struct CycleCompleteView: View {
 
             VStack{
                 Spacer()
-                Text("MONK MODE \n CYCLE COMPLETED")
-                    .font(.custom("MetalMania-Regular", size: 25))
+                Text("MONK MODE \n CYCLE COMPLETED!")
+                    .font(.custom("Staatliches-Regular", size: 30))
                     .multilineTextAlignment(.center)
                 Spacer().frame(height: 50)
                 ZStack{
@@ -41,7 +41,7 @@ struct CycleCompleteView: View {
                         .animation(.easeOut(duration: 2.0), value: cyclecomplete)
                     
                     Text("\(Int(totalDays)) Days")
-                        .font(.custom("MetalMania-Regular", size: 25))
+                        .font(.custom("Staatliches-Regular", size: 25))
                        
                     
                    
@@ -63,7 +63,7 @@ struct CycleCompleteView: View {
                   
                 } label: {
                     Text("Start a New Cycle")
-                        .font(.custom("MetalMania-Regular", size: 20))
+                        .font(.custom("Staatliches-Regular", size: 20))
                         .frame(width: 200)
                         .padding()
                         .foregroundColor(Color(.systemBackground))

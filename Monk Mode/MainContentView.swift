@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import AVFoundation
 import SSSwiftUIGIFView
+import WidgetKit
 
 
 struct MainContentView: View {
@@ -263,7 +264,7 @@ struct MainContentView: View {
    
     
     var body: some View {
-       var habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
+        let habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
 
         ZStack{
             if selectedTab == 1 {
@@ -274,7 +275,8 @@ struct MainContentView: View {
                     }.frame(maxWidth: .infinity)
                         .background(AppColors.TopBar.topBarColor).padding(.bottom,5)
                         .foregroundColor(.white)
-                        .font(.custom("MetalMania-Regular", size: 40))
+                        .font(.custom("Staatliches-Regular", size: 40))
+                        .blur(radius: levelUp ? 40 : 0)
                     
                 ScrollView{
                     
@@ -299,11 +301,11 @@ struct MainContentView: View {
                                                 if habitDetail.keys.contains(habit){
                                                     Text((habitDetail[habit] ?? "" == "") ? habit : habitDetail[habit] ?? "")
                                                         .foregroundColor(.white)
-                                                        .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                                        .padding(.leading,30).font(.custom("Staatliches-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
                                                 }else{
                                                     Text(habit)
                                                         .foregroundColor(.white)
-                                                        .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                                                        .padding(.leading,30).font(.custom("Staatliches-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
                                                 }
                                                 
                                                 Spacer()
@@ -395,33 +397,33 @@ struct MainContentView: View {
                                     }
                                     
                                     saveData(habit: habit, habitStatus: progressDataDict[habit] ?? 0)
-                                    
+                                    WidgetCenter.shared.reloadAllTimelines()
                                 } label: {
                                     if progressDataDict[habit] == 0 {
-                                        VStack{
-                                            Image("circle")
+                                        
+                                            Image("circle_test")
                                                 .resizable()
                                                 .frame(width: 40, height: 40)
-                                                .padding(.horizontal,10)
+                                                .padding(20)
                                                 .foregroundColor(.white)
-                                        }.frame(width: 60, height: 60)
+                                       
                                        
                                     }else if progressDataDict[habit] == 1 {
-                                        Image("checkmark")
+                                        Image("checkmark_test")
                                             .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
+                                            .frame(width: 40, height: 40)
+                                            .padding(20)
                                             .foregroundColor(.white)
                                         
                                     }else if progressDataDict[habit] == 2 {
-                                        Image("xmark")
+                                        Image("xmark_test")
                                             .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .padding(.horizontal,10)
+                                            .frame(width: 40, height: 40)
+                                            .padding(20)
                                             .foregroundColor(.white)
                                         
                                     }else{
-                                        Image("circle")
+                                        Image("circle_test")
                                             .resizable()
                                             .frame(width: 60, height: 60)
                                             .padding(.horizontal,10)
@@ -465,13 +467,15 @@ struct MainContentView: View {
                     Spacer().frame(height: 150)
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .font(.custom("MetalMania-Regular", size: 25))
+                    .font(.custom("Staatliches-Regular", size: 25))
+                    .blur(radius: levelUp ? 40 : 0)
+                    
                     
                     Spacer().frame(height: 120)
                         
                 }
                 .background(AppColors.Back.backgroundColor)
-                    .blur(radius: levelUp ? 40 : 0)
+                   
             }
             else if selectedTab == 0
             {
@@ -510,11 +514,11 @@ struct MainContentView: View {
                        
                         
                         Text("Level Up!").foregroundColor(.white)
-                            .font(.custom("MetalMania-Regular", size: 40))
+                            .font(.custom("Staatliches-Regular", size: 40))
                         
                         VStack{
                             Text("\(levels[userLevel]!)")
-                                .font(.custom("MetalMania-Regular", size: 20))
+                                .font(.custom("Staatliches-Regular", size: 20))
                                 .foregroundColor(.white).padding(.horizontal)
                                 .padding(.top)
                                 .multilineTextAlignment(.center)
@@ -540,7 +544,7 @@ struct MainContentView: View {
                         
                         Spacer()
                         VStack{
-                            Text(DisciplineLevels(level: userLevel).getParagraph()[0]).font(.custom("MetalMania-Regular", size: 25))
+                            Text(DisciplineLevels(level: userLevel).getParagraph()[0]).font(.custom("Staatliches-Regular", size: 25))
                                 .padding(20)
                                 .foregroundColor(.white)
                         }.background(.black)
@@ -558,7 +562,7 @@ struct MainContentView: View {
                                 scale = 0.1
                             } label: {
                                 Text("Proceed")
-                                    .font(.custom("MetalMania-Regular", size: 27))
+                                    .font(.custom("Staatliches-Regular", size: 27))
                                     .frame(width: 200)
                                     .padding(10)
                                     .foregroundColor(Color(.systemGreen))
@@ -728,7 +732,7 @@ struct ClosedHabit: View{
             HStack{
                 Text(habit)
                     .foregroundColor(.white)
-                    .padding(.leading,30).font(.custom("MetalMania-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+                    .padding(.leading,30).font(.custom("Staatliches-Regular", size: 30)).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
                 Spacer()
                 Image(userLevel)
                     .resizable()

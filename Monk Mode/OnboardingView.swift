@@ -54,7 +54,7 @@ struct OnboardingView: View {
                     Spacer()
                     Text("Do you have the power to start this journey?")
                         .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
-                        .padding().font(.custom("MetalMania-Regular", size: 45))
+                        .padding().font(.custom("Staatliches-Regular", size: 45))
                         .frame(width: 250)
                     Spacer()
                 }
@@ -67,7 +67,7 @@ struct OnboardingView: View {
                         ChooseHabitsView()
                 } label: {
                     Text("Proceed")
-                        .font(.custom("MetalMania-Regular", size: 27))
+                        .font(.custom("Staatliches-Regular", size: 27))
                         .frame(width: 200)
                         .padding(10)
                         .foregroundColor(Color(.systemBlue))

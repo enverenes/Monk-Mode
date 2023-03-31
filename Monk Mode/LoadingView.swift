@@ -15,7 +15,7 @@ struct LoadingView: View {
         ZStack{
             Color(.black).ignoresSafeArea(.all)
             Circle()
-                .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .square, dash: [6,40]))
+                .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .square, dash: [6,30]))
                 .frame(width: 150, height: 150, alignment: .center)
                 .foregroundColor(.yellow)
                 .onAppear{

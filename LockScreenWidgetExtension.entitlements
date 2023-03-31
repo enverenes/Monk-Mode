@@ -2,10 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
+	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>Staatliches-Regular.ttf</string>
-		<string>MetalMania-Regular.ttf</string>
+		<string>group.monkmode</string>
 	</array>
 </dict>
 </plist>

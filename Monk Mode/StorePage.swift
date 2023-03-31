@@ -22,7 +22,7 @@ struct StorePage: View {
                 
                         Text("We Make You a Monk in 6 Months")
                     .foregroundColor(.white)
-                    .font(.custom("MetalMania-Regular", size: 25))
+                    .font(.custom("Staatliches-Regular", size: 30))
                             .bold()
                 Spacer().frame(height: 40)
                 
@@ -54,7 +54,7 @@ struct StorePage: View {
                                 NavigationLink {
                                     ChooseHabitsView()
                                 } label: {
-                                    Text("You are all set - Proceed").font(.custom("MetalMania-Regular", size: 25))
+                                    Text("You are all set - Proceed").font(.custom("Staatliches-Regular", size: 25))
                                         .padding()
                                     
                                 }.background(.white)
@@ -68,7 +68,7 @@ struct StorePage: View {
                                         }
                                     }) {
                                         Text("Start - 3 days free trial")
-                                            .font(.custom("MetalMania-Regular", size: 25))
+                                            .font(.custom("Staatliches-Regular", size: 25))
                                             .padding()
                                         
                                           
@@ -97,7 +97,7 @@ struct StorePage: View {
                         UserDefaults.standard.welcomescreenShown = true
                     }
                 } label: {
-                    Text("Admin bypass").font(.custom("MetalMania-Regular", size: 15))
+                    Text("Admin bypass").font(.custom("Staatliches-Regular", size: 15))
                         .padding(5)
                     
                 }.background(.white)
@@ -107,7 +107,7 @@ struct StorePage: View {
                     .resizable().scaledToFit()
                     .frame(width: 300, height: 300)
                 
-                    }.font(.custom("MetalMania-Regular", size: 20))
+                    }.font(.custom("Staatliches-Regular", size: 20))
                     .padding()
         }.ignoresSafeArea()
         .navigationBarBackButtonHidden(true)

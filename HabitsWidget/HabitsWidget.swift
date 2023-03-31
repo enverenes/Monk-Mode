@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate)
             entries.append(entry)
         }
@@ -45,19 +45,21 @@ struct HabitsWidgetEntryView : View {
     
     var active = ActiveHabits()
     
-    
-
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
         
         ZStack {
-            ContainerRelativeShape().fill(Color(hex: 0x000000))
+            ContainerRelativeShape().fill(Color(hex: 0x00337C))
             VStack{
+                Spacer()
                 Text("Active Habits")
                     .scaledToFill()
-                    .font(.custom("Futura", size: 20))
-                    .foregroundColor(Color(hex: 0xF6F1F1))
+                    .font(.custom("Menlo", size: 20))
+                    .foregroundColor(.white)
+                
+                Spacer()
                 LazyVGrid(columns: columns, spacing: 5) {
+                    
                     ForEach(active.getActiveHabits(), id: \.self) { habit in
                         HStack {
                             Text(habit)
@@ -90,15 +92,20 @@ struct HabitsWidgetEntryView : View {
                         }
                             
                         
-                    }
-                    
-                }.background(Color(hex: 0x000000))
-                    .cornerRadius(7)
-                .foregroundColor(Color(hex: 0xF6F1F1))
+                    }.padding(.top)
+                   
+                    Spacer()
+                }.background(Color(hex: 0x13005A))
+              
+                .cornerRadius(5)
+                .foregroundColor(.white)
+                
+                
+                
             }
            
         }
-        .font(.custom("Futura", size: active.getActiveHabits().count > 8 ? 10 : 15))
+        .font(.custom("Menlo", size: active.getActiveHabits().count > 8 ? 10 : 15))
         
         
        

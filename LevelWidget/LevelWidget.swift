@@ -24,7 +24,7 @@ struct Provider: TimelineProvider {
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate)
             entries.append(entry)
         }
@@ -49,7 +49,7 @@ struct LevelWidgetEntryView : View {
         
         var defaultData = UserDefaults(suiteName: "group.monkmode")
         ZStack{
-            ContainerRelativeShape().fill(AppColors.TopBar.topBarColor)
+            ContainerRelativeShape().fill(AppColors.TopBar.topBarColor).opacity(0.80)
             
             
            
@@ -57,8 +57,8 @@ struct LevelWidgetEntryView : View {
             VStack(spacing: 2){
                 Text(levels[defaultData?.string(forKey: "userLevel") ?? ""] ?? "").font(.custom(
                     "Futura",
-                    fixedSize: 18))
-                .bold()
+                    fixedSize: 15))
+                
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
                 .foregroundColor(.white)
@@ -71,18 +71,18 @@ struct LevelWidgetEntryView : View {
                 
                
                     ZStack(alignment: .leading) {
-                        Rectangle().frame(width: 100 , height: 10)
+                        Rectangle().frame(width: 100 , height: 15)
                             .opacity(0.8)
                             .foregroundColor(Color(UIColor.white))
                         
-                        Rectangle().frame(width: 100 * (userLevelProgress) , height: 10)
+                        Rectangle().frame(width: 100 * (userLevelProgress) , height: 15)
                             .foregroundColor(Color(UIColor.systemCyan))
                             .animation(.linear)
                     }.cornerRadius(45.0)
                 
             }.padding(5)
             
-        }
+        }.opacity(0.90)
         
     }
 }

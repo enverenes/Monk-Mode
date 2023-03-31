@@ -35,7 +35,7 @@ struct ChooseHabitsView: View {
       
         ZStack{
             
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1363DF, opacity: 1), Color(hex: 0xffffff, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+            Color(hex: 0x2e55dd, opacity: 1)
             
             
             
@@ -43,7 +43,7 @@ struct ChooseHabitsView: View {
                 
                 Spacer().frame(height: 100)
                 
-                Text("Choose Four Habits To Become A monk!").padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 1.0), Color(white: 1.0, opacity: 1)])
+                Text("Choose Four Habits To Become A monk!").padding(.horizontal,60).font(.custom("Staatliches-Regular", size: 35)).gradientForeground(colors: [Color(white: 1.0, opacity: 1.0), Color(white: 1.0, opacity: 1)])
                 Spacer().frame(height: 40)
                 
                 VStack{
@@ -54,14 +54,12 @@ struct ChooseHabitsView: View {
                         } label: {
                             Text("No Alcohol")
                                 .padding()
-                                .foregroundColor((noalcohol) ? .white : Color(.systemBlue))
+                                .foregroundColor((noalcohol) ? .white : .black)
                                 .background((noalcohol) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 Spacer()
                         Button {
@@ -71,14 +69,12 @@ Spacer()
                             
                                
                                 .padding()
-                                .foregroundColor((nosmoke) ? .white : Color(.systemBlue))
+                                .foregroundColor((nosmoke) ? .white : .black)
                                 .background((nosmoke) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 
                         Spacer()
@@ -93,14 +89,12 @@ Spacer()
                             Text("No Drugs")
                                 .padding()
                                 .frame(width: 110)
-                                .foregroundColor((nodrugs) ? .white : Color(.systemBlue))
+                                .foregroundColor((nodrugs) ? .white : .black)
                                 .background((nodrugs) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                             
                         }
                         Spacer()
@@ -110,14 +104,12 @@ Spacer()
                             Text("No Fap")
                               .padding()
                               .frame(width: 100)
-                              .foregroundColor((nofap) ? .white : Color(.systemBlue))
+                              .foregroundColor((nofap) ? .white : .black)
                               .background((nofap) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 
                        
@@ -129,14 +121,12 @@ Spacer()
                         } label: {
                             Text("Exercise")
                                 .padding()
-                                .foregroundColor((exercise) ? .white : Color(.systemBlue))
+                                .foregroundColor((exercise) ? .white : .black)
                                 .background((exercise) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 Spacer()
                         Button {
@@ -145,14 +135,12 @@ Spacer()
                             Text("Meditation")
                                 .frame(width: 100)
                              .padding()
-                             .foregroundColor((meditation) ? .white : Color(.systemBlue))
+                             .foregroundColor((meditation) ? .white : .black)
                              .background((meditation) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 
                         Spacer()
@@ -166,14 +154,12 @@ Spacer()
                             Text("Read")
                                 .padding()
                                 .frame(width: 100)
-                                .foregroundColor((read) ? .white : Color(.systemBlue))
+                                .foregroundColor((read) ? .white : .black)
                                 .background((read) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
                         Spacer()
                         Button {
@@ -182,14 +168,12 @@ Spacer()
                             Text("Work")
                             .padding()
                             .frame(width: 100)
-                            .foregroundColor((work) ? .white : Color(.systemBlue))
+                            .foregroundColor((work) ? .white : .black)
                             .background((work) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 
                        
@@ -200,14 +184,12 @@ Spacer()
                         } label: {
                             Text("Healthy Diet")
                                 .padding()
-                                .foregroundColor((diet) ? .white : Color(.systemBlue))
+                                .foregroundColor((diet) ? .white : .black)
                                 .background((diet) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 Spacer()
                         Button {
@@ -215,14 +197,12 @@ Spacer()
                         } label: {
                             Text("No Social Media")
                                 .padding()
-                                .foregroundColor((nosocial) ? .white : Color(.systemBlue))
+                                .foregroundColor((nosocial) ? .white : .black)
                                 .background((nosocial) ? .blue : .white)
-                                .overlay( /// apply a rounded border
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.blue, lineWidth: 5))
+                                
                                 .cornerRadius(5)
                             
-                                .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                                .shadow(color: .black, radius: 1, x: -4, y: 4)
                         }
 
                         Spacer()
@@ -239,14 +219,10 @@ Spacer()
                     
                         .frame(width: 200)
                         .padding()
-                        .foregroundColor(Color(.systemBlue))
-                        .background(.white)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color(.systemBlue), lineWidth: 5))
+                        .foregroundColor(.white)
+                        .background(Color(.systemRed).opacity(0.9))
                         .cornerRadius(5)
-                    
-                        .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                        .shadow(color: .black, radius: 1, x: -4, y: 4)
                     
                     
                 }
@@ -260,7 +236,7 @@ Spacer()
                 
             }
             
-        }.font(.custom("MetalMania-Regular", size: 20))
+        }.font(.custom("Staatliches-Regular", size: 20))
         .background().ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
         

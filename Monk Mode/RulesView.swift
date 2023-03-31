@@ -23,9 +23,35 @@ struct BottomSheetView: View {
                 }.padding(25)
                 Spacer()
             }
-            Text("Rules").font(.custom("MetalMania-Regular", size: 30)).foregroundColor(.white)
+            Text("Rules").font(.custom("Staatliches-Regular", size: 30)).foregroundColor(.white)
             .padding()
-        Image("paper").resizable().scaledToFit()
+            
+            ZStack{
+                Image("paper").resizable().scaledToFit()
+                
+                VStack{
+                    HStack{
+                        Spacer()
+                        Text("Rule1: Do the habit +2 points")
+                        Spacer()
+                    }
+                    HStack{
+                        Spacer()
+                        Text("Rule2: If you fail -1 points")
+                        Spacer()
+                    }
+                    HStack{
+                        Spacer()
+                        Text("Rule3: Get more points to levelup")
+                        Spacer()
+                    }
+                   
+                   
+                }.font(.custom("Staatliches-Regular", size: 15))
+                    .padding(.horizontal, 30)
+                    .foregroundColor(.white)
+            }
+       
         
         Spacer()
     }.background(AppColors.Back.backgroundColor)

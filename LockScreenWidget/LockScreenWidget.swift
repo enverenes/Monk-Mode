@@ -40,20 +40,24 @@ struct SimpleEntry: TimelineEntry {
 
 struct LockScreenWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
+    @AppStorage("userLevelProgress", store: UserDefaults(suiteName: "group.monkmode")) var userLevelProgress : Double = 0.0
     var entry: Provider.Entry
 
     var body: some View {
         switch widgetFamily{
-            case .accessoryInline:
-                Gauge(value: 0.7) {
-                    Text(entry.date, style: .time)
-                }
+           
+               
             case . accessoryCircular:
-                Gauge(value: 0.7) {
-                    Text(entry.date, style: .time)
+                Gauge(value: userLevelProgress) {
+                    Image("level1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
                 }.gaugeStyle(.accessoryCircular)
             case .accessoryRectangular:
-                Text("sa")
+                Gauge(value: userLevelProgress) {
+                    Text(entry.date, style: .time)
+                }.gaugeStyle(.accessoryLinear)
             
             default:
                 Text("Not to implement")
@@ -68,8 +72,8 @@ struct LockScreenWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LockScreenWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Level tracker")
+        .description("Track your level easily.")
         .supportedFamilies([.accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
@@ -77,8 +81,7 @@ struct LockScreenWidget: Widget {
 struct LockScreenWidget_Previews: PreviewProvider {
     static var previews: some View {
         LockScreenWidgetEntryView(entry: SimpleEntry(date: Date()))
-            .previewContext(WidgetPreviewContext(family: .accessoryInline))
-            .previewDisplayName("Inline")
+           
             .previewContext(WidgetPreviewContext(family: .accessoryCircular))
             .previewDisplayName("Circular")
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))

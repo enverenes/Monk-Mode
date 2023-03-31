@@ -30,7 +30,7 @@ struct ChooseTimeView: View {
           ZStack{
             
               
-              LinearGradient(gradient: Gradient(colors: [Color(hex: 0x170845, opacity: 1), Color(hex: 0x02020a, opacity: 0.88)]), startPoint: .top, endPoint: .bottom)
+              Color(hex: 0x2e55dd, opacity: 1)
             
             VStack{
                 
@@ -39,15 +39,15 @@ struct ChooseTimeView: View {
                     NavigationLink {
                         SpecifyhabitsView()
                     } label: {
-                        Image("backbutton").resizable().scaledToFit().frame(width: 40, height: 40)
+                        Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
                     }.padding(.top, 50) .padding(.leading, 20)
                     Spacer()
                 }
                
-               
+                Spacer()
                 Text("Choose your cycle duration")
-                    .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
-                    .padding(.horizontal,60).font(.custom("MetalMania-Regular", size: 45))
+                    .foregroundColor(.white)
+                    .padding(.horizontal,60).font(.custom("Staatliches-Regular", size: 45))
                 
                 
                 Spacer()
@@ -67,17 +67,13 @@ struct ChooseTimeView: View {
                     
                 } label: {
                     Text("Proceed")
-                        .font(.custom("MetalMania-Regular", size: 20))
+                        .font(.custom("Staatliches-Regular", size: 20))
                         .frame(width: 200)
                         .padding()
-                        .foregroundColor(Color(.systemBlue))
-                        .background(.black)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(.blue, lineWidth: 5))
+                        .foregroundColor(Color(.white))
+                        .background(.red)
                         .cornerRadius(5)
-                    
-                        .shadow(color: Color(.systemBlue), radius: 1, x: -4, y: 4)
+                        .shadow(color: Color(.black), radius: 1, x: -4, y: 4)
                     
                     
                 }
@@ -146,7 +142,7 @@ struct CircularSlider: View {
             
             
             Text("\(Int(value)) days")
-                .font(.custom("MetalMania-Regular", size: 45))
+                .font(.custom("Staatliches-Regular", size: 45))
                 .foregroundColor(.white)
                 .font(.headline)
         }.onAppear{

@@ -12,8 +12,12 @@
 		30106EFE29CE11750022392D /* MetalMania-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */; };
 		30106EFF29CEF7430022392D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5129A924FC00B0B3AB /* Assets.xcassets */; };
 		30106F0129CF79BB0022392D /* Lore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30106F0029CF79BB0022392D /* Lore.swift */; };
+		301363D529D45743001B33CD /* Staatliches-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 301363D429D45743001B33CD /* Staatliches-Regular.ttf */; };
+		301363D929D4E129001B33CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5129A924FC00B0B3AB /* Assets.xcassets */; };
+		301363DA29D4E12A001B33CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5129A924FC00B0B3AB /* Assets.xcassets */; };
+		301363DD29D4EEA8001B33CD /* Monk-Mode-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */; };
+		301363DE29D4EEA9001B33CD /* Monk-Mode-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */; };
 		3031D15629C88A5A0097A437 /* levelup.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3031D15529C88A5A0097A437 /* levelup.gif */; };
-		30360A0829AA8E63002594FD /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30360A0729AA8E63002594FD /* AddHabitView.swift */; };
 		30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
 		30365FCF29CC9C2B0094F3D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
 		3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C529B947D100603EDC /* ColorsByLevel.swift */; };
@@ -126,8 +130,9 @@
 		1EB10962026CD8D6DCA9DBE8 /* Pods-Monk Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.debug.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.debug.xcconfig"; sourceTree = "<group>"; };
 		300F2E6929C1AA5100F3E5B3 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		30106F0029CF79BB0022392D /* Lore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lore.swift; sourceTree = "<group>"; };
+		301363D429D45743001B33CD /* Staatliches-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Staatliches-Regular.ttf"; sourceTree = "<group>"; };
+		301363DB29D4E364001B33CD /* LockScreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockScreenWidgetExtension.entitlements; sourceTree = "<group>"; };
 		3031D15529C88A5A0097A437 /* levelup.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = levelup.gif; sourceTree = "<group>"; };
-		30360A0729AA8E63002594FD /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		30360A0929AC0A58002594FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30365FC629CC9AAE0094F3D5 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3054F9C529B947D100603EDC /* ColorsByLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsByLevel.swift; sourceTree = "<group>"; };
@@ -287,6 +292,7 @@
 		30BA0A4129A924FA00B0B3AB = {
 			isa = PBXGroup;
 			children = (
+				301363DB29D4E364001B33CD /* LockScreenWidgetExtension.entitlements */,
 				3076830729CB4A0000DF3B94 /* HabitsWidgetExtension.entitlements */,
 				307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */,
 				30BA0A4C29A924FA00B0B3AB /* Monk Mode */,
@@ -329,7 +335,6 @@
 				30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */,
 				30BA0A8829A9640600B0B3AB /* HistoryView.swift */,
 				30BA0A8C29A9644400B0B3AB /* SettingsView.swift */,
-				30360A0729AA8E63002594FD /* AddHabitView.swift */,
 				308F175529B00316008DB163 /* CustomCalendar.swift */,
 				30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */,
 				30A53AD129B6C403008EE90D /* StorekitManager.swift */,
@@ -338,6 +343,8 @@
 				300F2E6929C1AA5100F3E5B3 /* RulesView.swift */,
 				30C0C1EC29C62ADE0014C46D /* LoadingView.swift */,
 				30106F0029CF79BB0022392D /* Lore.swift */,
+				30C59FCF29D2194600C9DE3C /* CycleCompleteView.swift */,
+				301363D429D45743001B33CD /* Staatliches-Regular.ttf */,
 				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
 				30360A0929AC0A58002594FD /* GoogleService-Info.plist */,
 				30BA0A5129A924FC00B0B3AB /* Assets.xcassets */,
@@ -345,7 +352,6 @@
 				30A53ACE29B6C2F0008EE90D /* Premium.storekit */,
 				30C0C1EA29C625F60014C46D /* mouseclick.wav */,
 				30BA0A5329A924FC00B0B3AB /* Preview Content */,
-				30C59FCF29D2194600C9DE3C /* CycleCompleteView.swift */,
 			);
 			path = "Monk Mode";
 			sourceTree = "<group>";
@@ -597,7 +603,9 @@
 			files = (
 				30106EFD29CE11710022392D /* MetalMania-Regular.ttf in Resources */,
 				307682FF29CB2F7600DF3B94 /* Assets.xcassets in Resources */,
+				301363DE29D4EEA9001B33CD /* Monk-Mode-Info.plist in Resources */,
 				30365FCF29CC9C2B0094F3D5 /* GoogleService-Info.plist in Resources */,
+				301363DA29D4E12A001B33CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +620,7 @@
 				30A53AD029B6C375008EE90D /* Property List.plist in Resources */,
 				30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */,
 				3031D15629C88A5A0097A437 /* levelup.gif in Resources */,
+				301363D529D45743001B33CD /* Staatliches-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C59FDE29D30E1200C9DE3C /* Assets.xcassets in Resources */,
+				301363D929D4E129001B33CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +654,7 @@
 				30106EFE29CE11750022392D /* MetalMania-Regular.ttf in Resources */,
 				30106EFF29CEF7430022392D /* Assets.xcassets in Resources */,
 				30C5D9B629CA44B000133663 /* Assets.xcassets in Resources */,
+				301363DD29D4EEA8001B33CD /* Monk-Mode-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,7 +813,6 @@
 				30BA0A8229A9259F00B0B3AB /* SplashScreenView.swift in Sources */,
 				30BA0A7F29A9259F00B0B3AB /* OnboardingView.swift in Sources */,
 				30BA0A4E29A924FA00B0B3AB /* Monk_ModeApp.swift in Sources */,
-				30360A0829AA8E63002594FD /* AddHabitView.swift in Sources */,
 				30BA0A8029A9259F00B0B3AB /* SpecifyhabitsView.swift in Sources */,
 				30BA0A7E29A9259F00B0B3AB /* ChooseHabitsView.swift in Sources */,
 				30106F0129CF79BB0022392D /* Lore.swift in Sources */,
@@ -1217,6 +1227,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LockScreenWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1245,6 +1256,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LockScreenWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
