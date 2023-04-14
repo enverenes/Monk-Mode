@@ -172,6 +172,21 @@ struct SpecifyhabitsView: View {
             }
             
         }
+    
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+      var btnBack : some View { Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
+          }) {
+              HStack {
+                  Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
+                  .aspectRatio(contentMode: .fit)
+                  .foregroundColor(.white)
+                  
+              }
+          }
+      }
         
         var body: some View {
            
@@ -183,16 +198,7 @@ struct SpecifyhabitsView: View {
                     
                     VStack{
                         
-                        HStack{
-                            NavigationLink {
-                                ChooseHabitsView()
-                                
-                                
-                            } label: {
-                                Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
-                            }.padding(.top, 50) .padding(.leading, 20)
-                            Spacer()
-                        }
+                        Spacer().frame(height: 80)
                     
                     ScrollView(showsIndicators: false){
                         
@@ -217,8 +223,8 @@ struct SpecifyhabitsView: View {
                                         
                                     }
                                     Divider()
-                                        .foregroundColor(.black)
-                                        .frame(width: 50)
+                                        .frame(width: 50, height: 2)
+                                        .overlay(.black)
                                     if(customizableHabits.contains(habit)){
                                         HStack{
                                             
@@ -229,8 +235,7 @@ struct SpecifyhabitsView: View {
                                                         
                                                 
                                                 
-                                                .font(
-.custom("Staatliches-Regular", size: 15))
+                                                .font(.custom("Staatliches-Regular", size: 18))
                                                 .foregroundColor(.black)
                                             
                                            
@@ -253,12 +258,12 @@ struct SpecifyhabitsView: View {
                         Spacer().frame(height: 70)
                         
                         NavigationLink {
-                            if UserDefaults.standard.addingHabit {
-                                MainContentView().onAppear{
-                                    UserDefaults.standard.addingHabit = false
-                                }
+                            if UserDefaults.standard.addingHabit{
+                                MainContentView()
                             }else{
-                                ChooseTimeView()                            }
+                                ChooseTimeView()
+                                
+                            }
                           
                         } label: {
                             Text("Proceed")
@@ -273,7 +278,7 @@ struct SpecifyhabitsView: View {
                         }
                         
                         
-                        
+                        Spacer().frame(height: 100)
                         
                     }.blur(radius: (showPop) ? 15:0 )
                         .font(.custom("Staatliches-Regular", size: 25))
@@ -284,11 +289,13 @@ struct SpecifyhabitsView: View {
                 .flipsForRightToLeftLayoutDirection(true)
                 .background().ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: btnBack)
                 .onAppear{
                     
                     addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
                     openedFirstTime = true
                 }
+                .navigationViewStyle(.stack)
          
             
         }

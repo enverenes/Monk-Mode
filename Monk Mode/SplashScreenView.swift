@@ -61,7 +61,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         
-        NavigationView(){
+        NavigationStack{
             if(isActive){
                 if(UserDefaults.standard.welcomescreenShown){
                     
@@ -100,7 +100,7 @@ struct SplashScreenView: View {
            
             }
                
-        }
+        }.navigationViewStyle(.stack)
       
     }
 }

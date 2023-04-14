@@ -104,36 +104,36 @@ struct MainContentView: View {
     
     func addToHabitArray(habitArray : [Bool]){
         
-        if(exercise){
+        if(exercise && !habits.contains("Exercise")){
             habits.append("Exercise")
         }
         
-        if(meditation){
+        if(meditation && !habits.contains("Meditation")){
             habits.append("Meditation")
         }
-        if(work){
+        if(work && !habits.contains("Work")){
             habits.append("Work")
         }
         
-        if(read){
+        if(read && !habits.contains("Reading")){
             habits.append("Reading")
         }
-        if(diet){
+        if(diet && !habits.contains("Healthy Diet")){
             habits.append("Healthy Diet")
         }
-        if(nosocial){
+        if(nosocial && !habits.contains("No Social Media")){
             habits.append("No Social Media")
         }
-        if(nosmoke){
+        if(nosmoke && !habits.contains("No Smoking")){
             habits.append("No Smoking")
         }
-        if(nodrugs){
+        if(nodrugs && !habits.contains("No Drugs")){
             habits.append("No Drugs")
         }
-        if(noalcohol){
+        if(noalcohol && !habits.contains("No Alcohol")){
             habits.append("No Alcohol")
         }
-        if(nofap){
+        if(nofap && !habits.contains("No Fap")){
             habits.append("No Fap")
         }
         
@@ -454,14 +454,15 @@ struct MainContentView: View {
                             
                          }
                         NavigationLink {
-                            ChooseHabitsView().onAppear{
-                                UserDefaults.standard.addingHabit = true
-                            }
+                            ChooseHabitsView()
                         } label: {
                             Image(systemName: "plus.circle").resizable().foregroundColor(.white)
                                 .frame(width: 45, height: 45).padding()
                         }
-                        
+                        .simultaneousGesture(TapGesture().onEnded {
+                            UserDefaults.standard.isRestarting = false
+                            UserDefaults.standard.addingHabit = true
+                                    })
                         
                     }
                     Spacer().frame(height: 150)
@@ -590,14 +591,13 @@ struct MainContentView: View {
             
         }.onAppear{
            
+            
+            
             streakDict = getStreak()
             loadSound()
             
-            openedFirstTime = true
-            if openedFirstTime{
-                addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
-                openedFirstTime = false
-            }
+             addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
+            
             
               fetchData()
                 
@@ -609,11 +609,14 @@ struct MainContentView: View {
                 }
                 
             }
-                   
+               
+            UserDefaults.standard.welcomescreenShown = true
+         
                 
         }
        
             .navigationBarBackButtonHidden(true)
+            .navigationViewStyle(.stack)
     }
 }
 

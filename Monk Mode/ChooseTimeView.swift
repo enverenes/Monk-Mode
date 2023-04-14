@@ -26,6 +26,20 @@ struct ChooseTimeView: View {
         startDateString = dateFormatter.string(from: Date())
     }
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+      var btnBack : some View { Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
+          }) {
+              HStack {
+                  Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
+                  .aspectRatio(contentMode: .fit)
+                  .foregroundColor(.white)
+                  
+              }
+          }
+      }
+    
     var body: some View {
           ZStack{
             
@@ -35,14 +49,7 @@ struct ChooseTimeView: View {
             VStack{
                 
                 
-                HStack{
-                    NavigationLink {
-                        SpecifyhabitsView()
-                    } label: {
-                        Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
-                    }.padding(.top, 50) .padding(.leading, 20)
-                    Spacer()
-                }
+               
                
                 Spacer()
                 Text("Choose your cycle duration")
@@ -56,10 +63,7 @@ struct ChooseTimeView: View {
                 
                 NavigationLink {
                     if UserDefaults.standard.isRestarting{
-                        MainContentView().onAppear{
-                            daysPassed = 0.0
-                            UserDefaults.standard.isRestarting = false
-                        }
+                        MainContentView()
                     }else{
                         StorePage()
                     }
@@ -76,16 +80,23 @@ struct ChooseTimeView: View {
                         .shadow(color: Color(.black), radius: 1, x: -4, y: 4)
                     
                     
-                }
+                }.simultaneousGesture(TapGesture().onEnded{
+                    
+                    daysPassed = 0.0
+                    
+                })
                 Spacer()
                 
             }
             
         }.background().ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: btnBack)
             .onAppear{
                 setStartDate()
+                UserDefaults.standard.addingHabit = false
             }
+            .navigationViewStyle(.stack)
     }
 }
 

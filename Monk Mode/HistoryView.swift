@@ -150,8 +150,6 @@ struct HistoryView: View {
             
             TabView{
                 Cycle()
-                 
-                
                 PreviousCycles()
                 
                 
@@ -269,16 +267,20 @@ struct Cycle: View {
         ZStack{
             HStack{
                 Spacer()
-                Image(systemName: "chevron.right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(.white).padding(.trailing,20)
-                    .offset(x: moveRight ? 0 : -10)
-                    .animation(Animation.linear(duration: 0.5).repeatForever(autoreverses: true))
-                                .onAppear {
-                                    self.moveRight.toggle()
-                                }
+                VStack{
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white).padding(.trailing,20)
+                        .offset(x: moveRight ? 0 : -10)
+                        .animation(Animation.linear(duration: 0.5).repeatForever(autoreverses: true))
+                                    .onAppear {
+                                        self.moveRight.toggle()
+                                    }
+                   
+                }
+              
             }
             ZStack{
                 Circle()

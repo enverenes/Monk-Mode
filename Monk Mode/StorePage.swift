@@ -11,6 +11,21 @@ import StoreKit
 struct StorePage: View {
     @StateObject var storeKit = StoreKitManager()
     @State var isPurchased: Bool = false
+    
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+      var btnBack : some View { Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
+          }) {
+              HStack {
+                  Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
+                  .aspectRatio(contentMode: .fit)
+                  .foregroundColor(.white)
+                  
+              }
+          }
+      }
 
     var body: some View {
         
@@ -52,7 +67,7 @@ struct StorePage: View {
                         ForEach(storeKit.storeProducts) {product in
                             if isPurchased {
                                 NavigationLink {
-                                    ChooseHabitsView()
+                                    MainContentView()
                                 } label: {
                                     Text("You are all set - Proceed").font(.custom("Staatliches-Regular", size: 25))
                                         .padding()
@@ -93,15 +108,16 @@ struct StorePage: View {
                         
                 Spacer()
                 NavigationLink {
-                    MainContentView().onAppear{
-                        UserDefaults.standard.welcomescreenShown = true
-                    }
+                    MainContentView()
                 } label: {
                     Text("Admin bypass").font(.custom("Staatliches-Regular", size: 15))
                         .padding(5)
                     
                 }.background(.white)
                     .cornerRadius(25)
+                    .simultaneousGesture(TapGesture().onEnded{
+                        UserDefaults.standard.welcomescreenShown = true
+                    })
                 
                 Image("monkart1")
                     .resizable().scaledToFit()
@@ -111,6 +127,7 @@ struct StorePage: View {
                     .padding()
         }.ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
         
     }
 }

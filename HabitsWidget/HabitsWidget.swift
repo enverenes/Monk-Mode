@@ -42,22 +42,21 @@ struct SimpleEntry: TimelineEntry {
 
 struct HabitsWidgetEntryView : View {
     var entry: Provider.Entry
-    
     var active = ActiveHabits()
-    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
+   
     var body: some View {
         
+        
+        
         ZStack {
-            ContainerRelativeShape().fill(Color(hex: 0x00337C))
+            ContainerRelativeShape().fill(Color(hex: 0x13005A))
             VStack{
-                Spacer()
-                Text("Active Habits")
-                    .scaledToFill()
-                    .font(.custom("Menlo", size: 20))
-                    .foregroundColor(.white)
                 
-                Spacer()
+               
+                
+                
                 LazyVGrid(columns: columns, spacing: 5) {
                     
                     ForEach(active.getActiveHabits(), id: \.self) { habit in
@@ -92,20 +91,25 @@ struct HabitsWidgetEntryView : View {
                         }
                             
                         
-                    }.padding(.top)
+                    }.padding(.vertical,3)
+                        .background(Color(hex: 0xf3005A))
+                        
                    
                     Spacer()
-                }.background(Color(hex: 0x13005A))
-              
+                }
                 .cornerRadius(5)
                 .foregroundColor(.white)
                 
                 
                 
+               
+                
             }
            
         }
-        .font(.custom("Menlo", size: active.getActiveHabits().count > 8 ? 10 : 15))
+        .font(.custom("Impact", size: active.getActiveHabits().count > 8 ? 10 : 15))
+        
+        
         
         
        
@@ -120,8 +124,8 @@ struct HabitsWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             HabitsWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Habit Tracker")
+        .description("Track your active habits easily.")
         .supportedFamilies([.systemMedium])
     }
 }

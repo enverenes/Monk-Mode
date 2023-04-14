@@ -50,31 +50,56 @@ struct SettingsView: View {
                             })
                            
                         }
+                        HStack{
+                            
+                            Button("Feedback", action: {
+                               // send mail
+                            })
+                           
+                        }
                     }
                     
-                    Section("Community") {
-                
+                 
+                    
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text("COMMUNITY").foregroundColor(.black)
+                            Spacer()
+                        }.frame(height: 20)
+                        
+                        Divider().frame(width: 120,height: 2)
+                            .overlay(.gray)
                         HStack(spacing: 40){
                             Spacer()
-                            Image("reddit")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
                             
-                            Image("instagram")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
+                            Link(destination: URL(string: "https://www.reddit.com/r/monkmodeapp/")!) {
+                                Image("reddit")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                            }
+                            Link(destination: URL(string: "https://www.instagram.com/")!) {
+                                Image("instagram")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                            }.disabled(true)
                             
-                            Image("tiktok")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
+                            Link(destination: URL(string: "https://www.tiktok.com/@monkmodeapplication")!) {
+                                Image("tiktok")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                            }
+                          
+                            
+                          
                             Spacer()
                         }
                         
                     }.foregroundColor(.white)
-                       // .listRowBackground(Color.clear)
+                        .headerProminence(.standard)
                        
                     
                     Section("") {
@@ -103,8 +128,9 @@ struct SettingsView: View {
             }
            
         }
-       
+        .navigationViewStyle(.stack)
     }
+        
 }
 
 struct SettingsView_Previews: PreviewProvider {
@@ -185,9 +211,7 @@ struct CustomAlert: View {
                         
                       
                         NavigationLink {
-                            ChooseHabitsView().onAppear{
-                                UserDefaults.standard.isRestarting = true
-                            }
+                            ChooseHabitsView()
                         } label: {
                             Text("Restart")
                                 .font(.system(size: 16, weight: .bold))
@@ -196,6 +220,10 @@ struct CustomAlert: View {
                                 .padding(15)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            UserDefaults.standard.isRestarting = true
+                            UserDefaults.standard.addingHabit = false
+                                    })
                    
                         
                     }

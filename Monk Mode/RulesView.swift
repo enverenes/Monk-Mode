@@ -19,7 +19,7 @@ struct BottomSheetView: View {
                         isPresented = false
                     }
                 } label: {
-                    Image(systemName: "xmark").resizable().scaledToFit().frame(width: 25)
+                    Image(systemName: "xmark").resizable().scaledToFit().frame(width: 25).bold()
                 }.padding(25)
                 Spacer()
             }
@@ -32,22 +32,32 @@ struct BottomSheetView: View {
                 VStack{
                     HStack{
                         Spacer()
-                        Text("Rule1: Do the habit +2 points")
+                        Image("checkmark_test")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                        Text(" +2 points")
                         Spacer()
                     }
                     HStack{
                         Spacer()
-                        Text("Rule2: If you fail -1 points")
+                        Image("xmark_test")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        Text(" -1 points")
                         Spacer()
                     }
+                    
+                    Spacer().frame(height: 50)
                     HStack{
                         Spacer()
-                        Text("Rule3: Get more points to levelup")
+                        Text("Get more points to levelup")
                         Spacer()
                     }
                    
                    
-                }.font(.custom("Staatliches-Regular", size: 15))
+                }.font(.custom("Staatliches-Regular", size: 20))
                     .padding(.horizontal, 30)
                     .foregroundColor(.white)
             }

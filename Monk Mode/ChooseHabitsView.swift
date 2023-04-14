@@ -31,6 +31,12 @@ struct ChooseHabitsView: View {
         }
         return count
     }
+    
+    
+    
+   
+    
+    
     var body: some View {
       
         ZStack{
@@ -237,8 +243,14 @@ Spacer()
             }
             
         }.font(.custom("Staatliches-Regular", size: 20))
-        .background().ignoresSafeArea()
+        .background()
+        .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            .onAppear{
+                print(UserDefaults.standard.isRestarting,UserDefaults.standard.addingHabit)
+            }
+            .navigationViewStyle(.stack)
+            
         
         
         

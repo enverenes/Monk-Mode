@@ -57,9 +57,7 @@ struct CycleCompleteView: View {
                 Spacer().frame(height: 100)
                 
                 NavigationLink {
-                    ChooseHabitsView().onAppear{
-                        UserDefaults.standard.isRestarting = true
-                    }
+                    ChooseHabitsView()
                   
                 } label: {
                     Text("Start a New Cycle")
@@ -74,7 +72,9 @@ struct CycleCompleteView: View {
                         .shadow(color: .white, radius: 2, x: 0, y: 2)
                     
                     
-                }
+                } .simultaneousGesture(TapGesture().onEnded{
+                    UserDefaults.standard.isRestarting = true
+                })
                 Spacer()
                 
             }.foregroundColor(.white)
