@@ -27,9 +27,12 @@ struct BottomSheetView: View {
             .padding()
             
             ZStack{
-                Image("paper").resizable().scaledToFit()
+                Image("paper")
+                    .resizable()
+                    .scaledToFit()
                 
-                VStack{
+                ScrollView{
+                    Spacer().frame(height: 20)
                     HStack{
                         Spacer()
                         Image("checkmark_test")
@@ -60,6 +63,7 @@ struct BottomSheetView: View {
                 }.font(.custom("Staatliches-Regular", size: 20))
                     .padding(.horizontal, 30)
                     .foregroundColor(.white)
+                    .scaledToFit()
             }
        
         

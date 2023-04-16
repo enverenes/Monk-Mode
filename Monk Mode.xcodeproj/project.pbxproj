@@ -65,6 +65,7 @@
 		30C5D9B629CA44B000133663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C5D9B529CA44B000133663 /* Assets.xcassets */; };
 		30C5D9BA29CA44B000133663 /* LevelWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 30C5D9AB29CA44AF00133663 /* LevelWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30C5D9C029CA729600133663 /* Colors_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5D9BF29CA729600133663 /* Colors_Widget.swift */; };
+		30DAABC729EB5C7300257850 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAABC629EB5C7300257850 /* MailView.swift */; };
 		3436E7E3CF030769C1E079DE /* Pods_Monk_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8455F5B78D2468D29B116DAF /* Pods_Monk_Mode.framework */; };
 		5A3219B522F8D2D6F642F85D /* Pods_Monk_Mode_Monk_ModeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C366AB1D06DDC058A2601673 /* Pods_Monk_Mode_Monk_ModeUITests.framework */; };
 		6B36BF60A0DF3F3B085432E3 /* Pods_Monk_ModeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E11A543F59C5D159D6187F6 /* Pods_Monk_ModeTests.framework */; };
@@ -191,6 +192,7 @@
 		30C5D9B729CA44B000133663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C5D9BF29CA729600133663 /* Colors_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors_Widget.swift; sourceTree = "<group>"; };
 		30C5D9C129CA739A00133663 /* Monk Mode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Monk Mode.entitlements"; sourceTree = "<group>"; };
+		30DAABC629EB5C7300257850 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		340428C4E9927FA0BFF07417 /* Pods-Monk ModeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk ModeTests.release.xcconfig"; path = "Target Support Files/Pods-Monk ModeTests/Pods-Monk ModeTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BF52FBA1C1EF1CAA46FE6CE /* Pods-Monk Mode-HabitsWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode-HabitsWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-Monk Mode-HabitsWidgetExtension/Pods-Monk Mode-HabitsWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		7D8CDAC183A9EC77082766D7 /* Pods-Monk Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monk Mode.release.xcconfig"; path = "Target Support Files/Pods-Monk Mode/Pods-Monk Mode.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				30C0C1EC29C62ADE0014C46D /* LoadingView.swift */,
 				30106F0029CF79BB0022392D /* Lore.swift */,
 				30C59FCF29D2194600C9DE3C /* CycleCompleteView.swift */,
+				30DAABC629EB5C7300257850 /* MailView.swift */,
 				301363D429D45743001B33CD /* Staatliches-Regular.ttf */,
 				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
 				30360A0929AC0A58002594FD /* GoogleService-Info.plist */,
@@ -804,6 +807,7 @@
 				30BA0A8929A9640600B0B3AB /* HistoryView.swift in Sources */,
 				30A53AD629B6C4A7008EE90D /* StorePage.swift in Sources */,
 				30A53ACB29B6937D008EE90D /* ChooseTimeView.swift in Sources */,
+				30DAABC729EB5C7300257850 /* MailView.swift in Sources */,
 				30C0C1ED29C62ADE0014C46D /* LoadingView.swift in Sources */,
 				3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */,
 				308F175629B00316008DB163 /* CustomCalendar.swift in Sources */,
@@ -1076,7 +1080,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1088,13 +1092,13 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1114,7 +1118,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1126,13 +1130,13 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

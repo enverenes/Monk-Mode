@@ -43,7 +43,7 @@ struct SimpleEntry: TimelineEntry {
 struct HabitsWidgetEntryView : View {
     var entry: Provider.Entry
     var active = ActiveHabits()
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
    
     var body: some View {
@@ -60,39 +60,22 @@ struct HabitsWidgetEntryView : View {
                 LazyVGrid(columns: columns, spacing: 5) {
                     
                     ForEach(active.getActiveHabits(), id: \.self) { habit in
+                        
+                        
                         HStack {
+                            Spacer()
                             Text(habit)
                                 .scaledToFit()
-                                .padding(.leading).padding(.vertical, 2)
+                                .padding(2)
                             Spacer()
-                            
-                            VStack{
-                                if active.getProgress()[habit]  == 0 {
-                                    Image(systemName: "circle")
-                                        
-                                        .foregroundColor(.white)
-                                }else if active.getProgress()[habit]  == 1 {
-                                    Image(systemName: "checkmark")
-                                       
-                                        .foregroundColor(.green)
-                                    
-                                }else if active.getProgress()[habit]  == 2 {
-                                    Image(systemName:"xmark")
-                                       
-                                        .foregroundColor(.red)
-                                    
-                                }else{
-                                    Image(systemName: "circle")
-                                        
-                                        .foregroundColor(.white)
-                                }
-                            }.padding(.trailing,5)
-                          
-                        }
+                       }.background(active.getProgress()[habit]  == 1 ?  Color(.systemGreen):Color(.systemRed))
+                            .cornerRadius(5)
+                            .padding(.horizontal,5)
+                        
                             
                         
-                    }.padding(.vertical,3)
-                        .background(Color(hex: 0xf3005A))
+                    }
+                        
                         
                    
                     Spacer()
@@ -124,8 +107,8 @@ struct HabitsWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             HabitsWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Habit Tracker")
-        .description("Track your active habits easily.")
+        .configurationDisplayName("Habit Table")
+        .description("Track your active habits with this table.")
         .supportedFamilies([.systemMedium])
     }
 }

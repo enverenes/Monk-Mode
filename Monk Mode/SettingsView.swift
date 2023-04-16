@@ -12,7 +12,7 @@ import StoreKit
 struct SettingsView: View {
     
     @State private var showAlert = false
-    
+    @State private var isShowingMailView = false
     
     var body: some View {
         ZStack{
@@ -51,10 +51,13 @@ struct SettingsView: View {
                            
                         }
                         HStack{
-                            
-                            Button("Feedback", action: {
-                               // send mail
-                            })
+                            Button("Feedback") {
+                                       // self.isShowingMailView.toggle() // NOT AVAILABLE
+                                    }
+                                    .sheet(isPresented: $isShowingMailView) {
+                                       // MailView(isShowing: self.$isShowingMailView)
+                                    }
+                                
                            
                         }
                     }
@@ -129,6 +132,7 @@ struct SettingsView: View {
            
         }
         .navigationViewStyle(.stack)
+        .preferredColorScheme(.light)
     }
         
 }

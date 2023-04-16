@@ -80,7 +80,10 @@ struct SplashScreenView: View {
                 VStack{
                     VStack{
                         Image("logo")
-                        Text("Monk Mode").font(.custom("MetalMania-Regular", size: 40))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 150)
+                        Text("Monk Mode").font(.custom("MetalMania-Regular", size: 40)).foregroundColor(.white)
                     }.scaleEffect(logoSize)
                     .opacity(logoOp).onAppear(){
                        withAnimation(.easeIn(duration: 1.2)){
@@ -88,7 +91,7 @@ struct SplashScreenView: View {
                             self.logoSize = 1.0
                         }
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.white).onAppear(){
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black).onAppear(){
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.8){
                         withAnimation(.easeInOut){

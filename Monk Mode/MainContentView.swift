@@ -291,9 +291,7 @@ struct MainContentView: View {
                             HStack{
                                 
                                 Button {
-                                    withAnimation{
-                                        selectedHabit = index
-                                    }
+                                  
                                 } label: {
                                     if (selectedHabit == index){
                                         VStack(spacing: 5){
@@ -330,7 +328,14 @@ struct MainContentView: View {
                                         ClosedHabit(habit: habit, animDict: $animDict)
                                    }
                                     
-                                }
+                                }.simultaneousGesture(LongPressGesture().onEnded { _ in
+                                    print("Secret Long Press Action!")
+                                })
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    withAnimation{
+                                        selectedHabit = index
+                                    }
+                                })
                                 
                                 Button {
                                     
