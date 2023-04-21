@@ -59,9 +59,10 @@ struct MainContentView: View {
     @State private var scale = 0.1
     @State private var showAlert = false
     @State private var levelUpLightningAnim : Bool = true
+    @State private var readMoreExpanded : Bool = false
     
     
-   @State var player: AVAudioPlayer?
+    @State var player: AVAudioPlayer?
     
     
     func getStreak() -> [String : Int]{
@@ -504,87 +505,97 @@ struct MainContentView: View {
                     if levelUpLightningAnim{
                         VStack{
                             SwiftUIGIFPlayerView(gifName: "levelup")
-                            Spacer().frame(height: 300)
-                        }.onAppear{
+                                
+                        }
+                        .scaledToFill()
+                        .onAppear{
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                                 levelUpLightningAnim = false
                                 
                             }
                         }
+                    }else{
+                        VStack{
+                            Spacer()
+                           
+                            
+                            Text("Level Up!").foregroundColor(.white)
+                                .font(.custom("Staatliches-Regular", size: 40))
+                            
+                            VStack{
+                                Text("\(levels[userLevel]!)")
+                                    .font(.custom("Staatliches-Regular", size: 20))
+                                    .foregroundColor(.white).padding(.horizontal)
+                                    .padding(.top)
+                                    .multilineTextAlignment(.center)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                Spacer()
+                                Image("\(userLevel)").resizable().scaledToFit()
+                                    .frame(width: 80, height: 80)
+                                    .padding(.horizontal, 20)
+                                   
+                                Spacer()
+                                
+                                
+                            }.frame(width: 120, height: 180)
+                                .background(Color(hex: 0x32a852))
+                                .cornerRadius(20)
+                                .scaleEffect(scale)
+                                .animation(.linear(duration: 0.7), value: scale)
+                                        .onAppear{
+                                            withAnimation{
+                                                scale = 1.0
+                                            }
+                                        }
+                            
+                            Spacer()
+                            VStack{
+                                Text(readMoreExpanded ? DisciplineLevels(level: userLevel).getParagraph()[0] : "Read More..").font(.custom("Staatliches-Regular", size: 25))
+                                    .padding(20)
+                                    .foregroundColor(.white)
+                            }.background(.black)
+                                .cornerRadius(25)
+                                .padding()
+                                .onTapGesture {
+                                    withAnimation{
+                                        readMoreExpanded.toggle()
+                                    }
+                                    
+                                }
+                                
+                           
+                            Spacer()
+                            HStack{
+                                Button {
+                                    withAnimation{
+                                        levelUp = false
+                                        levelUpLightningAnim = true
+                                    }
+                                    scale = 0.1
+                                } label: {
+                                    Text("Proceed")
+                                        .font(.custom("Staatliches-Regular", size: 27))
+                                        .frame(width: 200)
+                                        .padding(10)
+                                        .foregroundColor(Color(.systemGreen))
+                                        .background(.black)
+                                         .cornerRadius(5)
+                                    
+                                        
+                                           
+
+                                }
+
+                               
+                            }.frame(width: 300).padding()
+                            
+                            
+                        }
                     }
                    
                     
                     
-                    VStack{
-                        Spacer()
-                       
-                        
-                        Text("Level Up!").foregroundColor(.white)
-                            .font(.custom("Staatliches-Regular", size: 40))
-                        
-                        VStack{
-                            Text("\(levels[userLevel]!)")
-                                .font(.custom("Staatliches-Regular", size: 20))
-                                .foregroundColor(.white).padding(.horizontal)
-                                .padding(.top)
-                                .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Spacer()
-                            Image("\(userLevel)").resizable().scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .padding(.horizontal, 20)
-                               
-                            Spacer()
-                            
-                            
-                        }.frame(width: 120, height: 180)
-                            .background(Color(hex: 0x32a852))
-                            .cornerRadius(20)
-                            .scaleEffect(scale)
-                            .animation(.linear(duration: 0.7), value: scale)
-                                    .onAppear{
-                                        withAnimation{
-                                            scale = 1.0
-                                        }
-                                    }
-                        
-                        Spacer()
-                        VStack{
-                            Text(DisciplineLevels(level: userLevel).getParagraph()[0]).font(.custom("Staatliches-Regular", size: 25))
-                                .padding(20)
-                                .foregroundColor(.white)
-                        }.background(.black)
-                            .cornerRadius(25)
-                            .padding()
-                            
-                       
-                        Spacer()
-                        HStack{
-                            Button {
-                                withAnimation{
-                                    levelUp = false
-                                    levelUpLightningAnim = true
-                                }
-                                scale = 0.1
-                            } label: {
-                                Text("Proceed")
-                                    .font(.custom("Staatliches-Regular", size: 27))
-                                    .frame(width: 200)
-                                    .padding(10)
-                                    .foregroundColor(Color(.systemGreen))
-                                    .background(.black)
-                                     .cornerRadius(5)
-                                
-                                    
-                                       
-
-                            }
-
-                           
-                        }.frame(width: 300).padding()
-                        
-                        
-                    }
+                    
                 }
                
             }

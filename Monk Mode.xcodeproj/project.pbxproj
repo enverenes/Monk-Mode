@@ -330,9 +330,9 @@
 				30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */,
 				3054F9C729B99BA200603EDC /* ProgressBar.swift */,
 				30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */,
-				30BA0A7C29A9259F00B0B3AB /* MainContentView.swift */,
 				30BA0A7A29A9259F00B0B3AB /* OnboardingView.swift */,
 				30BA0A7B29A9259F00B0B3AB /* SpecifyhabitsView.swift */,
+				30BA0A7C29A9259F00B0B3AB /* MainContentView.swift */,
 				30BA0A7D29A9259F00B0B3AB /* SplashScreenView.swift */,
 				30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */,
 				30BA0A8829A9640600B0B3AB /* HistoryView.swift */,
@@ -1080,7 +1080,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1098,7 +1098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1118,7 +1118,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1136,7 +1136,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

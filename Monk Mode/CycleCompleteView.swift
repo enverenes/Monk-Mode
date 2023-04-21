@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct CycleCompleteView: View {
     @State var cyclecomplete: Double = 0.0
+    @AppStorage("cycleNo") var cycleNo: Int = 1
     @AppStorage("totalDays") var totalDays: Double = 3.0
+    
+    func saveDataCycles(day : Int, progress: Double){
+        let db = Firestore.firestore()
+        let userId = Auth.auth().currentUser!.uid
+        let docRef = db.collection("user_data").document(userId).collection("cycle").document("cycleinfo" + String(cycleNo)).setData([ "completed": true, "day": day , "progress" : progress], merge: false)
+        
+        cycleNo += 1
+    }
 
     var body: some View {
         
@@ -74,6 +85,7 @@ struct CycleCompleteView: View {
                     
                 } .simultaneousGesture(TapGesture().onEnded{
                     UserDefaults.standard.isRestarting = true
+                    saveDataCycles(day: Int(totalDays), progress: 1.0)
                 })
                 Spacer()
                 

@@ -233,12 +233,7 @@ struct Cycle: View {
     @AppStorage("startDateString") var startDateString: String = "01-01-2023"
     
     
-    func saveDataCycles(day : Int, progress: Double){
-        let db = Firestore.firestore()
-        let userId = Auth.auth().currentUser!.uid
-        let docRef = db.collection("user_data").document(userId).collection("cycle").document("cycleinfo").setData([ "completed": true, "day": day , "progress" : progress], merge: false)
-        
-    }
+   
     
     func countDays(dateString : String) {
         var startDate: Date = Date()
@@ -253,7 +248,6 @@ struct Cycle: View {
             
         if (Double(daysPassed / totalDays) >= 1){
             progress = 1.0
-            saveDataCycles(day: Int(totalDays), progress: progress)
             
         }else{
             progress = Double(daysPassed / totalDays)
@@ -314,26 +308,32 @@ struct Cycle: View {
 
 
 struct CycleInfo: Hashable {
+    var id = UUID()
     var completed: Bool
     var days: Int
     var progress: Double
+    
+    init(completed: Bool, days: Int, progress: Double) {
+        self.completed = completed
+        self.days = days
+        self.progress = progress
+    }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(completed)
         hasher.combine(days)
         hasher.combine(progress)
     }
-    
-    static func == (lhs: CycleInfo, rhs: CycleInfo) -> Bool {
-        return lhs.completed == rhs.completed && lhs.days == rhs.days && lhs.progress == rhs.progress
-    }
 }
+
+
 
 
 struct PreviousCycles: View{
     
     
     @State var cycleInfos = [CycleInfo]()
+    
     
     let gridLayout = [
         GridItem(.flexible()),
@@ -345,8 +345,8 @@ struct PreviousCycles: View{
     
     
 
-    func fetchDataCycles(completion: @escaping ([CycleInfo]) -> Void) {
-        var cycles: [CycleInfo] = []
+    func fetchDataCycles(completion: @escaping ([CycleInfo]) -> Void){
+        var completedCycles: [CycleInfo] = [] // Declare an empty array to hold the completed cycles
         
         let db = Firestore.firestore()
         let userId = Auth.auth().currentUser!.uid
@@ -359,13 +359,17 @@ struct PreviousCycles: View{
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    let cycle = CycleInfo(completed: (data["completed"] != nil), days: data["days"] as? Int ?? 3, progress: data["progress"] as? Double ?? 1.0 )
-                    cycles.append(cycle)
+                    print(data, "oc")
+                    if data["completed"] as? Bool == true { // Only append cycles with completed = true
+                        let cycle = CycleInfo(completed: true, days: data["day"] as? Int ?? 3, progress: data["progress"] as? Double ?? 1.0 )
+                        completedCycles.append(cycle)
+                    }
                 }
-                completion(cycles)
+                completion(completedCycles) // Call the completion block with the completed cycles array
             }
         }
     }
+
 
     
     
@@ -376,20 +380,20 @@ struct PreviousCycles: View{
     var body: some View{
         ScrollView {
             LazyVGrid(columns: gridLayout, spacing: 16) {
-                ForEach(cycleInfos, id: \.self) { item in
+                ForEach(cycleInfos, id: \.id) { item in
                     VStack{
                         ZStack() {
                             Circle()
                                 .stroke(
                                     Color(.systemRed).opacity(0.5),
-                                    lineWidth: 10
+                                    lineWidth: 5
                                 )
                             Circle()
                                 .trim(from: 0, to: 1.0)
                                 .stroke(
                                     Color(.systemRed),
                                     style: StrokeStyle(
-                                        lineWidth: 10,
+                                        lineWidth: 5,
                                         lineCap: .round
                                     )
                                 )
@@ -400,7 +404,7 @@ struct PreviousCycles: View{
                         }.frame(width: 50.0, height: 50.0)
                         
                         Text("Completed")
-                        Text("\(cycleInfos[0].days) days").multilineTextAlignment(.center)
+                        Text("\(item.days) days").multilineTextAlignment(.center)
                     }
                     
                 }

@@ -26,7 +26,7 @@ import SwiftUI
 struct SpecifyhabitsView: View {
     
     
-    @AppStorage("openedFirstTime") var openedFirstTime : Bool = true //TEST
+   //TEST
     
     
     @State var showPop : Bool = false
@@ -138,36 +138,36 @@ struct SpecifyhabitsView: View {
         
         func addToHabitArray(habitArray : [Bool]){
             
-            if(exercise){
+            if(exercise && !habits.contains("Exercise")){
                 habits.append("Exercise")
             }
             
-            if(meditation){
+            if(meditation && !habits.contains("Meditation")){
                 habits.append("Meditation")
             }
-            if(work){
+            if(work && !habits.contains("Work")){
                 habits.append("Work")
             }
             
-            if(read){
+            if(read && !habits.contains("Reading")){
                 habits.append("Reading")
             }
-            if(diet){
+            if(diet && !habits.contains("Healthy Diet")){
                 habits.append("Healthy Diet")
             }
-            if(nosocial){
+            if(nosocial && !habits.contains("No Social Media")){
                 habits.append("No Social Media")
             }
-            if(nosmoke){
+            if(nosmoke && !habits.contains("No Smoking")){
                 habits.append("No Smoking")
             }
-            if(nodrugs){
+            if(nodrugs && !habits.contains("No Drugs")){
                 habits.append("No Drugs")
             }
-            if(noalcohol){
+            if(noalcohol && !habits.contains("No Alcohol")){
                 habits.append("No Alcohol")
             }
-            if(nofap){
+            if(nofap && !habits.contains("No Fap")){
                 habits.append("No Fap")
             }
             
@@ -222,21 +222,19 @@ struct SpecifyhabitsView: View {
                                         Text(habit) .font(.custom("Staatliches-Regular", size: 25)).foregroundColor(.black)
                                         
                                     }
-                                    Divider()
-                                        .frame(width: 50, height: 2)
-                                        .overlay(.black)
+                                 
                                     if(customizableHabits.contains(habit)){
                                         HStack{
                                             
                                             TextField(getHabitExample(habit: habit), text: getHabitDetail(habit: habit))
                                                 .autocapitalization(.sentences)
                                                 .multilineTextAlignment(.center)
-                                               
-                                                        
-                                                
-                                                
-                                                .font(.custom("Staatliches-Regular", size: 18))
+                                               .font(.custom("Staatliches-Regular", size: 18))
                                                 .foregroundColor(.black)
+                                                .overlay(
+                                                        RoundedRectangle(cornerRadius: 16)
+                                                            .stroke(.black, lineWidth: 2)
+                                                    )
                                             
                                            
                                         }
@@ -293,7 +291,7 @@ struct SpecifyhabitsView: View {
                 .onAppear{
                     
                     addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
-                    openedFirstTime = true
+                    
                 }
                 .navigationViewStyle(.stack)
          

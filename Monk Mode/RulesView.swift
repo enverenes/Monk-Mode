@@ -55,7 +55,7 @@ struct BottomSheetView: View {
                     Spacer().frame(height: 50)
                     HStack{
                         Spacer()
-                        Text("Get more points to levelup")
+                        Text("Earn more points to level up")
                         Spacer()
                     }
                    
