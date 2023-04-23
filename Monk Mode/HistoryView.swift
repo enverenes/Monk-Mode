@@ -365,7 +365,9 @@ struct PreviousCycles: View{
                         completedCycles.append(cycle)
                     }
                 }
-                completion(completedCycles) // Call the completion block with the completed cycles array
+                completion(completedCycles)
+                
+                // Call the completion block with the completed cycles array
             }
         }
     }

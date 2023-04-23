@@ -24,6 +24,8 @@ struct SettingsView: View {
     var body: some View {
         ZStack{
             
+         
+            
             VStack{
                 
                 HStack{
@@ -34,18 +36,21 @@ struct SettingsView: View {
                     .font(.custom("Staatliches-Regular", size: 40))
                 
                
+                Spacer().frame(height: 30)
                             
                 
-                Form{
-                    Section("") {
-                      
+            
+                   VStack {
+                       Divider()
                         HStack{
                             
                             Button("Privacy & Terms of Use", action: {
                               
                             })
                            
-                        }
+                        }.padding(5)
+                       
+                       Divider()
                         HStack{
                             
                             Button("Restore Purchases", action: {
@@ -56,82 +61,114 @@ struct SettingsView: View {
                                 }
                             })
                            
-                        }
+                        }.padding(5)
+                       Divider()
                         HStack{
                             Button("Feedback") {
-                                       // self.isShowingMailView.toggle() // NOT AVAILABLE
+                                        self.isShowingMailView.toggle() // NOT AVAILABLE
                                     }
                                     .sheet(isPresented: $isShowingMailView) {
-                                       // MailView(isShowing: self.$isShowingMailView)
+                                        MailView(isShowing: self.$isShowingMailView)
                                     }
                                 
                            
-                        }
-                    }
+                        }.padding(5)
+                       Divider()
+                   }.frame(maxWidth: .infinity)
+                   .background(.white)
+                    .cornerRadius(10)
+                    .padding()
                     
                  
+                
+                
+                .foregroundColor(.black)
+                
+               VStack {
+                    HStack {
+                        Spacer()
+                        Text("COMMUNITY").foregroundColor(.white)
+                        Spacer()
+                    }.frame(height: 20)
                     
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Text("COMMUNITY").foregroundColor(.black)
-                            Spacer()
-                        }.frame(height: 20)
+                  
+                    HStack(spacing: 40){
+                        Spacer()
                         
-                        Divider().frame(width: 120,height: 2)
-                            .overlay(.gray)
-                        HStack(spacing: 40){
-                            Spacer()
-                            
-                            Link(destination: URL(string: "https://www.reddit.com/r/monkmodeapp/")!) {
+                        Link(destination: URL(string: "https://www.reddit.com/r/monkmodeapp/")!) {
+                            HStack{
                                 Image("reddit")
                                     .resizable()
-                                    .scaledToFit()
+                                    
                                     .frame(width: 50, height: 50)
                             }
-                            Link(destination: URL(string: "https://www.instagram.com/")!) {
+                            
+                        }
+                        .frame(width: 50, height: 50).padding(.vertical)
+                        Link(destination: URL(string: "https://www.instagram.com/")!) {
+                            HStack{
                                 Image("instagram")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 50, height: 50)
-                            }.disabled(true)
+                            }
                             
-                            Link(destination: URL(string: "https://www.tiktok.com/@monkmodeapplication")!) {
+                        }.disabled(true)
+                            .frame(width: 50, height: 50).padding(.vertical)
+                        
+                        Link(destination: URL(string: "https://www.tiktok.com/@monkmodeapplication")!) {
+                           
+                            HStack{
                                 Image("tiktok")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 50, height: 50)
+                                    
                             }
-                          
-                            Spacer()
-                        }
-                        
-                    }.foregroundColor(.white)
-                        .headerProminence(.standard)
-                       
+                        }.frame(width: 50, height: 50)
+                            .padding(.vertical)
+
+                      
+                        Spacer()
+                    }.background(.white)
+                        .cornerRadius(10)
+                        .padding()
                     
-                    Section("") {
+                }.foregroundColor(.white)
+                    .padding(.top)
+                    
+                  
+                   
                 
-                        HStack{
-                            Spacer()
-                            Button("Restart the Cycle", action: {
-                              showAlert = true
-                                
-                            }).foregroundColor(.red)
-                            Spacer()
-                        }
-                        
+                VStack {
+            
+                    HStack{
+                        Spacer()
+                        Button("Restart the Cycle", action: {
+                          showAlert = true
+                            
+                        }).foregroundColor(.red)
+                        Spacer()
                     }
+                    .padding(.vertical, 5)
+
                     
-                 
-                }
-                .scrollContentBackground(.hidden)
-                .foregroundColor(AppColors.TopBar.topBarColor)
+                }.background(.white)
+                    .cornerRadius(10)
+                    .padding()
                 
                 Spacer().frame(height: 100)
                  
-            }.background(AppColors.Back.backgroundColor)
+            }
             .font(.custom("Staatliches-Regular", size: 20))
+            .frame(
+                  minWidth: 0,
+                  maxWidth: .infinity,
+                  minHeight: 0,
+                  maxHeight: .infinity,
+                  alignment: .topLeading
+                )
+            
+            
            
             if showAlert {
                 CustomAlert(presentAlert: $showAlert)
@@ -144,6 +181,9 @@ struct SettingsView: View {
         }
         .navigationViewStyle(.stack)
         .preferredColorScheme(.light)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(AppColors.Back.backgroundColor)
+       
     }
         
 }

@@ -337,6 +337,7 @@ struct MainContentView: View {
                                         selectedHabit = index
                                     }
                                 })
+                                .disabled(levelUp)
                                 
                                 Button {
                                     
@@ -455,6 +456,7 @@ struct MainContentView: View {
                                         setStreak(streakDict: streakDict)
                                     }), secondaryButton: .cancel(Text("Cancel")))
                                         }
+                                .disabled(levelUp)
                                 
                             }
                             
