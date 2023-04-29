@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:788249498803:ios:03625337d30b3714aa8cc6</string>
+	<string>1:788249498803:ios:b0c4423565c1ded1aa8cc6</string>
+	<key>DATABASE_URL</key>
+	<string>https://monkmode-3bfc0-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

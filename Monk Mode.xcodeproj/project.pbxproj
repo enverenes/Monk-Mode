@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25200B3BFD4EE6F31018690E /* Pods_Monk_Mode_HabitsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003EDA03E539778B6F3FDB3B /* Pods_Monk_Mode_HabitsWidgetExtension.framework */; };
 		300F2E6A29C1AA5100F3E5B3 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F2E6929C1AA5100F3E5B3 /* RulesView.swift */; };
 		30106EFD29CE11710022392D /* MetalMania-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */; };
 		30106EFE29CE11750022392D /* MetalMania-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */; };
@@ -18,10 +19,9 @@
 		301363DD29D4EEA8001B33CD /* Monk-Mode-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */; };
 		301363DE29D4EEA9001B33CD /* Monk-Mode-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */; };
 		3031D15629C88A5A0097A437 /* levelup.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3031D15529C88A5A0097A437 /* levelup.gif */; };
-		30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
-		30365FCF29CC9C2B0094F3D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30360A0929AC0A58002594FD /* GoogleService-Info.plist */; };
 		3054F9C629B947D100603EDC /* ColorsByLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C529B947D100603EDC /* ColorsByLevel.swift */; };
 		3054F9C829B99BA200603EDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054F9C729B99BA200603EDC /* ProgressBar.swift */; };
+		305858EE29F6262100E867F3 /* levelup_eff1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 305858ED29F6262100E867F3 /* levelup_eff1.wav */; };
 		307682F729CB2F7400DF3B94 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AC29CA44AF00133663 /* WidgetKit.framework */; };
 		307682F829CB2F7400DF3B94 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C5D9AE29CA44AF00133663 /* SwiftUI.framework */; };
 		307682FB29CB2F7500DF3B94 /* HabitsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307682FA29CB2F7500DF3B94 /* HabitsWidgetBundle.swift */; };
@@ -35,6 +35,12 @@
 		30A53AD029B6C375008EE90D /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30A53ACF29B6C375008EE90D /* Property List.plist */; };
 		30A53AD229B6C403008EE90D /* StorekitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53AD129B6C403008EE90D /* StorekitManager.swift */; };
 		30A53AD629B6C4A7008EE90D /* StorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53AD529B6C4A7008EE90D /* StorePage.swift */; };
+		30B23EC729FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
+		30B23EC829FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
+		30B23EC929FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
+		30B23ECA29FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
+		30B23ECB29FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
+		30B23ECC29FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
 		30BA0A4E29A924FA00B0B3AB /* Monk_ModeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */; };
 		30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5129A924FC00B0B3AB /* Assets.xcassets */; };
 		30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BA0A5429A924FC00B0B3AB /* Preview Assets.xcassets */; };
@@ -134,10 +140,10 @@
 		301363D429D45743001B33CD /* Staatliches-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Staatliches-Regular.ttf"; sourceTree = "<group>"; };
 		301363DB29D4E364001B33CD /* LockScreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockScreenWidgetExtension.entitlements; sourceTree = "<group>"; };
 		3031D15529C88A5A0097A437 /* levelup.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = levelup.gif; sourceTree = "<group>"; };
-		30360A0929AC0A58002594FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30365FC629CC9AAE0094F3D5 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3054F9C529B947D100603EDC /* ColorsByLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsByLevel.swift; sourceTree = "<group>"; };
 		3054F9C729B99BA200603EDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		305858ED29F6262100E867F3 /* levelup_eff1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelup_eff1.wav; sourceTree = "<group>"; };
 		307682F129CB1C2000DF3B94 /* LevelWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LevelWidgetExtension.entitlements; sourceTree = "<group>"; };
 		307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HabitsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		307682FA29CB2F7500DF3B94 /* HabitsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsWidgetBundle.swift; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		30A53ACF29B6C375008EE90D /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		30A53AD129B6C403008EE90D /* StorekitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorekitManager.swift; sourceTree = "<group>"; };
 		30A53AD529B6C4A7008EE90D /* StorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePage.swift; sourceTree = "<group>"; };
+		30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30BA0A4A29A924FA00B0B3AB /* Monk Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monk Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30BA0A4D29A924FA00B0B3AB /* Monk_ModeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monk_ModeApp.swift; sourceTree = "<group>"; };
 		30BA0A5129A924FC00B0B3AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -211,6 +218,7 @@
 			files = (
 				307682F829CB2F7400DF3B94 /* SwiftUI.framework in Frameworks */,
 				307682F729CB2F7400DF3B94 /* WidgetKit.framework in Frameworks */,
+				25200B3BFD4EE6F31018690E /* Pods_Monk_Mode_HabitsWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,10 +357,11 @@
 				30DAABC629EB5C7300257850 /* MailView.swift */,
 				301363D429D45743001B33CD /* Staatliches-Regular.ttf */,
 				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
-				30360A0929AC0A58002594FD /* GoogleService-Info.plist */,
 				30BA0A5129A924FC00B0B3AB /* Assets.xcassets */,
 				30A53ACF29B6C375008EE90D /* Property List.plist */,
+				30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */,
 				30A53ACE29B6C2F0008EE90D /* Premium.storekit */,
+				305858ED29F6262100E867F3 /* levelup_eff1.wav */,
 				30C0C1EA29C625F60014C46D /* mouseclick.wav */,
 				30BA0A5329A924FC00B0B3AB /* Preview Content */,
 			);
@@ -439,8 +448,6 @@
 			dependencies = (
 			);
 			name = HabitsWidgetExtension;
-			packageProductDependencies = (
-			);
 			productName = HabitsWidgetExtension;
 			productReference = 307682F629CB2F7400DF3B94 /* HabitsWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -606,8 +613,8 @@
 			files = (
 				30106EFD29CE11710022392D /* MetalMania-Regular.ttf in Resources */,
 				307682FF29CB2F7600DF3B94 /* Assets.xcassets in Resources */,
+				30B23ECB29FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 				301363DE29D4EEA9001B33CD /* Monk-Mode-Info.plist in Resources */,
-				30365FCF29CC9C2B0094F3D5 /* GoogleService-Info.plist in Resources */,
 				301363DA29D4E12A001B33CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,10 +625,11 @@
 			files = (
 				30BA0A8429A9272700B0B3AB /* MetalMania-Regular.ttf in Resources */,
 				30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */,
-				30360A0A29AC0A58002594FD /* GoogleService-Info.plist in Resources */,
+				30B23EC729FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 				30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */,
 				30A53AD029B6C375008EE90D /* Property List.plist in Resources */,
 				30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */,
+				305858EE29F6262100E867F3 /* levelup_eff1.wav in Resources */,
 				3031D15629C88A5A0097A437 /* levelup.gif in Resources */,
 				301363D529D45743001B33CD /* Staatliches-Regular.ttf in Resources */,
 			);
@@ -631,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B23EC829FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +647,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B23EC929FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +657,7 @@
 			files = (
 				30C59FDE29D30E1200C9DE3C /* Assets.xcassets in Resources */,
 				301363D929D4E129001B33CD /* Assets.xcassets in Resources */,
+				30B23ECC29FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +667,7 @@
 			files = (
 				30106EFE29CE11750022392D /* MetalMania-Regular.ttf in Resources */,
 				30106EFF29CEF7430022392D /* Assets.xcassets in Resources */,
+				30B23ECA29FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 				30C5D9B629CA44B000133663 /* Assets.xcassets in Resources */,
 				301363DD29D4EEA8001B33CD /* Monk-Mode-Info.plist in Resources */,
 			);
@@ -1080,7 +1092,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1098,13 +1110,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1118,7 +1133,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1136,13 +1151,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

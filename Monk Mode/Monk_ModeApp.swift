@@ -6,7 +6,10 @@
 //
 
 import SwiftUI
+
 import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -16,6 +19,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     return true
   }
 }
+
+
 extension UINavigationController: UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +63,7 @@ extension UserDefaults {
 @main
 struct Monk_ModeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
             SplashScreenView().defaultAppStorage(UserDefaults(suiteName: "group.monkmode")!)

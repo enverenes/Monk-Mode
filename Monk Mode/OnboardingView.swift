@@ -91,6 +91,7 @@ struct OnboardingView: View {
             .onAppear{
                 login()
                 userLevel = "level1"
+                UserDefaults.standard.set(Date(), forKey: "launchDate")
             }
         
     }

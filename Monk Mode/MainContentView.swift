@@ -14,11 +14,15 @@ import WidgetKit
 
 
 struct MainContentView: View {
-    @State var showTabBar : Bool = false
+    
+    @Environment (\.requestReview) var requestReview
+    
+   
    
     @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
     @AppStorage("openedFirstTime") var openedFirstTime : Bool = true
+    @AppStorage("rated") var rated : Bool = false
     
     @AppStorage("exerciseDetail") var exerciseDetail: String = ""
     @AppStorage("meditationDetail") var meditationDetail : String = ""
@@ -60,22 +64,27 @@ struct MainContentView: View {
     @State private var showAlert = false
     @State private var levelUpLightningAnim : Bool = true
     @State private var readMoreExpanded : Bool = false
-    
-    
+    @State var showTabBar : Bool = false
+    @State private var showRatingPrompt = false
     @State var player: AVAudioPlayer?
     
     
-    func getStreak() -> [String : Int]{
+    func getStreak(streakDict : [String : Int]) -> [String : Int]{
+        
+            var newStreakDict = streakDict
                 var defaults = UserDefaults(suiteName: "group.monkmode")
             if let data = defaults!.data(forKey: "streakDict") {
                 let decoder = JSONDecoder()
                 if let decoded = try? decoder.decode([String: Int].self, from: data) {
-                   return decoded
+                    decoded.forEach { key, value in
+                        newStreakDict[key] = decoded[key]
+                    }
+                   return newStreakDict
                 }else{
-                    return ["": 0]
+                    return newStreakDict
                 }
             }else {
-                return ["": 0]
+                return newStreakDict
             }
             }
     
@@ -89,8 +98,8 @@ struct MainContentView: View {
         
     }
 
-    func loadSound() {
-        if let soundURL = Bundle.main.url(forResource: "mouseclick", withExtension: ".wav") {
+    func loadSound(click : Bool) {
+        if let soundURL = Bundle.main.url(forResource: click ? "mouseclick" : "levelup_eff1", withExtension: ".wav") {
             do {
                 player = try AVAudioPlayer(contentsOf: soundURL)
             } catch {
@@ -146,13 +155,19 @@ struct MainContentView: View {
     }
     
     
+    
+    
     func saveData(habit: String, habitStatus: Int) {
         let userId = Auth.auth().currentUser?.uid
         let date = Date().toString(format: "yyyy-MM-dd")
         let db = Firestore.firestore()
         
+    
+        
         let documentRef =  db.collection("user_data").document(userId!).collection(date).document("habitProgress")
         
+        
+        print(Auth.auth().currentUser!.uid)
         
         documentRef.getDocument {(document, error) in
             if let document = document, document.exists {
@@ -202,6 +217,9 @@ struct MainContentView: View {
         let db = Firestore.firestore()
         let userId = Auth.auth().currentUser!.uid // Assumes user is signed in
         let date = Date().toString(format: "yyyy-MM-dd")
+        
+        
+
         
       let docRef = db.collection("user_data").document(userId).collection(date).document("habitProgress")
             docRef.getDocument {(document, error) in
@@ -261,6 +279,22 @@ struct MainContentView: View {
         }
     }
     
+    
+    func checkAskRequest(){
+        if !rated {
+            let launchDate = UserDefaults.standard.object(forKey: "launchDate") as? Date ?? Date()
+            let daysSinceLaunch = Calendar.current.dateComponents([.day], from: launchDate, to: Date()).day
+
+               if daysSinceLaunch == 1 {
+                   DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                       showRatingPrompt = true
+                       
+                   }
+                  
+               }
+        }
+   
+    }
     
    
     
@@ -329,9 +363,7 @@ struct MainContentView: View {
                                         ClosedHabit(habit: habit, animDict: $animDict)
                                    }
                                     
-                                }.simultaneousGesture(LongPressGesture().onEnded { _ in
-                                    print("Secret Long Press Action!")
-                                })
+                                }
                                 .simultaneousGesture(TapGesture().onEnded {
                                     withAnimation{
                                         selectedHabit = index
@@ -340,8 +372,10 @@ struct MainContentView: View {
                                 .disabled(levelUp)
                                 
                                 Button {
-                                    
+                                    loadSound(click: true)
                                     playSound()
+                                    
+                                    print(progressDataDict)
                                     
                                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                         impactMed.impactOccurred()
@@ -471,6 +505,7 @@ struct MainContentView: View {
                             UserDefaults.standard.isRestarting = false
                             UserDefaults.standard.addingHabit = true
                                     })
+                        .disabled(levelUp)
                         
                     }
                     Spacer().frame(height: 150)
@@ -511,6 +546,8 @@ struct MainContentView: View {
                         }
                         .scaledToFill()
                         .onAppear{
+                            loadSound(click: false)
+                            playSound()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                                 levelUpLightningAnim = false
                                 
@@ -555,6 +592,8 @@ struct MainContentView: View {
                                 Text(readMoreExpanded ? DisciplineLevels(level: userLevel).getParagraph()[0] : "Read More..").font(.custom("Staatliches-Regular", size: 25))
                                     .padding(20)
                                     .foregroundColor(.white)
+                                    .minimumScaleFactor(0.2)
+                                
                             }.background(.black)
                                 .cornerRadius(25)
                                 .padding()
@@ -607,23 +646,19 @@ struct MainContentView: View {
                 LoadingView()
             }
             
-        }.onAppear{
-           
+        }
+        .onAppear{
             
             
-            streakDict = getStreak()
-            loadSound()
-            
+            streakDict = getStreak(streakDict: streakDict)
+            loadSound(click: true)
              addToHabitArray(habitArray: [noalcohol, nosmoke, nodrugs, nofap, exercise, meditation, read, work, diet, nosocial])
+             fetchData()
             
-            
-              fetchData()
-                
+            checkAskRequest()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                 withAnimation{
                 showTabBar = true
-                    
-                   
                 }
                 
             }
@@ -632,6 +667,12 @@ struct MainContentView: View {
          
                 
         }
+       /* .alert(isPresented: $showRatingPrompt) {
+            Alert(title: Text("Enjoying the app?"), message: Text("Please take a moment to rate it."), primaryButton: .default(Text("Rate App"), action: {
+                requestReview()
+                rated = true
+            }), secondaryButton: .cancel())
+        }*/
        
             .navigationBarBackButtonHidden(true)
             .navigationViewStyle(.stack)
@@ -813,6 +854,9 @@ struct Streak : View{
         }
         .background(.white)
         .cornerRadius(25)
+        .onAppear{
+            print(streakDict, "oc")
+        }
         
     }
 }
