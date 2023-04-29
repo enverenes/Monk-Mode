@@ -246,10 +246,8 @@ Spacer()
         .background()
         .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
-            .onAppear{
-                print(UserDefaults.standard.isRestarting,UserDefaults.standard.addingHabit)
-            }
-            .navigationViewStyle(.stack)
+            
+          
             
         
         

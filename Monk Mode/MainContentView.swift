@@ -15,10 +15,6 @@ import WidgetKit
 
 struct MainContentView: View {
     
-    @Environment (\.requestReview) var requestReview
-    
-   
-   
     @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
     @AppStorage("openedFirstTime") var openedFirstTime : Bool = true
@@ -667,15 +663,8 @@ struct MainContentView: View {
          
                 
         }
-       /* .alert(isPresented: $showRatingPrompt) {
-            Alert(title: Text("Enjoying the app?"), message: Text("Please take a moment to rate it."), primaryButton: .default(Text("Rate App"), action: {
-                requestReview()
-                rated = true
-            }), secondaryButton: .cancel())
-        }*/
+        .navigationBarBackButtonHidden(true)
        
-            .navigationBarBackButtonHidden(true)
-            .navigationViewStyle(.stack)
     }
 }
 
