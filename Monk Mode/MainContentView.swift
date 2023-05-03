@@ -246,7 +246,7 @@ struct MainContentView: View {
     }
     
     func getLevel(points: Int) -> Int {
-        let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
+        let levels = [12, 36, 72, 120, 180, 252, 336, 432, 540, 660]
         for i in 0..<levels.count {
             if points < levels[i] {
                 if i == 0{
@@ -529,6 +529,7 @@ struct MainContentView: View {
             TabBar(selectedTab:  $selectedTab).opacity(showTabBar ? 1.0 : 0.0)
                 .disabled(levelUp)
                 .blur(radius: levelUp ? 15 : 0)
+                .minimumScaleFactor(0.4)
             
                
           
@@ -687,7 +688,9 @@ struct TabBar: View{
                     Image("s").resizable().frame(width: 70,height: 70)
                 }
                 .padding(0)
-                .background(Color(.systemGray))
+                .background(Color(hex: 0xBEC0C2)
+                )
+                   
                 .cornerRadius(35)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

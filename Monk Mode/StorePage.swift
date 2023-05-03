@@ -30,102 +30,135 @@ struct StorePage: View {
     var body: some View {
         
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [AppColors.BarInside.barInsideColor, AppColors.Back.backgroundColor]), startPoint: .top, endPoint: .bottom)
-                        .edgesIgnoringSafeArea(.vertical)
-            VStack(alignment: .center) {
-                Spacer()
-                
-                        Text("We Make You a Monk in 6 Months")
-                    .foregroundColor(.white)
-                    .font(.custom("Staatliches-Regular", size: 30))
-                            .bold()
-                Spacer().frame(height: 40)
-                
-                VStack(spacing:10){
-                    HStack{
-                        Image(systemName: "checkmark.circle.fill")
-                        Text("Choose your habits")
-                        Spacer()
-                    }.foregroundColor(.white)
-                    HStack{
-                        Image(systemName: "checkmark.circle.fill")
-                        Text("Track your progress")
-                        Spacer()
-                    }.foregroundColor(.white)
-                    HStack{
-                        Image(systemName: "checkmark.circle.fill")
-                        Text("Level Up and Share your Progress")
-                        Spacer()
-                    }
-                    .foregroundColor(.white)
+           // LinearGradient(gradient: Gradient(colors: [AppColors.BarInside.barInsideColor, AppColors.Back.backgroundColor]), startPoint: .top, endPoint: .bottom)
+                       // .edgesIgnoringSafeArea(.vertical)
+            
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x00000), Color(hex: 0x962b08)]), startPoint: .center, endPoint: .zero)
+                       .edgesIgnoringSafeArea(.vertical)
+            
+           
+                VStack(alignment: .center) {
+                    Spacer().frame(height: 100)
                     
+                    Text("We Make You a Monk in 6 Months").minimumScaleFactor(0.8)
+                        .foregroundColor(.white)
+                        .font(.custom("Staatliches-Regular", size: 30))
+                                .bold()
+                    Spacer()
                     
-                }.padding(.leading, 20)
-                Spacer().frame(height: 40)
-                    
-                        Divider()
-                        ForEach(storeKit.storeProducts) {product in
-                            if isPurchased {
-                                NavigationLink {
-                                    MainContentView()
-                                } label: {
-                                    Text("You are all set - Proceed").font(.custom("Staatliches-Regular", size: 25))
-                                        .padding()
-                                    
-                                }.background(.white)
-                                    .cornerRadius(25)
-                                
-                            }else{
-                                VStack {
-                                    Button(action: {
-                                        // purchase this product
-                                        Task { try await storeKit.purchase(product)
-                                        }
-                                    }) {
-                                        Text("Start - 3 days free trial")
-                                            .font(.custom("Staatliches-Regular", size: 25))
+                    VStack(spacing:10){
+                        HStack{
+                            Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                            Text("Choose your habits")
+                            Spacer()
+                        }.foregroundColor(.white)
+                        HStack{
+                            Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                            Text("Track your progress")
+                            Spacer()
+                        }.foregroundColor(.white)
+                        HStack{
+                            Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                            Text("Level Up and Share your Progress")
+                            Spacer()
+                        }
+                        .foregroundColor(.white)
+                        
+                        
+                    }.padding(.leading, 20)
+                    Spacer()
+                        
+                            Divider()
+                            ForEach(storeKit.storeProducts) {product in
+                                if isPurchased {
+                                    NavigationLink {
+                                        MainContentView()
+                                    } label: {
+                                        Text("You are all set - Proceed").font(.custom("Staatliches-Regular", size: 25))
                                             .padding()
                                         
-                                          
                                     }.background(.white)
                                         .cornerRadius(25)
-                                    //Text("then").foregroundColor(.white)
-                                    HStack(alignment: .center){
-                                        
-                                        CourseItem(storeKit: storeKit, isPurchased: $isPurchased, product: product)
-                                        
+                                        .simultaneousGesture(TapGesture().onEnded{
+                                            UserDefaults.standard.welcomescreenShown = true
+                                        })
+                                    
+                                }else{
+                                    VStack {
+                                        Button(action: {
+                                            // purchase this product
+                                            Task { try await storeKit.purchase(product)
+                                            }
+                                        }) {
+                                            Text("Start - 3 days free trial")
+                                                .font(.custom("Staatliches-Regular", size: 25))
+                                                .padding()
+                                            
+                                              
+                                        }.background(.white)
+                                            .cornerRadius(25)
+                                        //Text("then").foregroundColor(.white)
+                                        HStack(alignment: .center){
+                                            
+                                            CourseItem(storeKit: storeKit, isPurchased: $isPurchased, product: product)
+                                            
 
-                                    }.foregroundColor(.white)
+                                        }.foregroundColor(.white)
+                                    }
                                 }
+                                
+                               
+                                
                             }
                             
-                           
-                            
-                        }
-                        
-                
-                   
-                        
-                Spacer()
-                NavigationLink {
-                    MainContentView()
-                } label: {
-                    Text("Admin bypass").font(.custom("Staatliches-Regular", size: 15))
-                        .padding(5)
                     
-                }.background(.white)
-                    .cornerRadius(25)
-                    .simultaneousGesture(TapGesture().onEnded{
-                        UserDefaults.standard.welcomescreenShown = true
-                    })
+                       
+                            
+                    Spacer()
+                    
+                        
+                    
+                    
+                        }.font(.custom("Staatliches-Regular", size: 20))
+                        .padding(.bottom, 300)
+            
+           
                 
-                Image("monkart1")
-                    .resizable().scaledToFit()
-                    .frame(width: 300, height: 300)
-                
-                    }.font(.custom("Staatliches-Regular", size: 20))
-                    .padding()
-        }.ignoresSafeArea()
+            VStack{
+                Spacer()
+                ZStack{
+                   
+                    
+                    HStack{
+                        Image("monkart4")
+                            .resizable().scaledToFill()
+                            .frame(width: 200, height: 200)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    
+                    
+                    Image("monkart3")
+                        .resizable().scaledToFill()
+                        .frame(width: 300, height: 280)
+                        .zIndex(3)
+                    HStack{
+                        Spacer()
+                        Image("monkart2")
+                            .resizable().scaledToFill()
+                            .frame(width: 200, height: 200)
+                       
+                    }
+                    
+                    
+                    
+                    
+                    
+                }.frame(maxWidth: .infinity)
+                    .ignoresSafeArea()
+            }
+        }.edgesIgnoringSafeArea(.all)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
         

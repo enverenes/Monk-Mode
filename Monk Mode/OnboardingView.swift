@@ -56,6 +56,7 @@ struct OnboardingView: View {
                         .gradientForeground(colors: [Color(white: 1.0, opacity: 0.4), Color(white: 1.0, opacity: 1)])
                         .padding().font(.custom("Staatliches-Regular", size: 45))
                         .frame(width: 250)
+                        .minimumScaleFactor(0.4)
                     Spacer()
                 }
                

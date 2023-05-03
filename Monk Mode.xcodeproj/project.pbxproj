@@ -334,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				30C5D9C129CA739A00133663 /* Monk Mode.entitlements */,
-				3031D15529C88A5A0097A437 /* levelup.gif */,
 				30BA0A8529A9274700B0B3AB /* Monk-Mode-Info.plist */,
 				3054F9C729B99BA200603EDC /* ProgressBar.swift */,
 				30BA0A7929A9259F00B0B3AB /* ChooseHabitsView.swift */,
@@ -363,6 +362,7 @@
 				30A53ACE29B6C2F0008EE90D /* Premium.storekit */,
 				305858ED29F6262100E867F3 /* levelup_eff1.wav */,
 				30C0C1EA29C625F60014C46D /* mouseclick.wav */,
+				3031D15529C88A5A0097A437 /* levelup.gif */,
 				30BA0A5329A924FC00B0B3AB /* Preview Content */,
 			);
 			path = "Monk Mode";
@@ -1092,7 +1092,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1110,7 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1133,7 +1133,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1151,7 +1151,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

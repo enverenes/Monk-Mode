@@ -126,6 +126,7 @@ struct HistoryView: View {
                         .foregroundColor(.white)
                         .font(.custom("Staatliches-Regular", size: 40))
                     
+                  
                     HStack{
                         Button {
                             withAnimation{
@@ -143,61 +144,66 @@ struct HistoryView: View {
                      .padding(.bottom, 5)
                     .foregroundColor(.white)
                     .font(.custom("Staatliches-Regular", size: 40))
+                    
+                    
                 }
                
                     
             }
             
-            TabView{
-                Cycle()
-                PreviousCycles()
-                
-                
-            }.frame(height: 200)
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
-                
-            
-           
-                Button {
-                       withAnimation{
-                           showWeek.toggle()
-                           DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                                      withAnimation(.easeIn){
-                                          showWeekOP.toggle()
-                                      }
-                                  })
-                       }
-                   } label: {
-                       Text(showWeek ? "Tap to close" :"Tap to see more").foregroundColor(.white)
-                           .font(.custom("Staatliches-Regular", size: 15))
-                   }
-            
-          
-           
-            Spacer().frame(height: 10)
-            
-           
-            if showWeek{
-                VStack{
-                    CustomCalendar(week: $week, selectedDate: $selectedDate, percentageForTheWeek: $percentageForTheWeek)
+            ScrollView{
+                TabView{
+                    Cycle()
+                    PreviousCycles()
                     
-                }.opacity(showWeekOP ? 1.0 : 0.0)
-                .padding(5)
+                    
+                }.frame(height: 200)
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                    
                 
+               
+                    Button {
+                           withAnimation{
+                               showWeek.toggle()
+                               DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                                          withAnimation(.easeIn){
+                                              showWeekOP.toggle()
+                                          }
+                                      })
+                           }
+                       } label: {
+                           Text(showWeek ? "Tap to close" :"Tap to see more").foregroundColor(.white)
+                               .font(.custom("Staatliches-Regular", size: 15))
+                       }
+                
+              
+               
+                Spacer().frame(height: 10)
+                
+               
+                if showWeek{
+                    VStack{
+                        CustomCalendar(week: $week, selectedDate: $selectedDate, percentageForTheWeek: $percentageForTheWeek)
+                        
+                    }.opacity(showWeekOP ? 1.0 : 0.0)
+                    .padding(5)
+                    
+                }
+               
+
+                Spacer().frame(height: 30)
+                Text("Levels")
+                    .foregroundColor(.white)
+                    .font(.custom("Staatliches-Regular", size: 35))
+                    .padding()
+               
+                    Level(levelTransitionAnim: $levelTransitionAnim)
+               
+                
+                Spacer().frame(height: 200)
             }
            
-
-            Spacer().frame(height: 30)
-            Text("Levels")
-                .foregroundColor(.white)
-                .font(.custom("Staatliches-Regular", size: 35))
-                .padding()
-           
-                Level(levelTransitionAnim: $levelTransitionAnim)
-           
-            
-            Spacer()
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -530,7 +536,7 @@ struct CurrentLevel: View{
     }
     
     func getLevel(points: Int) -> Int {
-        let levels = [3, 9, 18, 30, 45, 63, 84, 108, 135, 165]
+        let levels = [12, 36, 72, 120, 180, 252, 336, 432, 540, 660]
         for i in 0..<levels.count {
             if points < levels[i] {
                 if i > 0 {
