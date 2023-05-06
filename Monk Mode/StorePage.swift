@@ -64,7 +64,17 @@ struct StorePage: View {
                         }
                         .foregroundColor(.white)
                         
-                        
+                        HStack{
+                            
+                            Button("Restore Purchases", action: {
+                                Task {
+                                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
+                                    //Call this function only in response to an explicit user action, such as tapping a button.
+                                    try? await AppStore.sync()
+                                }
+                            }).font(.custom("Staatliches-Regular", size: 15))
+                           
+                        }.padding(5)
                     }.padding(.leading, 20)
                     Spacer()
                         
@@ -142,7 +152,7 @@ struct StorePage: View {
                     Image("monkart3")
                         .resizable().scaledToFill()
                         .frame(width: 300, height: 280)
-                        .zIndex(3)
+                        .zIndex(1)
                     HStack{
                         Spacer()
                         Image("monkart2")

@@ -49,7 +49,7 @@ struct SplashScreenView: View {
             
         if (Double(daysPassed / totalDays) >= 1){
             progress = 1.0
-            saveDataCycles(day: Int(totalDays), progress: progress)
+           
 
             
         }else{

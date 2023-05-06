@@ -211,7 +211,7 @@ struct MainContentView: View {
     
     func fetchData(){
         let db = Firestore.firestore()
-        let userId = Auth.auth().currentUser!.uid // Assumes user is signed in
+        let userId = Auth.auth().currentUser?.uid ?? "x" // Assumes user is signed in
         let date = Date().toString(format: "yyyy-MM-dd")
         
         

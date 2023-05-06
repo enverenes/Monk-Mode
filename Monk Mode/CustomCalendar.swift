@@ -151,7 +151,7 @@ struct CustomCalendar: View {
                     VStack{
                         Text(daysOfWeek[index])
                             .foregroundColor(.white)
-                            .font(.custom("MetalMania-Regular", size: 20))
+                            .font(.custom("Staatliches-Regular", size: 20))
                         ZStack{
                             Circle()
                                 .stroke(
@@ -174,7 +174,7 @@ struct CustomCalendar: View {
                             
                             Text(String(day))
                                 .foregroundColor(.white)
-                                .font(.custom("MetalMania-Regular", size: 20))
+                                .font(.custom("Staatliches-Regular", size: 15))
                         }
                         
                         

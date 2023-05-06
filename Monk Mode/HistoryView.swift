@@ -387,6 +387,14 @@ struct PreviousCycles: View{
     
     var body: some View{
         ScrollView {
+            
+            if cycleInfos.count == 0 {
+                Text("No Previous Cycle Data Found")
+                    .font(.custom("Staatliches-Regular", size: 25))
+                    .foregroundColor(.white)
+                    .padding(20)
+            }
+            
             LazyVGrid(columns: gridLayout, spacing: 16) {
                 ForEach(cycleInfos, id: \.id) { item in
                     VStack{
@@ -422,7 +430,7 @@ struct PreviousCycles: View{
         }.onAppear{
             fetchDataCycles { fetchedCycles in
                     cycleInfos = fetchedCycles
-                    print(cycleInfos)
+                    
                 }
         }
     }
