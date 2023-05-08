@@ -12,21 +12,14 @@ class StoreKitManager: ObservableObject {
     @Published var storeProducts: [Product] = []
     @Published var purchasedCourses : [Product] = []
     
+    @Published var isFetching : Bool = true
+    
     var updateListenerTask: Task<Void, Error>? = nil
     
     //maintain a plist of products
-    private let productDict: [String : String]
+    
     init() {
-        //check the path for the plist
-        if let plistPath = Bundle.main.path(forResource: "Property List", ofType: "plist"),
-           //get the list of products
-           let plist = FileManager.default.contents(atPath: plistPath) {
-            productDict = (try? PropertyListSerialization.propertyList(from: plist, format: nil) as? [String : String]) ?? [:]
-        } else {
-            productDict = [:]
-        }
-        
-        //Start a transaction listener as close to the app launch as possible so you don't miss any transaction
+       
         updateListenerTask = listenForTransactions()
         
         //create async operation
@@ -69,7 +62,8 @@ class StoreKitManager: ObservableObject {
     func requestProducts() async {
         do {
             //using the Product static method products to retrieve the list of products
-            storeProducts = try await Product.products(for: productDict.values)
+            storeProducts = try await fetchProducts()
+            isFetching = false
             
             // iterate the "type" if there are multiple product types.
         } catch {
@@ -148,5 +142,13 @@ class StoreKitManager: ObservableObject {
         return purchasedCourses.contains(product)
     }
     
-    
+    func fetchProducts() async throws -> [Product] {
+        let keys = [
+            "com.monkmode.full"
+        ]
+                
+        let storeProducts = try await Product.products(for: keys)
+        
+        return storeProducts
+    }
 }

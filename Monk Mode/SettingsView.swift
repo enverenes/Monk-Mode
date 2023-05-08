@@ -110,7 +110,7 @@ struct SettingsView: View {
                              
                          }
                          .frame(width: 50, height: 50).padding(.vertical)
-                         Link(destination: URL(string: "https://www.instagram.com/")!) {
+                         Link(destination: URL(string: "https://www.instagram.com/monkmodeapplication/")!) {
                              HStack{
                                  Image("instagram")
                                      .resizable()
@@ -118,7 +118,7 @@ struct SettingsView: View {
                                      .frame(width: 50, height: 50)
                              }
                              
-                         }.disabled(true)
+                         }
                              .frame(width: 50, height: 50).padding(.vertical)
                          
                          Link(destination: URL(string: "https://www.tiktok.com/@monkmodeapplication")!) {

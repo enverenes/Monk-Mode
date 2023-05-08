@@ -11,7 +11,7 @@ import StoreKit
 struct StorePage: View {
     @StateObject var storeKit = StoreKitManager()
     @State var isPurchased: Bool = false
-    
+   
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -38,7 +38,7 @@ struct StorePage: View {
             
            
                 VStack(alignment: .center) {
-                    Spacer().frame(height: 100)
+                    Spacer().frame(minHeight: 70)
                     
                     Text("We Make You a Monk in 6 Months").minimumScaleFactor(0.8)
                         .foregroundColor(.white)
@@ -63,71 +63,94 @@ struct StorePage: View {
                             Spacer()
                         }
                         .foregroundColor(.white)
-                        
                         HStack{
-                            
-                            Button("Restore Purchases", action: {
-                                Task {
-                                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
-                                    //Call this function only in response to an explicit user action, such as tapping a button.
-                                    try? await AppStore.sync()
-                                }
-                            }).font(.custom("Staatliches-Regular", size: 15))
-                           
-                        }.padding(5)
-                    }.padding(.leading, 20)
-                    Spacer()
+                            Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                            Text("3 Days free trial")
+                            Spacer()
+                        }
+                        .foregroundColor(.white)
                         
-                            Divider()
-                            ForEach(storeKit.storeProducts) {product in
-                                if isPurchased {
-                                    NavigationLink {
-                                        MainContentView()
-                                    } label: {
-                                        Text("You are all set - Proceed").font(.custom("Staatliches-Regular", size: 25))
-                                            .padding()
-                                        
-                                    }.background(.white)
-                                        .cornerRadius(25)
-                                        .simultaneousGesture(TapGesture().onEnded{
-                                            UserDefaults.standard.welcomescreenShown = true
-                                        })
-                                    
-                                }else{
-                                    VStack {
-                                        Button(action: {
-                                            // purchase this product
-                                            Task { try await storeKit.purchase(product)
-                                            }
-                                        }) {
-                                            Text("Start - 3 days free trial")
-                                                .font(.custom("Staatliches-Regular", size: 25))
-                                                .padding()
-                                            
-                                              
-                                        }.background(.white)
-                                            .cornerRadius(25)
-                                        //Text("then").foregroundColor(.white)
-                                        HStack(alignment: .center){
-                                            
-                                            CourseItem(storeKit: storeKit, isPurchased: $isPurchased, product: product)
-                                            
+                     
+                    }.padding(.leading, 20)
+                    Spacer().frame(minHeight: 50)
+                        
+                            
+                    
+                    if storeKit.isFetching{
+                        Button {
+                            
+                        } label: {
+                            Text("Loading..").font(.custom("Staatliches-Regular", size: 25))
+                                .padding(20)
+                        }
+                        .background(.white)
+                            .cornerRadius(15)
 
-                                        }.foregroundColor(.white)
+                    }else{
+                        ForEach(storeKit.storeProducts) {product in
+                            if isPurchased {
+                                NavigationLink {
+                                    MainContentView()
+                                } label: {
+                                    Text("You are all set - Proceed")
+                                        .font(.custom("Staatliches-Regular", size: 25))
+                                        .padding(15)
+                                    
+                                }.background(.white)
+                                    .cornerRadius(15)
+                                    .simultaneousGesture(TapGesture().onEnded{
+                                        UserDefaults.standard.welcomescreenShown = true
+                                    })
+                                
+                            }else{
+                                VStack {
+                                    Button(action: {
+                                        // purchase this product
+                                        Task { try await storeKit.purchase(product)
+                                        }
+                                    }) {
+                                        Text("\(product.displayPrice) /month")
+                                            .padding(20)
+                                            .font(.custom("Staatliches-Regular", size: 25))
+                                        
+                                          
+                                    }.background(.white)
+                                        .cornerRadius(15)
+                                    //Text("then").foregroundColor(.white)
+                                    HStack(alignment: .center){
+                                        
+                                        Text("Monk Mode Temple Entry")
+                                            .padding(5)
+                                            .font(.custom("Staatliches-Regular", size: 15))
+                                        
+
+                                    }.foregroundColor(.white)
+                                    
+                                    HStack{
+                                        
+                                        Button("Restore Purchases", action: {
+                                            Task {
+                                                //This call displays a system prompt that asks users to authenticate with their App Store credentials.
+                                                //Call this function only in response to an explicit user action, such as tapping a button.
+                                                try? await AppStore.sync()
+                                            }
+                                        }).font(.custom("Staatliches-Regular", size: 15))
+                                       
+                                    }.padding(5)
+                                }.onChange(of: storeKit.purchasedCourses) { course in
+                                    Task {
+                                        isPurchased = (try? await storeKit.isPurchased(product)) ?? false
                                     }
                                 }
-                                
-                               
-                                
                             }
                             
-                    
-                       
+                           
                             
-                    Spacer()
+                        }
+
+                    }
                     
-                        
-                    
+                    Spacer().frame(minHeight: 20)
                     
                         }.font(.custom("Staatliches-Regular", size: 20))
                         .padding(.bottom, 300)
@@ -175,32 +198,7 @@ struct StorePage: View {
     }
 }
 
-struct CourseItem: View {
-    @ObservedObject var storeKit : StoreKitManager
-    @Binding var isPurchased: Bool
-    var product: Product
-    
-    var body: some View {
-        VStack {
-            if isPurchased {
-                VStack{
-                    
-                    
 
-                }
-               
-            }else{
-                Text("then  \(product.displayPrice) /month")
-                    .padding(5)
-            }
-        }
-        .onChange(of: storeKit.purchasedCourses) { course in
-            Task {
-                isPurchased = (try? await storeKit.isPurchased(product)) ?? false
-            }
-        }
-    }
-}
 
 struct StorePage_Previews: PreviewProvider {
     static var previews: some View {

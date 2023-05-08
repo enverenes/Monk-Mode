@@ -32,7 +32,6 @@
 		308F175629B00316008DB163 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F175529B00316008DB163 /* CustomCalendar.swift */; };
 		30A53ACB29B6937D008EE90D /* ChooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */; };
 		30A53ACD29B6C012008EE90D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A53ACC29B6C012008EE90D /* StoreKit.framework */; };
-		30A53AD029B6C375008EE90D /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30A53ACF29B6C375008EE90D /* Property List.plist */; };
 		30A53AD229B6C403008EE90D /* StorekitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53AD129B6C403008EE90D /* StorekitManager.swift */; };
 		30A53AD629B6C4A7008EE90D /* StorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A53AD529B6C4A7008EE90D /* StorePage.swift */; };
 		30B23EC729FCE42300B0E414 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */; };
@@ -159,8 +158,6 @@
 		308F175529B00316008DB163 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
 		30A53ACA29B6937D008EE90D /* ChooseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeView.swift; sourceTree = "<group>"; };
 		30A53ACC29B6C012008EE90D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		30A53ACE29B6C2F0008EE90D /* Premium.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Premium.storekit; sourceTree = "<group>"; };
-		30A53ACF29B6C375008EE90D /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		30A53AD129B6C403008EE90D /* StorekitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorekitManager.swift; sourceTree = "<group>"; };
 		30A53AD529B6C4A7008EE90D /* StorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePage.swift; sourceTree = "<group>"; };
 		30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -357,9 +354,7 @@
 				301363D429D45743001B33CD /* Staatliches-Regular.ttf */,
 				30BA0A8329A9272700B0B3AB /* MetalMania-Regular.ttf */,
 				30BA0A5129A924FC00B0B3AB /* Assets.xcassets */,
-				30A53ACF29B6C375008EE90D /* Property List.plist */,
 				30B23EC629FCE42300B0E414 /* GoogleService-Info.plist */,
-				30A53ACE29B6C2F0008EE90D /* Premium.storekit */,
 				305858ED29F6262100E867F3 /* levelup_eff1.wav */,
 				30C0C1EA29C625F60014C46D /* mouseclick.wav */,
 				3031D15529C88A5A0097A437 /* levelup.gif */,
@@ -627,7 +622,6 @@
 				30C0C1EB29C625F60014C46D /* mouseclick.wav in Resources */,
 				30B23EC729FCE42300B0E414 /* GoogleService-Info.plist in Resources */,
 				30BA0A5529A924FC00B0B3AB /* Preview Assets.xcassets in Resources */,
-				30A53AD029B6C375008EE90D /* Property List.plist in Resources */,
 				30BA0A5229A924FC00B0B3AB /* Assets.xcassets in Resources */,
 				305858EE29F6262100E867F3 /* levelup_eff1.wav in Resources */,
 				3031D15629C88A5A0097A437 /* levelup.gif in Resources */,
@@ -1092,7 +1086,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1110,7 +1104,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.10;
+				MARKETING_VERSION = 1.2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1133,7 +1127,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Monk Mode/Monk Mode.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Monk Mode/Preview Content\"";
 				DEVELOPMENT_TEAM = GRRYM4KT64;
 				ENABLE_PREVIEWS = YES;
@@ -1151,7 +1145,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.10;
+				MARKETING_VERSION = 1.2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WeInteractive.Monk-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
