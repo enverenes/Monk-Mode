@@ -100,7 +100,7 @@ struct SettingsView: View {
                      HStack(spacing: 40){
                          Spacer()
                          
-                         Link(destination: URL(string: "https://www.reddit.com/r/monkmodeapp/")!) {
+                         Link(destination: URL(string: "https://www.reddit.com/r/monkmodeapplication1/")!) {
                              HStack{
                                  Image("reddit")
                                      .resizable()

@@ -41,7 +41,10 @@ struct MainContentView: View {
     @State var selectedTab : Int = 1
     @State var habits : [String] = []
     @State var selectedHabit : Int = 0
+    @State var backgroundColorHabitDict : [String : Color ] = ["Exercise" : AppColors.Inside.insideColor ,"Meditation" : AppColors.Inside.insideColor,"Reading" : AppColors.Inside.insideColor,"Healthy Diet" : AppColors.Inside.insideColor,"Work" : AppColors.Inside.insideColor, "No Social Media" : AppColors.Inside.insideColor, "No Smoking" : AppColors.Inside.insideColor, "No Drugs" : AppColors.Inside.insideColor , "No Alcohol" : AppColors.Inside.insideColor, "No Fap" : AppColors.Inside.insideColor ]
     
+    @State var backgroundColorHabitDictClosed : [String : Color ] = ["Exercise" : AppColors.Inside.insideColor ,"Meditation" : AppColors.Inside.insideColor,"Reading" : AppColors.Inside.insideColor,"Healthy Diet" : AppColors.Inside.insideColor,"Work" : AppColors.Inside.insideColor, "No Social Media" : AppColors.Inside.insideColor, "No Smoking" : AppColors.Inside.insideColor, "No Drugs" : AppColors.Inside.insideColor , "No Alcohol" : AppColors.Inside.insideColor, "No Fap" : AppColors.Inside.insideColor ]
+    @State var closedColor : Color = Color(hex: 0x231c15)
     
     @State var selectedHabitforalert : String = ""
    
@@ -205,6 +208,8 @@ struct MainContentView: View {
                 
             }
         }
+        completedHabitColor()
+        completedHabitColorClosed()
     }
     
    @State var isDataFetchingCompleted = false
@@ -236,6 +241,8 @@ struct MainContentView: View {
                 if let encoded = try? encoder.encode(progressDataDict) {
                     UserDefaults(suiteName: "group.monkmode")!.set(encoded, forKey: "progressData")
                                 }
+                completedHabitColor()
+                completedHabitColorClosed()
                 withAnimation{
                     isDataFetchingCompleted = true
                 }
@@ -292,7 +299,33 @@ struct MainContentView: View {
    
     }
     
+    
+    func completedHabitColor() {
+        for habit in progressDataDict.keys{
+            if progressDataDict[habit] == 1 {
+                
+                backgroundColorHabitDict[habit] = Color.green
+            }
+            else{
+                backgroundColorHabitDict[habit] = AppColors.Inside.insideColor
+            }
+        }
+           
+        
+       
+    }
    
+    func completedHabitColorClosed() {
+        for habit in progressDataDict.keys{
+            if progressDataDict[habit] == 1 {
+                
+                backgroundColorHabitDictClosed[habit] = Color.green
+            }
+            else{
+                backgroundColorHabitDictClosed[habit] = closedColor
+            }
+        }
+    }
     
     var body: some View {
         let habitDetail : [String: String] = ["Exercise" : exerciseDetail, "Meditation" : meditationDetail, "Work" : workDetail, "Reading": readDetail, "Healthy Diet" : dietDetail]
@@ -349,14 +382,14 @@ struct MainContentView: View {
                                             Streak(habit: habit, streakDict: $streakDict)
                                            
                                             
-                                        }.background(animDict[habit]! ? .white : AppColors.Inside.insideColor)
+                                        }.background(animDict[habit]! ? .white : backgroundColorHabitDict[habit])
                                             .cornerRadius(25)
                                             .animation(.easeInOut(duration: 0.5))
                                                 .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
                                                 .scaleEffect(animDict[habit]! ? 1.2 : 1.0)
                                     }
                                     else{
-                                        ClosedHabit(habit: habit, animDict: $animDict)
+                                        ClosedHabit(habit: habit, closedColor: $closedColor, animDict: $animDict, progressDataDict: $progressDataDict , backgroundColorHabitDictClosed: $backgroundColorHabitDictClosed)
                                    }
                                     
                                 }
@@ -370,6 +403,7 @@ struct MainContentView: View {
                                 Button {
                                     loadSound(click: true)
                                     playSound()
+                                   
                                     
                                     print(progressDataDict)
                                     
@@ -435,6 +469,7 @@ struct MainContentView: View {
                                     
                                     saveData(habit: habit, habitStatus: progressDataDict[habit] ?? 0)
                                     WidgetCenter.shared.reloadAllTimelines()
+                                    
                                 } label: {
                                     if progressDataDict[habit] == 0 {
                                         
@@ -662,7 +697,7 @@ struct MainContentView: View {
                
             UserDefaults.standard.welcomescreenShown = true
          
-                
+            
         }
         .navigationBarBackButtonHidden(true)
        
@@ -779,7 +814,14 @@ struct TabBar: View{
 struct ClosedHabit: View{
     @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @State var habit : String
+    @Binding var closedColor : Color
     @Binding var animDict : [String : Bool]
+    @Binding var progressDataDict : [String : Int]
+    @Binding var backgroundColorHabitDictClosed : [String : Color]
+    
+    
+ 
+    
     var body: some View{
         VStack{
             
@@ -794,7 +836,7 @@ struct ClosedHabit: View{
                     .frame(height: 50)
                     .padding(5)
                 
-            }.background(animDict[habit]! ? .white : Color(hex: 0x231c15))
+            }.background(animDict[habit]! ? .white : backgroundColorHabitDictClosed[habit])
                     .cornerRadius(25)
                     .animation(.easeInOut(duration: 0.5))
                     .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))

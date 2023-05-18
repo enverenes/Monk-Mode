@@ -45,7 +45,7 @@ struct BottomSheetView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 50, height: 50)
-                                    Text(" +2 points")
+                                    Text(" +1 points")
                                     Spacer()
                                 }
                                 HStack{
