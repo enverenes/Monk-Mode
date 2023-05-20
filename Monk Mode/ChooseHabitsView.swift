@@ -274,7 +274,12 @@ struct ChooseHabitsView: View {
                     
                     Spacer()
                     NavigationLink {
-                        SpecifyhabitsView()
+                        if UserDefaults.standard.addingHabit{
+                            MainContentView()
+                        }else{
+                            ChooseTimeView()
+                            
+                        }
                     } label: {
                         Text("Proceed")
                         
