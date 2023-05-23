@@ -19,7 +19,7 @@ struct StorePage: View {
           self.presentationMode.wrappedValue.dismiss()
           }) {
               HStack {
-                  Image("backbutton").resizable().scaledToFit().frame(width: 30, height: 30)
+                  Image(systemName: "arrow.left.circle").resizable().scaledToFit().frame(width: 30, height: 30)
                   .aspectRatio(contentMode: .fit)
                   .foregroundColor(.white)
                   
