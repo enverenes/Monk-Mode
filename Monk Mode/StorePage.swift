@@ -70,7 +70,7 @@ struct StorePage: View {
                         .foregroundColor(.white)
                         HStack{
                             Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
-                            Text("3 Days free trial")
+                            Text("1 Month FREE trial")
                             Spacer()
                         }
                         .foregroundColor(.white)

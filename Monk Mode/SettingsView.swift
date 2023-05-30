@@ -104,7 +104,6 @@ struct SettingsView: View {
                              HStack{
                                  Image("reddit")
                                      .resizable()
-                                     
                                      .frame(width: 50, height: 50)
                              }
                              

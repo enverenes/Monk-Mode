@@ -5,6 +5,7 @@
 //  Created by Enver Enes Keskin on 19.02.2023.
 //
 
+import StoreKit
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
@@ -14,6 +15,9 @@ import WidgetKit
 
 
 struct MainContentView: View {
+    
+    @Environment(\.requestReview) var requestReview
+    
     
     @AppStorage("userLevel", store: UserDefaults(suiteName: "group.monkmode")) var userLevel = "level1"
     @AppStorage("userPoints") var userPoints : Int = 0
@@ -341,6 +345,12 @@ struct MainContentView: View {
                         .foregroundColor(.white)
                         .font(.custom("Staatliches-Regular", size: 40))
                         .blur(radius: levelUp ? 40 : 0)
+                        .alert(isPresented: $showRatingPrompt) {
+                            Alert(title: Text(""), message: Text("Are you enjoying the app?"), primaryButton: .default(Text("Yes"), action: {
+                                requestReview()
+
+                            }), secondaryButton: .cancel(Text("Cancel")))
+                                }
                     
                 ScrollView{
                     
